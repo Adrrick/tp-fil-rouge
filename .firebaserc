@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tp-fil-rouge-bf29f": {
+      "hosting": {
+        "tp-fil-rouge": [
+          "tp-fil-rouge-bf29f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tp-fil-rouge-bf29f"
+  }
+}

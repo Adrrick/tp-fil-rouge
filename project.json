@@ -103,6 +103,16 @@
           "codeCoverage": true
         }
       }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {
+        "prerender": false,
+        "ssr": false,
+        "browserTarget": "tp-fil-rouge:build:production",
+        "firebaseProject": "tp-fil-rouge-bf29f",
+        "firebaseHostingSite": "tp-fil-rouge-bf29f"
+      }
     }
   },
   "tags": []

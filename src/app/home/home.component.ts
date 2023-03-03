@@ -1,11 +1,24 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {AsyncPipe, CommonModule, NgIf} from '@angular/common';
+import {MoviesService} from "../shared/services/movies.service";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'tp-fil-rouge-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AsyncPipe, NgIf, RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  providers: [MoviesService]
 })
-export class HomeComponent {}
+export class HomeComponent {
+  movies$ = this.movieService.getPopular();
+
+  constructor(private movieService: MoviesService) {
+  }
+
+  goDetails(id: number): void {
+    console.log({id});
+  }
+
+}

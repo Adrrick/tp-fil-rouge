@@ -1,1 +1,9 @@
 <p>home works!</p>
+<div *ngIf="movies$ | async as movies">
+    <div *ngFor="let movie of movies.results">
+        <p>{{movie?.title}}</p>
+        <a routerLink="/movie/{{movie?.id}}">
+            <img src="{{'https://image.tmdb.org/t/p/original' + movie?.poster_path}}" alt="poster for {{movie?.title}}">
+        </a>
+    </div>
+</div>

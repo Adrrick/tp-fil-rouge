@@ -14,6 +14,7 @@ import { AppComponent } from "./app/app.component";
 import { appRoutes } from "./app/app.routes";
 import { environment } from "./environments/environment";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from "@angular/common/http";
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -22,7 +23,7 @@ bootstrapApplication(AppComponent, {
       ServiceWorkerModule.register('ngsw-worker.js', {
         enabled: !isDevMode(),
         registrationStrategy: 'registerWhenStable:30000',
-      }), BrowserAnimationsModule
+      }), BrowserAnimationsModule, HttpClientModule
     ),
     importProvidersFrom(provideFirebaseApp(() => initializeApp(environment.firebase))),
     importProvidersFrom(provideAuth(() => getAuth())),

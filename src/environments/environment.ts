@@ -6,4 +6,9 @@ export const environment = {
     apiKey: 'AIzaSyAjb2SJSC4eka0TQ5iQP-XYl4cVOYdcW7I',
     authDomain: 'tp-fil-rouge-bf29f.firebaseapp.com',
     messagingSenderId: '7493998023',
-  },};
+  },
+  api: {
+    apiKey: '41770330e49047aac35ce453ac66b586',
+    baseUrl: 'https://api.themoviedb.org/3/'
+  }
+};

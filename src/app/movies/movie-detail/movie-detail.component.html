@@ -1,0 +1,5 @@
+<div *ngIf="movie$ | async as movie">
+    <h2>{{movie.title}}</h2>
+    <h4>{{movie.tagline}}</h4>
+    <p>{{movie.overview}}</p>
+</div>

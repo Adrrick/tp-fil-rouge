@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import * as QueryString from 'qs';
+import MovieDetails from 'src/app/models/Movie-details';
+import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
 
-export interface result {page?: number; results?: any[]; total_results?: number; total_pages?: number; status_message?: string; status_code: number;}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,12 +16,20 @@ export class MoviesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getPopular(): Observable<result> {
-    return this.httpClient.get<result>(this.baseUrl + 'movie/popular?api_key=' + this.apiKey);
+  public getPopular(): Observable<PopularMoviesResult> {
+    return this.call(`movie/popular`)
   }
 
-  public getMovie(id: string): Observable<any>{
-    return this.httpClient.get<any>(this.baseUrl + 'movie/' + id + '?api_key=' + this.apiKey);
+  public getMovieDetails(id: string): Observable<MovieDetails> {
+    return this.call(`movie/${id}`)
+  }
+
+  private call<T>(url: string, parameters?: object) {
+    return this.httpClient.get<T>(`${this.baseUrl}/${url}?${this.createQueryParams(parameters)}`)
+  }
+
+  private createQueryParams(parameters?: object) {
+    return QueryString.stringify({ ...parameters, api_key: this.apiKey })
   }
 
 }

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {MoviesService} from "../../shared/services/movies.service";
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MoviesService } from "../../shared/services/movies.service";
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from "rxjs";
 
 
 @Component({
@@ -22,7 +22,7 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.movie$ = this.moviesServices.getMovie(id);
+      this.movie$ = this.moviesServices.getMovieDetails(id);
     }
 
   }

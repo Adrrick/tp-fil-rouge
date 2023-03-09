@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {AsyncPipe, CommonModule, NgIf} from '@angular/common';
-import {MoviesService} from "../shared/services/movies.service";
-import {RouterLink} from "@angular/router";
+import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
+import { MoviesService } from "../shared/services/movies.service";
+import { MovieCardComponent } from '../shared/components/movie-card/movie-card.component';
 
 @Component({
   selector: 'tp-fil-rouge-home',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, NgIf, RouterLink],
+  imports: [CommonModule, AsyncPipe, NgIf, MovieCardComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [MoviesService]
@@ -18,7 +18,7 @@ export class HomeComponent {
   }
 
   goDetails(id: number): void {
-    console.log({id});
+    console.log({ id });
   }
 
 }

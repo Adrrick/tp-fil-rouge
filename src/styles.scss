@@ -7,6 +7,28 @@ header>ul {
     margin: 0;
 }
 
-a {
+a,
+a:hover,
+a:focus,
+a:active {
     text-decoration: none;
+    color: inherit;
+}
+
+a:active,
+a:focus {
+    outline: 0;
+    border: none;
+}
+
+
+/* Hide scrollbar for IE, Edge add Firefox */
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// Hide scrollbar for Chrome
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
 }

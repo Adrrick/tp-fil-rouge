@@ -1,0 +1,12 @@
+.movie-section {}
+
+.movie-section--title {
+    color: white;
+}
+
+.movie-section--container {
+    display: flex;
+    column-gap: 1rem;
+
+    overflow-x: scroll;
+}

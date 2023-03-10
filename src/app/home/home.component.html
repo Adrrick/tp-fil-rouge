@@ -1,3 +1,3 @@
-<div class="movies-container" *ngIf="movies$ | async as movies">
-    <tp-fil-rouge-movie-card [movie]="movie" *ngFor="let movie of movies.results" />
+<div *ngIf="movies | async as movies">
+    <tp-fil-rouge-movie-section [title]="'Popular'" [movies]="movies.results" />
 </div>

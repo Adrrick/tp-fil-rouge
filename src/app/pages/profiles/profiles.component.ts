@@ -27,4 +27,13 @@ export class ProfilesComponent {
 
   public users$ = this.usersService.getAllUsers();
   public queryControl = new FormControl('', { nonNullable: true });
+  public currentUser = this.getCurrentUser();
+
+  getCurrentUser() {
+    const currentUserUID = localStorage.getItem('uid');
+    if (!currentUserUID) {
+      return;
+    }
+    return this.usersService.getUserByUID(currentUserUID);
+  }
 }

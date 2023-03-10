@@ -16,7 +16,10 @@ export class FirebaseAuthService {
     this.afAuth.signInWithEmailAndPassword(email, password).then((response) => {
       if (response?.user?.uid) {
         this.userServices.getUserByUID(response.user.uid).subscribe((user) => {
-          this.storageService.setLoginData(user.id);
+          console.log({user});
+          if (user?.uid) {
+            this.storageService.setLoginData(user?.uid);
+          }
         });
       }
     }, (err) => console.log('Error', err));
@@ -29,10 +32,12 @@ export class FirebaseAuthService {
   signUpEmail(email: string, password: string, username: string) {
     this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        if (response.user?.uid) {
-          response?.user?.updateProfile({displayName: username});
+        if (response?.user?.uid) {
+          response?.user?.updateProfile({displayName: username}).then();
           this.userServices.createUser(username, response.user.uid).subscribe((user) => {
-            this.storageService.setLoginData(user.id);
+            if (user?.uid) {
+              this.storageService.setLoginData(user?.uid);
+            }
           });
         }
       })

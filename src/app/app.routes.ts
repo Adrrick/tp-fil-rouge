@@ -5,12 +5,16 @@ import { MovieDetailComponent } from "./movies/movie-detail/movie-detail.compone
 import { RegisterComponent } from "./pages/register/register.component";
 import { ExploreComponent } from './pages/explore/explore.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ExploreDetailsComponent } from './pages/explore-details/explore-details.component';
 
 export const appRoutes: Route[] = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'explore', component: ExploreComponent },
+  { path: 'explore/details', component: ExploreDetailsComponent },
+
   { path: 'search', component: SearchComponent },
 
   { path: 'movie/:id', component: MovieDetailComponent }

@@ -24,6 +24,5 @@ export class MovieDetailComponent implements OnInit {
     if (id) {
       this.movie$ = this.moviesServices.getMovieDetails(id);
     }
-
   }
 }

@@ -1,0 +1,23 @@
+.bottom-navbar-item {
+    color: var(--bottom-navbar-item-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .bottom-navbar-item--button {
+        color: var(--bottom-navbar-item-color)
+    }
+
+    .bottom-navbar-item--title {
+        margin-top: -8px;
+        font-size: small;
+        display: none;
+    }
+
+    &.is-active {
+        .bottom-navbar-item--title {
+            display: block;
+        }
+    }
+}

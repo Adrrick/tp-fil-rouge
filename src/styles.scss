@@ -1,9 +1,16 @@
+:root {
+    --main-bg-color: #242a32;
+    --bottom-navbar-item-color: rgb(60, 200, 235);
+    --bottom-navbar-background-color: #2d353f;
+}
+
 body {
-    margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-header>ul {
+header>ul,
+body,
+p {
     margin: 0;
 }
 

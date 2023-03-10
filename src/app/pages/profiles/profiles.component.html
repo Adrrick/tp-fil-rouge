@@ -1,1 +1,5 @@
-<p>profiles works!</p>
+<div *ngIf="users$ | async as users">
+  <mat-list *ngFor="let user of users">
+    <mat-list-item>Utilisateur : {{ user.username }}</mat-list-item>
+  </mat-list>
+</div>

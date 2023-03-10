@@ -5,6 +5,8 @@ import { MovieDetailComponent } from "./movies/movie-detail/movie-detail.compone
 import { RegisterComponent } from "./pages/register/register.component";
 import { ExploreComponent } from './pages/explore/explore.component';
 import { SearchComponent } from './pages/search/search.component';
+import {AuthGuard} from './shared/guard/auth-guard.guard'
+
 
 export const appRoutes: Route[] = [
   { path: '', component: HomeComponent },
@@ -13,5 +15,5 @@ export const appRoutes: Route[] = [
   { path: 'explore', component: ExploreComponent },
   { path: 'search', component: SearchComponent },
 
-  { path: 'movie/:id', component: MovieDetailComponent }
+  { path: 'movie/:id', component: MovieDetailComponent,  canActivate: [AuthGuard] }
 ];

@@ -4,7 +4,7 @@
   aria-describedby="search-text"
   [formControl]="queryControl"
   placeholder="Enter username to search"
-  autofocus
+  autofocus²
 />
 
 <div *ngIf="users$ | async as users">
@@ -21,7 +21,13 @@
         </mat-card-title-group>
       </mat-card-header>
       <mat-card-content> Je suis un utilisateur </mat-card-content>
-      <button *ngIf="currentUser === user.uid">Edit</button>
+      <button
+        mat-raised-button
+        color="warn"
+        *ngIf="currentUser && currentUser === user.uid"
+      >
+        Edit
+      </button>
     </mat-card>
   </mat-list>
 </div>

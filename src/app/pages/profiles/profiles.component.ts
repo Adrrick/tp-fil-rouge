@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FilteredUsersPipe } from 'src/app/shared/pipes/filtered-users/filtered-users.pipe';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'tp-fil-rouge-profiles',
@@ -17,6 +18,7 @@ import { FilteredUsersPipe } from 'src/app/shared/pipes/filtered-users/filtered-
     MatCardModule,
     FilteredUsersPipe,
     ReactiveFormsModule,
+    MatButtonModule,
   ],
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.scss'],
@@ -25,15 +27,7 @@ import { FilteredUsersPipe } from 'src/app/shared/pipes/filtered-users/filtered-
 export class ProfilesComponent {
   constructor(private usersService: UserService) {}
 
-  public users$ = this.usersService.getAllUsers();
   public queryControl = new FormControl('', { nonNullable: true });
-  public currentUser = this.getCurrentUser();
-
-  getCurrentUser() {
-    const currentUserUID = localStorage.getItem('uid');
-    if (!currentUserUID) {
-      return;
-    }
-    return this.usersService.getUserByUID(currentUserUID);
-  }
+  public currentUser = localStorage.getItem('uid');
+  public users$ = this.usersService.getAllUsers();
 }

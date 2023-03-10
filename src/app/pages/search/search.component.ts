@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'tp-fil-rouge-explore',
+  selector: 'tp-fil-rouge-search',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.scss'],
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
 })
-export class ExploreComponent {
+export class SearchComponent {
 }

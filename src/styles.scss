@@ -1,11 +1,20 @@
 :root {
     --main-bg-color: #242a32;
+
     --bottom-navbar-item-color: rgb(60, 200, 235);
     --bottom-navbar-background-color: #2d353f;
+    --bottom-navbar-height: 60px
 }
 
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body,
+.root {
+    /* When there is not enough content */
+    min-height: calc(100vh - var(--bottom-navbar-height));
 }
 
 header>ul,

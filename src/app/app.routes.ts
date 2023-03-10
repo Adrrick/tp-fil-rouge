@@ -6,9 +6,12 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { ExploreComponent } from './pages/explore/explore.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ExploreDetailsComponent } from './pages/explore-details/explore-details.component';
+import { AuthGuard } from './shared/guard/auth-guard.guard'
+
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -17,5 +20,5 @@ export const appRoutes: Route[] = [
 
   { path: 'search', component: SearchComponent },
 
-  { path: 'movie/:id', component: MovieDetailComponent }
+  { path: 'movie/:id', component: MovieDetailComponent, canActivate: [AuthGuard] }
 ];

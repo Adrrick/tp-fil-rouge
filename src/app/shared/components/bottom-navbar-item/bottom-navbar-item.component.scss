@@ -1,12 +1,11 @@
 .bottom-navbar-item {
-    color: var(--bottom-navbar-item-color);
-
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .bottom-navbar-item--button {
-        color: var(--bottom-navbar-item-color)
+    .bottom-navbar-item--title,
+    .bottom-navbar-item--icon {
+        filter: var(--bottom-navbar-item-color);
     }
 
     .bottom-navbar-item--title {
@@ -18,6 +17,11 @@
     &.is-active {
         .bottom-navbar-item--title {
             display: block;
+        }
+
+        .bottom-navbar-item--icon,
+        .bottom-navbar-item--title {
+            filter: var(--bottom-navbar-item-color-active);
         }
     }
 }

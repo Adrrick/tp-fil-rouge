@@ -14,11 +14,10 @@ export const appRoutes: Route[] = [
   { path: 'register', component: RegisterComponent },
   { path: 'explore', component: ExploreComponent },
   { path: 'search', component: SearchComponent },
-
+  { path: 'profiles', component: ProfilesComponent },
   {
     path: 'movie/:id',
     component: MovieDetailComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'profiles', component: ProfilesComponent },
 ];

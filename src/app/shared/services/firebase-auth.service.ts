@@ -20,7 +20,7 @@ export class FirebaseAuthService {
         this.userServices.getUserByUID(response.user.uid).subscribe((user) => {
           if (user?.uid) {
             this.storageService.setLoginData(user?.uid);
-            this.router.navigate(['/'])
+            this.router.navigate(['/']).then();
           }
         });
       }
@@ -41,6 +41,7 @@ export class FirebaseAuthService {
           this.userServices.createUser(username, response.user.uid).subscribe((user) => {
             if (user?.uid) {
               this.storageService.setLoginData(user?.uid);
+              this.router.navigate(['/']).then();
             }
           });
         }

@@ -17,8 +17,11 @@ export class MoviesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getPopular(): Observable<PopularMoviesResult> {
+  public getPopularMovies(): Observable<PopularMoviesResult> {
     return this.call(`movie/popular`)
+  }
+  public getTopRatedMovies(): Observable<PopularMoviesResult> {
+    return this.call(`movie/top_rated`)
   }
 
   public getMovieDetails(id: string): Observable<MovieDetails> {
@@ -30,7 +33,7 @@ export class MoviesService {
   }
 
   public getMoviesDiscover(options: { with_genres?: string }): Observable<PopularMoviesResult> {
-    return this.call('/discover/movie', options);
+    return this.call('discover/movie', options);
   }
 
   private call<T>(url: string, parameters?: object) {

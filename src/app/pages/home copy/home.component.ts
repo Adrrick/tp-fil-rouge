@@ -12,9 +12,13 @@ import { MovieSectionComponent } from '../../shared/components/movie-section/mov
   providers: [MoviesService]
 })
 export class HomeComponent {
-  popularMovies = this.movieService.getPopularMovies();
-  topRatedMovies = this.movieService.getTopRatedMovies();
+  movies = this.movieService.getPopularMovies();
 
   constructor(private movieService: MoviesService) {
   }
+
+  goDetails(id: number): void {
+    console.log({ id });
+  }
+
 }

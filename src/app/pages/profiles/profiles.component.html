@@ -1,5 +1,14 @@
+<input
+  type="text"
+  id="search-text"
+  aria-describedby="search-text"
+  [formControl]="queryControl"
+  placeholder="Enter username to search"
+  autofocus
+/>
+
 <div *ngIf="users$ | async as users">
-  <mat-list *ngFor="let user of users">
+  <mat-list *ngFor="let user of users | filteredUsers : queryControl.value">
     <mat-card class="example-card">
       <mat-card-header>
         <mat-card-title-group>
@@ -12,7 +21,6 @@
         </mat-card-title-group>
       </mat-card-header>
       <mat-card-content> Je suis un utilisateur </mat-card-content>
-      <!-- <button *ngIf="{{user.username}} = currentUser$ " mat-raised-button>Edit</button> -->
     </mat-card>
   </mat-list>
 </div>

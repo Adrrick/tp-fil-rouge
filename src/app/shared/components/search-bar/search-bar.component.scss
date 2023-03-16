@@ -11,7 +11,7 @@
 
         width: var(--icon-size);
 
-        color: var(--clr-secondary-400);
+        color: var(--clr-secondary-300);
     }
 
     & .search-bar--input {
@@ -24,9 +24,10 @@
 
         outline: none;
 
+        color: white;
+
         background-color: var(--clr-secondary-700);
 
-        color: white;
         font-size: 18px;
 
     }

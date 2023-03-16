@@ -1,11 +1,13 @@
 .bottom-navbar {
-    overflow: hidden;
-    background-color: var(--bottom-navbar-background-color);
     position: fixed;
     bottom: 0;
 
+    background-color: var(--bottom-navbar-background-color);
+
     width: 100%;
     height: var(--bottom-navbar-height);
+
+    animation: fadeIn 0.15s ease-in;
 
     .bottom-navbar-items-container {
 
@@ -15,6 +17,14 @@
 
         padding: 0 5rem;
     }
+}
 
+@keyframes fadeIn {
+    0% {
+        transform: translateY(100%);
+    }
 
+    100% {
+        transform: translateY(0%);
+    }
 }

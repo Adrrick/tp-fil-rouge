@@ -1,3 +1,5 @@
-.root {
-    min-height: calc(100vh - var(--bottom-navbar-height));
+.root {}
+
+main {
+    padding-bottom: var(--bottom-navbar-height);
 }

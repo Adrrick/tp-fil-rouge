@@ -1,8 +1,8 @@
 .bottom-navbar {
-    overflow: hidden;
-    background-color: var(--bottom-navbar-background-color);
     position: fixed;
     bottom: 0;
+
+    background-color: var(--bottom-navbar-background-color);
 
     width: 100%;
     height: var(--bottom-navbar-height);

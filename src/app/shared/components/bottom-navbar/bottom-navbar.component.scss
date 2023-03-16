@@ -7,6 +7,8 @@
     width: 100%;
     height: var(--bottom-navbar-height);
 
+    animation: fadeIn 0.15s ease-in;
+
     .bottom-navbar-items-container {
 
         display: flex;
@@ -15,6 +17,14 @@
 
         padding: 0 5rem;
     }
+}
 
+@keyframes fadeIn {
+    0% {
+        transform: translateY(100%);
+    }
 
+    100% {
+        transform: translateY(0%);
+    }
 }

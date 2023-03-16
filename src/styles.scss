@@ -15,7 +15,8 @@ html,
 body,
 .root {
     /* When there is not enough content */
-    min-height: calc(100vh - var(--bottom-navbar-height));
+    min-height: 100vh;
+    background-color: var(--main-bg-color);
 }
 
 header>ul,

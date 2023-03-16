@@ -1,4 +1,5 @@
-<div class="bottom-navbar-item" [routerLinkActive]="['is-active']" #rla="routerLinkActive">
+<div class="bottom-navbar-item" [routerLinkActive]="['is-active']" #rla="routerLinkActive"
+    [routerLinkActiveOptions]={exact:true}>
     <button [routerLink]="path" class="bottom-navbar-item--button" mat-icon-button color="primary">
         <img class="bottom-navbar-item--icon"
             src="../../../../assets/navbar-items/{{icon}}_{{ rla.isActive ? 'fill' : 'empty'}}.svg" alt="">

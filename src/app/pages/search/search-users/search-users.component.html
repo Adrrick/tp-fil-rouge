@@ -1,0 +1,20 @@
+<input type="text" id="search-text" aria-describedby="search-text" [formControl]="queryControl"
+    placeholder="Enter username to search" autofocus />
+
+<div *ngIf="users$ | async as users">
+    <mat-list *ngFor="let user of users | filteredUsers : queryControl.value">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>{{ user.username }}</mat-card-title>
+                    <mat-card-subtitle>Utilisateur</mat-card-subtitle>
+                    <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content> Je suis un utilisateur </mat-card-content>
+            <button mat-raised-button color="warn" *ngIf="currentUser && currentUser === user.uid">
+                Edit
+            </button>
+        </mat-card>
+    </mat-list>
+</div>

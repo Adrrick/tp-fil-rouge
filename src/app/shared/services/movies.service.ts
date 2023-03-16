@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {combineLatest, map, Observable} from "rxjs";
 import * as QueryString from 'qs';
 import MovieDetails from 'src/app/models/Movie-details';
-import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
 import Genres from 'src/app/models/Genres';
+import { environment } from 'src/environments/environment';
+import MoviesListResult from 'src/app/models/MoviesListResult';
 
 
 @Injectable({
@@ -12,15 +13,16 @@ import Genres from 'src/app/models/Genres';
 })
 export class MoviesService {
 
-  baseUrl = 'https://api.themoviedb.org/3/';
-  apiKey = '41770330e49047aac35ce453ac66b586';
+  baseUrl = environment.api.baseUrl;
+  apiKey = environment.api.apiKey;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
-  public getPopularMovies(): Observable<PopularMoviesResult> {
+  public getPopularMovies(): Observable<MoviesListResult> {
     return this.call(`movie/popular`)
   }
-  public getTopRatedMovies(): Observable<PopularMoviesResult> {
+  public getTopRatedMovies(): Observable<MoviesListResult> {
     return this.call(`movie/top_rated`)
   }
 
@@ -28,7 +30,7 @@ export class MoviesService {
     return this.call(`movie/${id}`)
   }
 
-  public searchMovies(query: string): Observable<PopularMoviesResult> {
+  public searchMovies(query: string): Observable<MoviesListResult> {
     return this.call(`search/movie`, { query })
   }
 
@@ -36,7 +38,7 @@ export class MoviesService {
     return this.call('genre/movie/list')
   }
 
-  public getMoviesDiscover(options: { with_genres?: string }): Observable<PopularMoviesResult> {
+  public getMoviesDiscover(options: { with_genres?: string }): Observable<MoviesListResult> {
     return this.call('discover/movie', options);
   }
 
@@ -45,7 +47,7 @@ export class MoviesService {
   }
 
   private createQueryParams(parameters?: object) {
-    return QueryString.stringify({ ...parameters, api_key: this.apiKey })
+    return QueryString.stringify({...parameters, api_key: this.apiKey})
   }
 
 }

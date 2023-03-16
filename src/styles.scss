@@ -1,10 +1,26 @@
 :root {
     --main-bg-color: #242a32;
 
+    --clr-primary-700: #640409;
+    --clr-primary-600: #8a050c;
+    --clr-primary-500: #97070f;
+    --clr-primary-400: #d60712;
+    --clr-primary-300: #e40b18;
+
+    --clr-secondary-800: #242a32;
+    --clr-secondary-700: #3f4a58;
+    --clr-secondary-600: #5a6a7e;
+    --clr-secondary-500: #667991;
+    --clr-secondary-400: #718591;
+    --clr-secondary-300: #90aaca;
+
     --bottom-navbar-item-color: invert(49%) sepia(3%) saturate(3158%) hue-rotate(145deg) brightness(101%) contrast(87%); // #61868f
     --bottom-navbar-item-color-active: invert(77%) sepia(13%) saturate(4339%) hue-rotate(157deg) brightness(97%) contrast(90%); // https://codepen.io/sosuke/pen/Pjoqqp #3cc8eb
     --bottom-navbar-background-color: #2d353f;
-    --bottom-navbar-height: 60px
+    --bottom-navbar-height: 60px;
+
+    --movie-card-width: 6.5rem;
+    --movie-card-height: 10rem;
 }
 
 body {
@@ -49,4 +65,10 @@ a:focus {
 // Hide scrollbar for Chrome
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+}
+
+.auto-grid-movies {
+    --gap: 0.5rem display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(var(--movie-card-width) + var(--gap)), 1fr));
+    grid-gap: var(--gap);
 }

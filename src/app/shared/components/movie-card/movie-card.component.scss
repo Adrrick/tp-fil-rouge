@@ -1,6 +1,6 @@
 .movie-card {
-    height: 10rem;
-    width: 6.5rem;
+    height: var(--movie-card-height);
+    width: var(--movie-card-width);
     display: inline-block;
 }
 

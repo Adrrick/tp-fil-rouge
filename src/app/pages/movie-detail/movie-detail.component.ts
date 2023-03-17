@@ -22,7 +22,7 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.movie$ = this.moviesServices.getMovieInfo(id);
+      this.movie$ = this.moviesServices.getMovieDetails(id);
     }
   }
 }

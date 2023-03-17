@@ -4,8 +4,8 @@ import { MoviesService } from 'src/app/shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import Movie from 'src/app/models/Movie';
+import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
 import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
-import MoviesListResult from 'src/app/models/MoviesListResult';
 
 @Component({
   selector: 'tp-fil-rouge-explore-details',
@@ -15,7 +15,7 @@ import MoviesListResult from 'src/app/models/MoviesListResult';
   styleUrls: ['./explore-details.component.scss'],
 })
 export class ExploreDetailsComponent implements OnInit {
-  movies$?: Observable<MoviesListResult>;
+  movies$?: Observable<PopularMoviesResult>;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {
   }

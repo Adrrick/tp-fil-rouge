@@ -2,7 +2,7 @@
     <img class="header--logo" src="../../../../assets/logo.png" />
 
     <div *ngIf="firebaseAuthService.currentUser; else loggedOut">
-        <tp-fil-rouge-avatar avatarImage={{firebaseAuthService.currentUser.image}} [onClickCallback]="onClickAvatar" />
+        <tp-fil-rouge-avatar avatarImage={{firebaseAuthService.currentUser.image}} />
     </div>
 
     <ng-template #loggedOut>

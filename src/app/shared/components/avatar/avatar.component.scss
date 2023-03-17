@@ -1,7 +1,7 @@
 .avatar {
     width: 3rem;
 
-    &.avatar--clickable:is(:hover, :focus) {
+    &:is(:hover, :focus) {
         filter: brightness(80%);
         cursor: pointer;
     }

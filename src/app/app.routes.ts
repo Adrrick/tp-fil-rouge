@@ -8,6 +8,7 @@ export const appRoutes: Route[] = [
 
   { path: 'login', loadComponent: () => import("./pages/login/login.component").then((m) => m.LoginComponent) },
   { path: 'register', loadComponent: () => import("./pages/register/register.component").then((m) => m.RegisterComponent) },
+  { path: 'logout', loadComponent: () => import("./pages/logout/logout.component").then((m) => m.LogoutComponent) },
 
   { path: 'explore', loadComponent: () => import("./pages/explore/explore.component").then((m) => m.ExploreComponent) },
   { path: 'explore/details', loadComponent: () => import('./pages/explore-details/explore-details.component').then((m) => m.ExploreDetailsComponent) },
@@ -16,6 +17,11 @@ export const appRoutes: Route[] = [
 
   {
     path: 'user/:id',
+    loadComponent: () => import('./pages/profile-details/profile-details.component').then((m) => m.ProfileDetailsComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
     loadComponent: () => import('./pages/profile-details/profile-details.component').then((m) => m.ProfileDetailsComponent),
     canActivate: [AuthGuard],
   },

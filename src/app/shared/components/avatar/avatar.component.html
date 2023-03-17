@@ -1,3 +1,10 @@
-<div class="avatar" [class.avatar--clickable]="!!onClickCallback" (click)="onClickCallback && onClickCallback()">
+<div class="avatar" [matMenuTriggerFor]="menu">
     <img class="img-circle" src="../../../../assets/fake_avatar.png" />
 </div>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let item of menuItems" [routerLink]="item.link">
+        <mat-icon>{{item.icon}}</mat-icon>
+        <span>{{item.label}}</span>
+    </button>
+</mat-menu>

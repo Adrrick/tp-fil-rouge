@@ -60,6 +60,7 @@ export class FirebaseAuthService {
 
   logout() {
     this.storageService.clearStorage();
+    this.currentUser = undefined;
   }
 
   signUpEmail(email: string, password: string, username: string) {

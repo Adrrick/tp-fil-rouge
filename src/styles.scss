@@ -1,14 +1,36 @@
 :root {
-    --main-bg-color: #242a32;
+    --clr-primary-900: hsl(356, 91%, 20%);
+    --clr-primary-800: hsl(356, 91%, 25%);
+    --clr-primary-700: hsl(356, 91%, 30%);
+    --clr-primary-600: hsl(356, 91%, 35%);
+    --clr-primary-500: hsl(356, 91%, 40%);
+    --clr-primary-400: hsl(356, 91%, 47%);
+    --clr-primary-300: hsl(356, 91%, 55%);
 
-    --bottom-navbar-item-color: invert(49%) sepia(3%) saturate(3158%) hue-rotate(145deg) brightness(101%) contrast(87%); // #61868f
-    --bottom-navbar-item-color-active: invert(77%) sepia(13%) saturate(4339%) hue-rotate(157deg) brightness(97%) contrast(90%); // https://codepen.io/sosuke/pen/Pjoqqp #3cc8eb
-    --bottom-navbar-background-color: #2d353f;
-    --bottom-navbar-height: 60px
+    --clr-primary-filter-400: invert(34%) sepia(100%) saturate(7358%) hue-rotate(349deg) brightness(88%) contrast(106%); // https://codepen.io/sosuke/pen/Pjoqqp
+
+    --clr-secondary-900: hsl(214, 16%, 13%);
+    --clr-secondary-800: hsl(214, 16%, 17%);
+    --clr-secondary-750: hsl(214, 16%, 21%);
+    --clr-secondary-700: hsl(214, 16%, 25%);
+    --clr-secondary-600: hsl(214, 16%, 30%);
+    --clr-secondary-500: hsl(215, 16%, 35%);
+    --clr-secondary-400: hsl(214, 16%, 40%);
+    --clr-secondary-300: #607085;
+
+    --clr-secondary-filter-500: invert(34%) sepia(6%) saturate(1533%) hue-rotate(176deg) brightness(91%) contrast(88%);
+    --clr-secondary-filter-400: invert(39%) sepia(9%) saturate(1097%) hue-rotate(174deg) brightness(91%) contrast(84%);
+    --clr-secondary-filter-300: invert(44%) sepia(7%) saturate(1354%) hue-rotate(175deg) brightness(95%) contrast(84%);
+
+    --bottom-navbar-height: 60px;
+
+    --movie-card-width: 6.5rem;
+    --movie-card-height: 10rem;
 }
 
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: white;
 }
 
 html,
@@ -16,7 +38,7 @@ body,
 .root {
     /* When there is not enough content */
     min-height: 100vh;
-    background-color: var(--main-bg-color);
+    background-color: var(--clr-secondary-800);
 }
 
 header>ul,
@@ -49,4 +71,11 @@ a:focus {
 // Hide scrollbar for Chrome
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+}
+
+.auto-grid-movies {
+    --gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(var(--movie-card-width) + var(--gap)), 1fr));
+    grid-gap: var(--gap);
 }

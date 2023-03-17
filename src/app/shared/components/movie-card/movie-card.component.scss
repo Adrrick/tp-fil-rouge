@@ -1,6 +1,6 @@
 .movie-card {
-    height: 10rem;
-    width: 6.5rem;
+    height: var(--movie-card-height);
+    width: var(--movie-card-width);
     display: inline-block;
 }
 
@@ -22,10 +22,4 @@
     padding: 0.2rem 0.5rem;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 0.5rem;
-
-    color: white;
-}
-
-.movie-card--title {
-    color: white;
 }

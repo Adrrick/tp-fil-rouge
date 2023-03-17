@@ -28,6 +28,10 @@ export class MoviesService {
     return this.call(`movie/${id}`)
   }
 
+  public searchMovies(query: string): Observable<PopularMoviesResult> {
+    return this.call(`search/movie`, { query })
+  }
+
   public getGenres(): Observable<{ genres: Genres[] }> {
     return this.call('genre/movie/list')
   }

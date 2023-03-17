@@ -5,7 +5,7 @@
 
     .bottom-navbar-item--title,
     .bottom-navbar-item--icon {
-        filter: var(--bottom-navbar-item-color);
+        filter: var(--clr-secondary-filter-300);
     }
 
     .bottom-navbar-item--title {
@@ -21,7 +21,7 @@
 
         .bottom-navbar-item--icon,
         .bottom-navbar-item--title {
-            filter: var(--bottom-navbar-item-color-active);
+            filter: var(--clr-primary-filter-400);
         }
     }
 }

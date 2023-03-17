@@ -1,3 +1,11 @@
 <div>
-
+    <div [formGroup]="reviewForm" (ngSubmit)="submit()">
+        <div>
+            <input type="text" formControlName="title">
+        </div>
+        <div>
+            <tp-fil-rouge-start-rating id="rating" formControlName=""></tp-fil-rouge-start-rating>
+        </div>
+        <div></div>
+    </div>
 </div>

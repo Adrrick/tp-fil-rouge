@@ -1,0 +1,13 @@
+<div class="user-line">
+
+    <div class="user-line--left-container">
+        <img class="img-circle user-line--image" src="../../../../assets/fake_avatar.png">
+        <div class="align-start">
+            <p class="user-line--title">{{user.username}}</p>
+            <p class="user-line--subtitle">{{user.moviesSeen.length}} films vus</p>
+        </div>
+    </div>
+    <button mat-raised-button color="primary" routerLink="/user/{{ user.uid }}">
+        Voir
+    </button>
+</div>

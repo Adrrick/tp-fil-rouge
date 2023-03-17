@@ -16,11 +16,15 @@
     --clr-secondary-600: hsl(214, 16%, 30%);
     --clr-secondary-500: hsl(215, 16%, 35%);
     --clr-secondary-400: hsl(214, 16%, 40%);
-    --clr-secondary-300: #607085;
+    --clr-secondary-300: hsl(214, 16%, 45%);
 
     --clr-secondary-filter-500: invert(34%) sepia(6%) saturate(1533%) hue-rotate(176deg) brightness(91%) contrast(88%);
     --clr-secondary-filter-400: invert(39%) sepia(9%) saturate(1097%) hue-rotate(174deg) brightness(91%) contrast(84%);
     --clr-secondary-filter-300: invert(44%) sepia(7%) saturate(1354%) hue-rotate(175deg) brightness(95%) contrast(84%);
+
+
+    --clr-font-primary: white;
+    --clr-font-secondary: hsl(214, 16%, 90%);
 
     --bottom-navbar-height: 60px;
 
@@ -71,6 +75,19 @@ a:focus {
 // Hide scrollbar for Chrome
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-start {
+    text-align: start;
+}
+
+.list {
+    display: grid;
+    gap: 1rem;
 }
 
 .auto-grid-movies {

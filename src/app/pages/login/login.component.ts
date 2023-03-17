@@ -4,26 +4,24 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {FirebaseAuthService} from "../../shared/services/firebase-auth.service";
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {StorageService} from "../../shared/services/storage.service";
-import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'tp-fil-rouge-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, MatIconModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [FirebaseAuthService, AngularFireDatabase],
+  providers: [FirebaseAuthService, AngularFireDatabase]
 })
 export class LoginComponent {
-  public loginForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
               private authServices: FirebaseAuthService,
               private storageServices: StorageService ) {
     this.loginForm = fb.group({
       email: [undefined, [Validators.required, Validators.email]],
-      password: [undefined, [Validators.required]],
+      password: [undefined, [Validators.required]]
     });
   }
 

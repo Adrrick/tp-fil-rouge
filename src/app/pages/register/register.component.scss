@@ -85,3 +85,12 @@ $main-red : #e31019;
     }
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .Auth {
+    &__Category {
+      margin-top: 30px;
+      justify-content: center;
+    }
+  }
+}

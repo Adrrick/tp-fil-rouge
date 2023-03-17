@@ -12,6 +12,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class SearchBarComponent {
 
-  @Input() formControl!: FormControl;
+  @Input() control!: FormControl;
 
 }

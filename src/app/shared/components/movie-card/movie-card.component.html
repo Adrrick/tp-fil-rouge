@@ -1,7 +1,7 @@
 <a class="movie-card" routerLink="/movie/{{movie.id}}">
     <div class="movie-card--poster-container">
-        <img class="movie-card--poster-img" src="{{'https://image.tmdb.org/t/p/original' + movie.poster_path}}"
-            alt="poster for {{movie.title}}">
+        <img class="movie-card--poster-img" loading="lazy"
+            src="{{'https://image.tmdb.org/t/p/original' + movie.poster_path}}" alt="poster for {{movie.title}}">
         <div class="movie-card--vote-average">{{movie.vote_average}}</div>
     </div>
 

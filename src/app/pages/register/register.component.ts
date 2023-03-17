@@ -4,14 +4,15 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {FirebaseAuthService} from "../../shared/services/firebase-auth.service";
 import {MatchPasswordDirective} from "../../shared/validators/match-password.directive";
 import {UserService} from "../../shared/services/user.service";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'tp-fil-rouge-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [MatchPasswordDirective]
+  providers: [MatchPasswordDirective],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -26,8 +27,9 @@ export class RegisterComponent {
         confirmedPassword: [undefined, [Validators.required]]
       },
       {
-        validators: [new MatchPasswordDirective()]
-      });
+        validators: [new MatchPasswordDirective()],
+      }
+    );
   }
 
   async submit(): Promise<void> {

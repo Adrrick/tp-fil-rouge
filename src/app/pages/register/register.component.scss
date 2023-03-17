@@ -1,0 +1,96 @@
+$main-red : #e31019;
+
+/** AUTH SECTION **/
+
+.Auth {
+  background-color: #121418;
+  min-height: 100vh;
+  &__Menu {
+    padding: 20px;
+  }
+  &__Logo {
+    width: 200px;
+    img {
+      width: 100%;
+    }
+  }
+  &__Category {
+    display: flex;
+    list-style: none;
+    li {
+      color: #fff;
+      font-size: 1.3em;
+      padding-right: 20px;
+      &:hover {
+        color: $main-red;
+        cursor: pointer;
+        transition: all linear 300ms;
+      }
+    }
+    a {
+      text-decoration: none;
+      &:active {
+        color: $main-red;
+      }
+    }
+  }
+}
+
+/** REGISTER SECTION**/
+
+.Register {
+  padding-top: 20px;
+  &__Description {
+    width: 70%;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    h1 {
+      padding-bottom: 10px;
+    }
+    p {
+      color: #808387;
+    }
+  }
+  &__Form {
+    width: 40%;
+    margin: 50px auto;
+    button {
+        i {
+            color: #fff;
+        }
+        span {
+            color: #fff;
+        }
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: transparent;
+    background: linear-gradient(to right, $main-red, #FA622E);    
+    color: #000;
+    font-size: 1.1em;
+    i {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Auth {
+    &__Category {
+      margin-top: 30px;
+      justify-content: center;
+    }
+  }
+}

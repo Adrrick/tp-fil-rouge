@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ReviewService} from "../../services/review.service";
+import {StarRatingComponent} from "../star-rating/star-rating.component";
 
 @Component({
+  standalone: true,
   selector: 'tp-fil-rouge-review-form',
   templateUrl: './review-form.component.html',
+  imports: [StarRatingComponent, ReactiveFormsModule],
   styleUrls: ['./review-form.component.css']
 })
 export class ReviewFormComponent {
@@ -21,5 +24,9 @@ export class ReviewFormComponent {
 
   submit() {
     console.log(this.reviewForm);
+  }
+
+  onRatingChanged($event: any) {
+    console.log($event)
   }
 }

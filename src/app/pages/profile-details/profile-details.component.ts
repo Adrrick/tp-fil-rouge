@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
   standalone: true,
   imports: [CommonModule, MatCardModule],
   templateUrl: './profile-details.component.html',
-  styleUrls: ['./profile-details.component.css'],
+  styleUrls: ['./profile-details.component.scss'],
 })
 export class ProfileDetailsComponent implements OnInit {
   user$?: Observable<User | undefined>;

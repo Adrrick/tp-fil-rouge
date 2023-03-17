@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {combineLatest, map, Observable} from "rxjs";
 import * as QueryString from 'qs';
 import MovieDetails from 'src/app/models/Movie-details';
-import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
+import MoviesListResult from 'src/app/models/MoviesListResult';
+import {environment} from "../../../environments/environment";
+import MovieImagesResult from "../../models/MovieImagesResult";
+import MovieCreditsResult from "../../models/MovieCreditsResult";
+import KeywordResult from "../../models/KeywordResult";
 import Genres from 'src/app/models/Genres';
 
 
@@ -12,15 +16,21 @@ import Genres from 'src/app/models/Genres';
 })
 export class MoviesService {
 
-  baseUrl = 'https://api.themoviedb.org/3/';
-  apiKey = '41770330e49047aac35ce453ac66b586';
+  baseUrl = environment.api.baseUrl;
+  apiKey = environment.api.apiKey;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
-  public getPopularMovies(): Observable<PopularMoviesResult> {
+  public getPopular(): Observable<MoviesListResult> {
     return this.call(`movie/popular`)
   }
-  public getTopRatedMovies(): Observable<PopularMoviesResult> {
+
+  public getPopularMovies(): Observable<MoviesListResult> {
+    return this.call(`movie/popular`)
+  }
+
+  public getTopRatedMovies(): Observable<MoviesListResult> {
     return this.call(`movie/top_rated`)
   }
 
@@ -28,7 +38,7 @@ export class MoviesService {
     return this.call(`movie/${id}`)
   }
 
-  public searchMovies(query: string): Observable<PopularMoviesResult> {
+  public searchMovies(query: string): Observable<MoviesListResult> {
     return this.call(`search/movie`, { query })
   }
 
@@ -36,8 +46,38 @@ export class MoviesService {
     return this.call('genre/movie/list')
   }
 
-  public getMoviesDiscover(options: { with_genres?: string }): Observable<PopularMoviesResult> {
+  public getMoviesDiscover(options: { with_genres?: string }): Observable<MoviesListResult> {
     return this.call('discover/movie', options);
+  }
+
+  public getMovieImages(id: string): Observable<MovieImagesResult> {
+    return this.call(`movie/${id}/images`);
+  }
+
+  public getMovieCredits(id: string): Observable<MovieCreditsResult> {
+    return this.call(`movie/${id}/credits`);
+  }
+
+  public getMovieKeyword(id: string): Observable<KeywordResult> {
+    return this.call(`movie/${id}/keywords`);
+  }
+
+  public getMovieRecommendation(id: string): Observable<MoviesListResult> {
+    return this.call(`movie/${id}/recommendations`);
+  }
+
+  public getMovieInfo(id: string) {
+    const sources = [this.getMovieDetails(id), this.getMovieCredits(id), this.getMovieImages(id),
+      this.getMovieKeyword(id), this.getMovieRecommendation(id)]
+
+    return combineLatest(sources)
+      .pipe(map(([details, credits, images, keywords, recommendation]) => ({
+        details,
+        credits,
+        images,
+        keywords,
+        recommendation
+      })));
   }
 
   private call<T>(url: string, parameters?: object) {
@@ -45,7 +85,7 @@ export class MoviesService {
   }
 
   private createQueryParams(parameters?: object) {
-    return QueryString.stringify({ ...parameters, api_key: this.apiKey })
+    return QueryString.stringify({...parameters, api_key: this.apiKey})
   }
 
 }

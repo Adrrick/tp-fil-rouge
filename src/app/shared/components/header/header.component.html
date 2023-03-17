@@ -1,4 +1,11 @@
 <header class="header">
     <img class="header--logo" src="../../../../assets/logo.png" />
-    <button class="header--login" mat-raised-button color="primary" [routerLink]="'/login'">Login</button>
+
+    <div *ngIf="firebaseAuthService.currentUser; else loggedOut">
+        <tp-fil-rouge-avatar avatarImage={{firebaseAuthService.currentUser.image}} [onClickCallback]="onClickAvatar" />
+    </div>
+
+    <ng-template #loggedOut>
+        <button class="header--login" mat-raised-button color="primary" [routerLink]="'/login'">Login</button>
+    </ng-template>
 </header>

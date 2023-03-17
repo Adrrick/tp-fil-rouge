@@ -79,3 +79,10 @@ a:focus {
     grid-template-columns: repeat(auto-fit, minmax(calc(var(--movie-card-width) + var(--gap)), 1fr));
     grid-gap: var(--gap);
 }
+
+.img-circle {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100%;
+}

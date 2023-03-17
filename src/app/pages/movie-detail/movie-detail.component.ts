@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesService } from "../../shared/services/movies.service";
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs";
+import Movie from 'src/app/models/Movie';
 
 
 @Component({

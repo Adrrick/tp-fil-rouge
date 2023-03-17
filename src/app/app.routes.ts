@@ -7,6 +7,7 @@ import { ExploreComponent } from './pages/explore/explore.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ExploreDetailsComponent } from './pages/explore-details/explore-details.component';
 import { AuthGuard } from './shared/guard/auth-guard.guard';
+import { ProfileDetailsComponent } from './pages/profile-details/profile-details.component';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,7 +17,11 @@ export const appRoutes: Route[] = [
   { path: 'register', component: RegisterComponent },
   { path: 'explore', component: ExploreComponent },
   { path: 'explore/details', component: ExploreDetailsComponent },
-
+  {
+    path: 'user/:id',
+    component: ProfileDetailsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'search', component: SearchComponent },
   {
     path: 'movie/:id',

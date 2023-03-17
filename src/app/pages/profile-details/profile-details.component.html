@@ -1,0 +1,14 @@
+<div *ngIf="user$ | async as user">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ user.username }}</mat-card-title>
+        <mat-card-subtitle>Utilisateur</mat-card-subtitle>
+        <img
+          mat-card-sm-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        />
+      </mat-card-title-group>
+    </mat-card-header>
+  </mat-card>
+</div>

@@ -1,0 +1,27 @@
+.user-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+
+    & .user-line--left-container {
+
+        display: flex;
+        align-items: center;
+        gap: 0.725rem;
+
+        & .user-line--image {
+            width: 2.6rem;
+
+        }
+
+        & .user-line--title {
+            font-size: 1.2rem;
+        }
+
+        & .user-line--subtitle {
+            color: var(--clr-font-secondary);
+        }
+    }
+
+}

@@ -7,21 +7,26 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { FilteredUsersPipe } from 'src/app/shared/pipes/filtered-users/filtered-users.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'tp-fil-rouge-search-users',
   standalone: true,
-  imports: [CommonModule, MatDividerModule,
+  imports: [
+    CommonModule,
+    MatDividerModule,
     MatListModule,
     MatCardModule,
     FilteredUsersPipe,
     ReactiveFormsModule,
-    MatButtonModule,],
+    MatButtonModule,
+    RouterLink,
+  ],
   templateUrl: './search-users.component.html',
   styleUrls: ['./search-users.component.scss'],
 })
 export class SearchUsersComponent {
-  constructor(private usersService: UserService) { }
+  constructor(private usersService: UserService) {}
 
   public queryControl = new FormControl('', { nonNullable: true });
   public currentUser = localStorage.getItem('uid');

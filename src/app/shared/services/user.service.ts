@@ -9,11 +9,15 @@ import { Observable } from 'rxjs';
 export class UserService {
   constructor(private afs: AngularFirestore) {}
 
-  createUser(username: string, uid: string): Observable<User | undefined> {
+  createUser(
+    username: string,
+    email: string,
+    uid: string
+  ): Observable<User | undefined> {
     this.afs
       .collection<User>('/users')
       .doc(uid)
-      .set({ username, uid, moviesSeen: [] })
+      .set({ username, email, uid, moviesSeen: [] })
       .then();
     return this.getUserByUID(uid);
   }

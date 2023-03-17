@@ -15,6 +15,12 @@ export const appRoutes: Route[] = [
   { path: 'search', loadComponent: () => import("./pages/search/search.component").then((m) => m.SearchComponent) },
 
   {
+    path: 'user/:id',
+    loadComponent: () => import('./pages/profile-details/profile-details.component').then((m) => m.ProfileDetailsComponent),
+    canActivate: [AuthGuard],
+  },
+
+  {
     path: 'movie/:id',
     loadComponent: () => import('./pages/movie-detail/movie-detail.component').then((m) => m.MovieDetailComponent),
     canActivate: [AuthGuard],

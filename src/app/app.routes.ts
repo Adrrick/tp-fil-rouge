@@ -1,26 +1,22 @@
 import { Route } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { MovieDetailComponent } from './movies/movie-detail/movie-detail.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ExploreComponent } from './pages/explore/explore.component';
-import { SearchComponent } from './pages/search/search.component';
-import { ExploreDetailsComponent } from './pages/explore-details/explore-details.component';
 import { AuthGuard } from './shared/guard/auth-guard.guard';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'explore', component: ExploreComponent },
-  { path: 'explore/details', component: ExploreDetailsComponent },
+  { path: 'home', loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent) },
 
-  { path: 'search', component: SearchComponent },
+  { path: 'login', loadComponent: () => import("./pages/login/login.component").then((m) => m.LoginComponent) },
+  { path: 'register', loadComponent: () => import("./pages/register/register.component").then((m) => m.RegisterComponent) },
+
+  { path: 'explore', loadComponent: () => import("./pages/explore/explore.component").then((m) => m.ExploreComponent) },
+  { path: 'explore/details', loadComponent: () => import('./pages/explore-details/explore-details.component').then((m) => m.ExploreDetailsComponent) },
+
+  { path: 'search', loadComponent: () => import("./pages/search/search.component").then((m) => m.SearchComponent) },
+
   {
     path: 'movie/:id',
-    component: MovieDetailComponent,
+    loadComponent: () => import('./pages/movie-detail/movie-detail.component').then((m) => m.MovieDetailComponent),
     canActivate: [AuthGuard],
   },
 ];

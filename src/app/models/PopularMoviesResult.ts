@@ -1,6 +1,6 @@
 import Movie from "./Movie";
 
-export default interface MoviesListResult {
+export default interface PopularMoviesResult {
   page: number;
   results: Movie[];
   total_results: number;

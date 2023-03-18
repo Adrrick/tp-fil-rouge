@@ -24,6 +24,10 @@ export class MoviesService {
     return this.call(`movie/top_rated`)
   }
 
+  public getUpcomingMovies(): Observable<PopularMoviesResult> {
+    return this.call(`movie/upcoming`)
+  }
+
   public getMovieDetails(id: string): Observable<MovieDetails> {
     return this.call(`movie/${id}`)
   }

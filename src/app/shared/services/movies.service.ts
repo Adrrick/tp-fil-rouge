@@ -6,6 +6,18 @@ import MovieDetails from 'src/app/models/Movie-details';
 import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
 import Genres from 'src/app/models/Genres';
 
+interface Pagination {
+  page?: number;
+}
+
+interface SearchMovieParams extends Pagination {
+  query: string;
+}
+
+interface GetMovieDiscoverParams extends Pagination {
+  with_genres?: string
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,20 +40,20 @@ export class MoviesService {
     return this.call(`movie/upcoming`)
   }
 
-  public getMovieDetails(id: string): Observable<MovieDetails> {
+  public getMovieDetails(id: string,): Observable<MovieDetails> {
     return this.call(`movie/${id}`)
   }
 
-  public searchMovies(query: string): Observable<PopularMoviesResult> {
-    return this.call(`search/movie`, { query })
+  public searchMovies(params: SearchMovieParams): Observable<PopularMoviesResult> {
+    return this.call(`search/movie`, params)
   }
 
   public getGenres(): Observable<{ genres: Genres[] }> {
     return this.call('genre/movie/list')
   }
 
-  public getMoviesDiscover(options: { with_genres?: string }): Observable<PopularMoviesResult> {
-    return this.call('discover/movie', options);
+  public getMoviesDiscover(params: GetMovieDiscoverParams): Observable<PopularMoviesResult> {
+    return this.call('discover/movie', params);
   }
 
   private call<T>(url: string, parameters?: object) {

@@ -20,6 +20,7 @@ export class SearchMoviesComponent {
   movies$?: Observable<PopularMoviesResult>;
 
   constructor(private readonly moviesService: MoviesService) {
+
     this.searchMoviesFormControl = new FormControl('', { nonNullable: true })
 
     this.onSearchTermChange()
@@ -28,7 +29,7 @@ export class SearchMoviesComponent {
   public onSearchTermChange() {
     this.searchMoviesFormControl.valueChanges.subscribe(value => {
       if (value.trim() !== '') {
-        this.movies$ = this.moviesService.searchMovies(value)
+        this.movies$ = this.moviesService.searchMovies({ query: value })
       }
     })
   }

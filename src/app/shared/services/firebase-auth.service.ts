@@ -13,8 +13,6 @@ import Firebase from 'firebase/compat/app';
 })
 export class FirebaseAuthService {
 
-  user: Observable<Firebase.User | null>;
-
   currentUser: User | undefined = undefined;
 
   constructor(
@@ -23,17 +21,15 @@ export class FirebaseAuthService {
     private readonly storageService: StorageService,
     private readonly router: Router
   ) {
+    this.afAuth.authState.subscribe((firebaseUser) => {
+      if (!firebaseUser) return;
 
-    this.user = this.afAuth.authState;
-
-    this.user.subscribe((user) => {
-
-      if (user) {
-        this.userServices.getUserByUID(user.uid).subscribe((user) => {
-          this.currentUser = user;
-        })
-      }
-
+      this.userServices.getUserByUID(firebaseUser.uid).subscribe((user) => {
+        this.currentUser = user;
+        if (user) {
+          this.storageService.setLoginData(user.uid);
+        }
+      })
     });
   }
 

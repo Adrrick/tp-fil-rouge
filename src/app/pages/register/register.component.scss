@@ -3,11 +3,6 @@ $main-red: #e31019;
 /** AUTH SECTION **/
 
 .Auth {
-  background-color: #121418;
-  min-height: 100vh;
-  &__Menu {
-    padding: 20px;
-  }
   &__Logo {
     width: 200px;
     img {
@@ -56,28 +51,41 @@ $main-red: #e31019;
     width: 40%;
     margin: 50px auto;
     button {
-      i {
-        color: #fff;
-      }
-      span {
-        color: #fff;
-      }
+        i {
+            color: #fff;
+        }
+        span {
+            color: #fff;
+        }
     }
+    .link {
+      color: #808387;
+      text-decoration: underline #808387;
+      cursor: pointer;
+    }
+  }
+  .inputArea {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   input {
     width: 100%;
     padding: 20px;
+    border-radius: 10px;
+    border: transparent;
   }
 
-  .btn-primary {
+  .btn {
     width: 100%;
-    padding: 10px 20px;
+    padding: 15px;
     display: flex;
+    border-radius: 10px;
     justify-content: space-between;
     align-items: center;
     border: transparent;
-    background: linear-gradient(to right, $main-red, #fa622e);
+    background: linear-gradient(to right, #e31019, #FA622E);
     color: #000;
     font-size: 1.1em;
     i {
@@ -93,4 +101,11 @@ $main-red: #e31019;
       justify-content: center;
     }
   }
+}
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+.mt-3 {
+  margin-top: 20px;
 }

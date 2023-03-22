@@ -1,30 +1,4 @@
 <div class="Auth">
-  <nav class="Auth__Menu container-fluid">
-    <div class="row">
-      <div
-        class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start"
-      >
-        <div class="Auth__Logo">
-          <img src="../../../assets/img/logo/logo.png" alt="ceci est un logo" />
-        </div>
-      </div>
-      <div
-        class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center"
-      >
-        <ul class="Auth__Category">
-          <li [routerLink]="['/login']" routerLinkActive="router-link-active">
-            Connexion
-          </li>
-          <li
-            [routerLink]="['/register']"
-            routerLinkActive="router-link-active"
-          >
-            Inscription
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <div class="Register">
     <div class="Register__Description">
       <h1>Inscription</h1>
@@ -40,38 +14,34 @@
       (ngSubmit)="submit()"
       class="Register__Form"
     >
-      <div class="mb-3">
+      <div class="inputArea mb-3">
         <input
           formControlName="username"
           type="text"
-          class="form-control"
           id="email"
           placeholder="Surnom"
         />
       </div>
-      <div class="mb-3">
+      <div class="inputArea mb-3">
         <input
           formControlName="email"
           type="email"
-          class="form-control"
           id="email"
           placeholder="Adresse Mail"
         />
       </div>
-      <div class="mb-3">
+      <div class="inputArea mb-3">
         <input
           formControlName="password"
           type="password"
-          class="form-control"
           id="password"
           placeholder="Mot de passe"
         />
       </div>
-      <div class="mb-3">
+      <div class="inputArea mb-3">
         <input
           formControlName="confirmedPassword"
           type="password"
-          class="form-control"
           id="password"
           placeholder="Nouveau mot de passe"
         />
@@ -79,11 +49,13 @@
       <button
         type="submit"
         [disabled]="registerForm.invalid"
-        class="btn btn-primary"
+        class="btn"
       >
         <span>S'inscrire</span>
-        <i class="bi bi-arrow-right bi-2x"></i>
       </button>
+      <p class="mb-3 mt-3 link" [routerLink]="['/login']">
+        déjà un compte ? Se connecter
+      </p>
     </form>
   </div>
 </div>

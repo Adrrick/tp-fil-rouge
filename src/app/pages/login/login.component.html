@@ -1,13 +1,64 @@
-<form [formGroup]="loginForm" (ngSubmit)="submit()">
-    <div> <label>Email</label>
-        <input type="email" formControlName="email">
+<div class="Auth">
+    <nav class="Auth__Menu container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+          <div class="Auth__Logo">
+            <img src="../../../assets/img/logo/logo.png" alt="ceci est un logo" />
+          </div>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center">
+          <ul class="Auth__Category">
+            <li [routerLink]="['/login']" routerLinkActive="router-link-active">
+              Connexion
+            </li>
+            <li
+              [routerLink]="['/register']"
+              routerLinkActive="router-link-active"
+            >
+              Inscription
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="Login">
+      <div class="Login__Description">
+        <h1>Connexion</h1>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+          perferendis dolorum, dolores placeat corporis minus aliquid reiciendis
+          quaerat quae sint perspiciatis aperiam quidem atque optio nam alias,
+          maiores unde quis?
+        </p>
+      </div>
+      <form class="Login__Form" [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Adresse Mail"
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Mot de passe"
+          />
+        </div>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="btn btn-primary mb-3"
+        >
+          <span>Se connecter</span>
+          <i class="bi bi-arrow-right bi-2x"></i>
+        </button>
+      </form>
     </div>
-    <br>
-    <div> <label>Password</label>
-        <input type="password" formControlName="password">
-    </div>
-    <br>
-    <div>
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </div>
-</form>
+  </div>
+  

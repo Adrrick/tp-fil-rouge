@@ -4,11 +4,12 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {FirebaseAuthService} from "../../shared/services/firebase-auth.service";
 import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {StorageService} from "../../shared/services/storage.service";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'tp-fil-rouge-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule], 
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers: [FirebaseAuthService, AngularFireDatabase]

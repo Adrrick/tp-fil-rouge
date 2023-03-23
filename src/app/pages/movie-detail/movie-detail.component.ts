@@ -4,7 +4,6 @@ import { MoviesService } from '../../shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import MovieDetails from 'src/app/models/Movie-details';
-import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'tp-fil-rouge-movie-detail',
@@ -12,7 +11,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
   imports: [CommonModule],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
-  providers: [MoviesService, ToastService],
+  providers: [MoviesService],
 })
 export class MovieDetailComponent implements OnInit {
   movie$: Observable<MovieDetails> | undefined;
@@ -20,7 +19,6 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private moviesServices: MoviesService,
     private route: ActivatedRoute,
-    private toast: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -28,9 +26,5 @@ export class MovieDetailComponent implements OnInit {
     if (id) {
       this.movie$ = this.moviesServices.getMovieDetails(id);
     }
-  }
-
-  public onSuccess() {
-    this.toast.toastSuccess('test', 'ok');
   }
 }

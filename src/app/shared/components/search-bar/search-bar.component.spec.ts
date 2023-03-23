@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 
 import { SearchBarComponent } from './search-bar.component';
 
@@ -13,6 +14,7 @@ describe('SearchBarComponent', () => {
 
     fixture = TestBed.createComponent(SearchBarComponent);
     component = fixture.componentInstance;
+    component.control = new FormControl('', { nonNullable: true });
     fixture.detectChanges();
   });
 

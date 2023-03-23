@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import User from 'src/app/models/User';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { MatCardModule } from '@angular/material/card';
 import { StorageService } from 'src/app/shared/services/storage.service';
@@ -15,9 +15,10 @@ import { StorageService } from 'src/app/shared/services/storage.service';
   styleUrls: ['./profile-details.component.scss'],
 })
 export class ProfileDetailsComponent implements OnInit {
-  user$?: Observable<User | undefined>;
+  user$: Observable<User | undefined> | undefined;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
     private storageService: StorageService
@@ -27,6 +28,10 @@ export class ProfileDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id') || this.storageService.getUID();
     if (id) {
       this.user$ = this.userService.getUserByUID(id);
+    }
+
+    if (!this.user$) {
+      this.router.navigate(['/error?error_key=user_not_found']);
     }
   }
 }

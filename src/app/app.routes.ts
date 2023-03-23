@@ -31,4 +31,8 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/movie-detail/movie-detail.component').then((m) => m.MovieDetailComponent),
     canActivate: [AuthGuard],
   },
+
+  // {
+  //   path: 'error',
+  // }
 ];

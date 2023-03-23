@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UserService } from './user.service';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import User from 'src/app/models/User';
-import Firebase from 'firebase/compat/app';
 
 
 @Injectable({

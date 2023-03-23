@@ -19,7 +19,7 @@ export class FirebaseAuthService {
     private readonly afAuth: AngularFireAuth,
     private readonly userServices: UserService,
     private readonly storageService: StorageService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
     this.afAuth.authState.subscribe((firebaseUser) => {
       if (!firebaseUser) return;
@@ -47,9 +47,6 @@ export class FirebaseAuthService {
               }
             });
         }
-      },
-      (err) => {
-        console.error('Error', err);
       }
     );
   }
@@ -60,7 +57,7 @@ export class FirebaseAuthService {
   }
 
   signUpEmail(email: string, password: string, username: string) {
-    this.afAuth
+    return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         if (response?.user?.uid) {
@@ -74,7 +71,6 @@ export class FirebaseAuthService {
               }
             });
         }
-      })
-      .catch((err) => console.log('Error', err));
+      });
   }
 }

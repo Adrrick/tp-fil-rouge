@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MoviesService } from "../../shared/services/movies.service";
+import { MoviesService } from '../../shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from "rxjs";
-import Movie from 'src/app/models/Movie';
+import { Observable } from 'rxjs';
 import MovieDetails from 'src/app/models/Movie-details';
-
 
 @Component({
   selector: 'tp-fil-rouge-movie-detail',
@@ -13,13 +11,15 @@ import MovieDetails from 'src/app/models/Movie-details';
   imports: [CommonModule],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
-  providers: [MoviesService]
+  providers: [MoviesService],
 })
 export class MovieDetailComponent implements OnInit {
   movie$: Observable<MovieDetails> | undefined;
 
-  constructor(private moviesServices: MoviesService, private route: ActivatedRoute) {
-  }
+  constructor(
+    private moviesServices: MoviesService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

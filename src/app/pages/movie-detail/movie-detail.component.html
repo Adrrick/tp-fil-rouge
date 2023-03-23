@@ -2,4 +2,6 @@
     <h2>{{movie.title}}</h2>
     <h4>{{movie.tagline}}</h4>
     <p>{{movie.overview}}</p>
+
+    <tp-fil-rouge-review-form [movie]="{movieId: movie.id, posterPath: movie.poster_path, title: movie.title}"></tp-fil-rouge-review-form>
 </div>

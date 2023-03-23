@@ -13,7 +13,7 @@ export class ReviewService {
   constructor(private afs: AngularFirestore, private storageService: StorageService, private userService: UserService) { }
 
   async createReview(movie: { movieId: string, posterPath: string}, rating: number, comment: string, title: string): Promise<boolean> {
-    const user = this.getUserRefs(this.storageService.getUID());
+    const user = !this.storageService.getUID() ? ' ' : this.storageService.getUID();
 
     const isRated = await lastValueFrom(this.afs
       .collection<Review>('/reviews', (ref) => ref.where('user', '==', user).where('movieId', '==', movie.movieId))
@@ -29,8 +29,7 @@ export class ReviewService {
   }
 
   getReviewByUser(): Observable<Review[]> {
-    const user = this.getUserRefs(this.storageService.getUID());
-    return this.afs.collection<Review>('/reviews', (ref) => ref.where('user', '==', user)).valueChanges();
+    return this.afs.collection<Review>('/reviews', (ref) => ref.where('user', '==', this.storageService.getUID())).valueChanges();
   }
 
   getReviewByMovie(movieID: string): Observable<Review[]> {
@@ -38,10 +37,6 @@ export class ReviewService {
   }
 
   getReviewByUserID(userID: string): Observable<Review[]> {
-    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', this.getUserRefs(userID))).valueChanges()
-  }
-
-  private getUserRefs(uid: string | null) {
-    return `/users/${uid}`;
+    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', userID)).valueChanges()
   }
 }

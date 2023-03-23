@@ -13,7 +13,6 @@ export class ReviewService {
   constructor(private afs: AngularFirestore, private storageService: StorageService, private userService: UserService) { }
 
   async createReview(movie: { movieId: number, posterPath: string, title: string }, rating: number, comment: string, title: string): Promise<boolean> {
-    console.log('CreateReview');
     const user = !this.storageService.getUID() ? ' ' : this.storageService.getUID();
 
     const isRated = await firstValueFrom(this.afs

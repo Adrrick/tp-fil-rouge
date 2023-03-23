@@ -19,7 +19,7 @@ export class ReviewService {
       .collection<Review>('/reviews', (ref) => ref.where('movieId', '==', movie.movieId).where('user', '==', user))
       .valueChanges()
       .pipe(map(reviews => reviews.length > 0)));
-    if (isRated) {
+    if(isRated) {
       return false;
     } else {
       await this.afs.collection<Review>('/reviews').add({ movieId: movie.movieId, movieTitle: movie.title, comment, rating, user, title });

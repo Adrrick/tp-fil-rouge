@@ -1,5 +1,61 @@
-<div *ngIf="movie$ | async as movie">
-    <h2>{{movie.title}}</h2>
-    <h4>{{movie.tagline}}</h4>
-    <p>{{movie.overview}}</p>
+<div *ngIf="movie$ | async as movie" class="MovieDetails">
+  <div class="MovieDetails__Header">
+    <img
+      src="{{
+        'https://image.tmdb.org/t/p/original/' + movie.backdrop_path
+      }}"
+      alt="voila le header"
+    />
+    <div class="MovieDetails__Header__Main">
+      <h1>{{ movie.title }}</h1>
+    </div>
+  </div>
+  <div class="MovieDetails__Description">
+    <h2>Slogan</h2>
+    <p>{{ movie.tagline }}</p>
+    <h2>Description</h2>
+    <p>{{ movie.overview }}</p>
+    <h2>Genre</h2>
+    <p>
+      <span *ngFor="let genre of movie.genres"
+        >{{ genre.name + ' ' }}
+      </span>
+    </p>
+    <h2>Pays de production</h2>
+    <p>
+      <span *ngFor="let prod of movie.production_countries"
+        >{{ prod.name + ' ' }}
+      </span>
+    </p>
+    <h2>Studio de production</h2>
+    <p>
+      <span *ngFor="let companies of movie.production_companies"
+        >{{ companies.name + ' ' }}
+      </span>
+    </p>
+  </div>
+  <div class="MovieDetails__Others">
+    <h2>Informations Complémentaires</h2>
+    <p>
+      <span>Budget : {{ movie.budget }} $</span>
+    </p>
+    <p>
+      <span>Langue d'origine : {{ movie.original_language }}</span>
+    </p>
+    <p>
+      <span
+        >Date de sortie :
+        {{ movie.release_date | date : 'fullDate' }}</span
+      >
+    </p>
+    <p>
+        <span
+          >Note du public :
+          {{ movie.vote_average }} /10</span
+        >
+      </p>
+    <a href="{{ movie.homepage }}" target="_blank">
+      <p>En savoir plus</p>
+    </a>
+  </div>
 </div>

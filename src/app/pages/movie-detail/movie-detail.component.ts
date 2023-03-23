@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MoviesService } from "../../shared/services/movies.service";
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs";
+import Movie from 'src/app/models/Movie';
+import MovieDetails from 'src/app/models/Movie-details';
 
 
 @Component({
@@ -14,9 +16,9 @@ import { Observable } from "rxjs";
   providers: [MoviesService]
 })
 export class MovieDetailComponent implements OnInit {
-  movie$: Observable<any> | undefined;
+  movie$: Observable<MovieDetails> | undefined;
 
-  constructor(private moviesServices: MoviesService, private route: ActivatedRoute,) {
+  constructor(private moviesServices: MoviesService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {

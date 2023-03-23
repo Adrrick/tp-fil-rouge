@@ -25,7 +25,6 @@ export class MovieDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.movie$ = this.moviesServices.getMovieDetails(id);
-      this.movie$.subscribe(res => console.log(res));
     }
   }
 }

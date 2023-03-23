@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import User from '../../models/User';
-import {lastValueFrom, map, Observable} from 'rxjs';
+import {firstValueFrom, map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,11 +38,12 @@ export class UserService {
     return this.afs.collection<User>('/users').valueChanges();
   }
 
-  async addMovieToMoviesList(userID: string | undefined, movie: { movieId: string, posterPath: string }) {
-    const movies = await lastValueFrom(this.afs.collection<User>('/users').doc(userID).valueChanges().pipe(map(response => response?.moviesSeen)));
+  async addMovieToMoviesList(userID: string | undefined, movie: { movieId: string, posterPath: string, title: string }) {
+    const movies = await firstValueFrom(this.afs.collection<User>('/users').doc(userID).valueChanges().pipe(map(response => response?.moviesSeen)));
     const moviesSeen = movies ? movies : [];
     const isSeen = moviesSeen.find(movie_ => movie_.movieId === movie.movieId);
     if(!isSeen) {
+      moviesSeen.push(movie);
       await this.afs.collection<User>('/users').doc(userID).update({moviesSeen});
       return true;
     }

@@ -1,60 +1,60 @@
-<div class="MovieDetails" *ngIf="movie$ | async as movie">
+<div *ngIf="movie$ | async as movie" class="MovieDetails">
   <div class="MovieDetails__Header">
     <img
       src="{{
-        'https://image.tmdb.org/t/p/original/' + movie?.details?.backdrop_path
+        'https://image.tmdb.org/t/p/original/' + movie.backdrop_path
       }}"
       alt="voila le header"
     />
     <div class="MovieDetails__Header__Main">
-      <h1>{{ movie?.details?.title }}</h1>
+      <h1>{{ movie.title }}</h1>
     </div>
   </div>
   <div class="MovieDetails__Description">
     <h2>Slogan</h2>
-    <p>{{ movie?.details?.tagline }}</p>
+    <p>{{ movie.tagline }}</p>
     <h2>Description</h2>
-    <p>{{ movie?.details?.overview }}</p>
+    <p>{{ movie.overview }}</p>
     <h2>Genre</h2>
     <p>
-      <span *ngFor="let genre of movie?.details?.genres"
+      <span *ngFor="let genre of movie.genres"
         >{{ genre.name + ' ' }}
       </span>
     </p>
     <h2>Pays de production</h2>
     <p>
-      <span *ngFor="let genre of movie?.details?.production_countries"
-        >{{ genre.name + ' ' }}
+      <span *ngFor="let prod of movie.production_countries"
+        >{{ prod.name + ' ' }}
       </span>
     </p>
     <h2>Studio de production</h2>
     <p>
-      <span *ngFor="let genre of movie?.details?.production_companies"
-        >{{ genre.name + ' ' }}
+      <span *ngFor="let companies of movie.production_companies"
+        >{{ companies.name + ' ' }}
       </span>
     </p>
   </div>
   <div class="MovieDetails__Others">
     <h2>Informations Complémentaires</h2>
     <p>
-      <span>Budget : {{ movie?.details?.budget }} $</span>
+      <span>Budget : {{ movie.budget }} $</span>
     </p>
     <p>
-      <span>Langue d'origine : {{ movie?.details?.original_language }}</span>
+      <span>Langue d'origine : {{ movie.original_language }}</span>
     </p>
     <p>
       <span
         >Date de sortie :
-        {{ movie?.details?.release_date | date : 'fullDate' }}</span
+        {{ movie.release_date | date : 'fullDate' }}</span
       >
     </p>
     <p>
         <span
           >Note du public :
-          {{ movie?.details?.vote_average }} /10</span
+          {{ movie.vote_average }} /10</span
         >
       </p>
-    <a href="{{ movie?.details?.homepage }}" target="_blank">
+    <a href="{{ movie.homepage }}" target="_blank">
       <p>En savoir plus</p>
     </a>
   </div>

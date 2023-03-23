@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MoviesService } from '../../shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import MovieDetails from 'src/app/models/Movie-details';
-import { ReviewFormComponent } from "../../shared/components/review-form/review-form.component";
+import { Observable } from "rxjs";
+import {ReviewFormComponent} from "../../shared/components/review-form/review-form.component";
 
 
 @Component({

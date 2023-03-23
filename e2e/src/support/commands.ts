@@ -1,33 +1,19 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
+Cypress.Commands.add('login', (email: string, password: string) => {
+  const loginPath = `/login`
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace Cypress {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface Chainable<Subject> {
-    login(email: string, password: string): void;
-  }
-}
-//
-// -- This is a parent command --
-Cypress.Commands.add('login', (email, password) => {
-  console.log('Custom command example: Login', email, password);
-});
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+  cy.intercept(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAjb2SJSC4eka0TQ5iQP-XYl4cVOYdcW7I`).as('loginUser');
+
+  cy.location("pathname", { log: false }).then((currentPath) => {
+    if (currentPath !== loginPath) {
+      cy.visit(loginPath);
+    }
+  });
+
+  cy.get('input#email').type(email);
+  cy.get('input#password').type(password);
+
+  cy.get('button.btn[type="submit"]').click();
+
+  cy.wait("@loginUser");
+
+})

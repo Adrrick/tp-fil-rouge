@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MoviesService } from './movies.service';
-import { TheMovieDbApiResultSchema } from 'src/app/models/TheMovieDbApiResultSchema';
 import movies from 'src/app/fixtures/movies.fixture';
 import moviesDetails from 'src/app/fixtures/movies-details.fixture';
 import genres from 'src/app/fixtures/genres.fixture';

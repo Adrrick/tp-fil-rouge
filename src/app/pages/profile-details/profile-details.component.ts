@@ -12,13 +12,17 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 import Review from 'src/app/models/Review';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import MovieSeen from 'src/app/models/MovieSeen';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
-  Validators, 
+  Validators,
 } from '@angular/forms';
+import { ToastService } from 'src/app/shared/services/toast.service';
+import { FirebaseAuthService } from 'src/app/shared/services/firebase-auth.service';
+import { DragDropDirective } from 'src/app/shared/directives/drag-drop.directive';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details',
@@ -30,10 +34,12 @@ import {
     MatTabsModule,
     ProfileDetailsMoviesComponent,
     ProfileDetailsReviewsComponent,
-    MatIconModule
+    MatIconModule,
+    DragDropDirective,
   ],
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss'],
+  providers: [ToastService],
 })
 export class ProfileDetailsComponent implements OnInit, OnDestroy {
   user$?: Observable<User | undefined>;
@@ -45,18 +51,22 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   public isMe = false;
 
-  public currentUser? : User;
+  public currentUser?: User;
 
   public profilForm!: FormGroup;
+
+  public userUpdated: Partial<User> = {};
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
     private storageService: StorageService,
+    private afAuth: FirebaseAuthService,
     private reviewService: ReviewService,
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private toast: ToastService
+  ) {}
 
   ngOnInit(): void {
     const id =
@@ -71,34 +81,79 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
       this.userSubscription = this.user$.subscribe((user) => {
         this.viewedMovies = user?.moviesSeen;
         this.currentUser = user;
+        this.userUpdated.uid = user?.uid;
         this.profilForm = this.fb.group({
-          username: [
-            user?.username,
-            [Validators.required, Validators.minLength(4)],
-          ],
-          email: [
-            user?.email,
-            [Validators.required, Validators.minLength(4)],
-          ],
-          password: [undefined, [Validators.required, Validators.minLength(4)]],
-          newPassword: [undefined, [Validators.required, Validators.minLength(4)]],
+          username: new FormControl(user?.username, [
+            Validators.required,
+            Validators.minLength(4),
+          ]),
+          email: new FormControl(user?.email, [Validators.minLength(4)]),
+          newPassword: new FormControl(undefined, [Validators.minLength(4)]),
         });
       });
       this.reviews$ = this.reviewService.getReviewByUserID(id);
       this.reviews$.subscribe((reviews) => {
         this.reviewedMovies = reviews;
       });
-      
     }
     if (!this.user$) {
       this.router.navigate(['/error?error_key=user_not_found']);
     }
   }
 
-  public onSubmit() {
-    console.log(this.profilForm.get('email'));
+  public updateAvatar(file: FileList) {
+    if (file[0].type !== 'image/jpeg' && file[0].type !== 'image/png') {
+      this.toast.toastError(
+        'Nous supportons seulement les images de type png et jpeg'
+      );
+      return;
+    }
+    if (file[0].size >= 2000000) {
+      this.toast.toastError('Votre image est supérieur à 2mo');
+      return;
+    }
 
-    return true;
+    // const reader = new FileReader();
+    // reader.addEventListener('loadend', (event) => {
+    //   this.userUpdated.photoURL = event?.target?.result?.toString();
+    // });
+
+    // reader.readAsDataURL(file[0]);
+
+    this.afAuth
+      .updatePhotoProfil(file[0])
+      .then((res) => {
+        this.toast.toastSuccess('Votre photo à bien été mis à jour');
+      })
+      .catch((err) => {
+        this.toast.toastSuccess(
+          'Un problème est survenue lors de la sauvegarde de votre photo de profil'
+        );
+      });
+  }
+
+  public onSubmit() {
+    if (this.isMe) {
+      if (this.profilForm.get('username')?.dirty) {
+        this.userUpdated.username = this.profilForm.get('username')?.value;
+      }
+      if (this.profilForm.get('email')?.dirty) {
+        this.userUpdated.email = this.profilForm.get('email')?.value;
+      }
+      if (this.profilForm.get('newPassword')?.dirty) {
+        this.userUpdated.password = this.profilForm.get('newPassword')?.value;
+      }
+
+      return this.afAuth.updateProfil(this.userUpdated).then((user) => {
+        this.toast.toastSuccess('Votre profil à bien été enregistré.')
+      }).catch((err) => {
+        this.toast.toastError(err.message);
+      });
+    } else {
+      return this.toast.toastError(
+        "Vous ne pouvez pas modifier le profil d'un autre utilisateur"
+      );
+    }
   }
 
   ngOnDestroy(): void {

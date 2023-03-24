@@ -16,7 +16,7 @@ import { MatDividerModule } from "@angular/material/divider";
   styleUrls: ['./review-form.component.css']
 })
 export class ReviewFormComponent {
-  @Input() movie!: { movieId: string, posterPath: string, title: string }
+  @Input() movie!: { movieId: number, posterPath: string, title: string }
   @Output()
 
   reviewForm: FormGroup;

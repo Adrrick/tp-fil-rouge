@@ -1,6 +1,6 @@
-export default interface Review{
+export default interface Review {
   comment: string;
-  movieId: string;
+  movieId: number;
   rating: number;
   user: string;
   title: string;

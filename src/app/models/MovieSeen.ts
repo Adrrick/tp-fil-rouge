@@ -1,5 +1,5 @@
 export default interface MovieSeen {
-  movieId: string;
+  movieId: number;
   posterPath: string;
   title: string;
 }

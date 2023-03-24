@@ -64,5 +64,4 @@ export class MoviesService {
   private createQueryParams(parameters?: Params) {
     return new URLSearchParams({ ...parameters, api_key: this.apiKey }).toString()
   }
-
 }

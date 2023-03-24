@@ -1,13 +1,65 @@
-<div *ngIf="user$ | async as user">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title>{{ user.username }}</mat-card-title>
-        <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
-        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" loading="lazy" />
-      </mat-card-title-group>
-    </mat-card-header>
-  </mat-card>
+<div class="Profil" *ngIf="user$ | async as user">
+  <div class="Profil__Main">
+    <form
+      [formGroup]="profilForm"
+      (ngSubmit)="onSubmit()"
+      class="Profil__Main__Form"
+    >
+      <div class="Profil__Main__Avatar">
+        <mat-icon *ngIf="isMe">edit</mat-icon>
+        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" loading="lazy" alt="ceci est la tete du profil" />
+      </div>
+      <div class="inputArea mb-3">
+        <label for="username"> Username </label>
+        <div class="Profil__Main__Form__Input">
+          <input
+            type="text"
+            formControlName="username"
+            [readOnly]="!isMe"
+            id="username"
+          />
+        </div>
+      </div>
+      <div class="inputArea mb-3">
+        <label for="email"> Adresse mail </label>
+        <div class="Profil__Main__Form__Input">
+          <input
+            type="email"
+            formControlName="email"
+            [readOnly]="!isMe"
+            [disabled]="!isMe"
+            autoComplete="off"
+            id="email"
+          />
+        </div>
+      </div>
+      <div class="inputArea mb-3" *ngIf="isMe">
+        <label for="password"> Mot de passe actuel</label>
+        <div class="Profil__Main__Form__Input">
+          <input
+            type="password"
+            formControlName="password"
+            autoComplete="off"
+            id="password"
+          />
+        </div>
+      </div>
+      <div class="inputArea mb-3" *ngIf="isMe">
+        <label for="newPassword"> Nouveau mot de passe </label>
+        <div class="Profil__Main__Form__Input">
+          <input
+            type="password"
+            formControlName="newPassword"
+            autoComplete="off"
+            id="newPassword"
+          />
+        </div>
+      </div>
+      <div class="mb-3" *ngIf="isMe">
+        <button class="btn">Enregistrer</button>
+      </div>
+    </form>
+  </div>
 
   <mat-tab-group>
     <mat-tab label="Viewed Movies">

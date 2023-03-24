@@ -12,11 +12,26 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 import Review from 'src/app/models/Review';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import MovieSeen from 'src/app/models/MovieSeen';
+import {MatIconModule} from '@angular/material/icon';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators, 
+} from '@angular/forms';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTabsModule, ProfileDetailsMoviesComponent, ProfileDetailsReviewsComponent,],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTabsModule,
+    ProfileDetailsMoviesComponent,
+    ProfileDetailsReviewsComponent,
+    MatIconModule
+  ],
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss'],
 })
@@ -27,6 +42,12 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   reviewsSubscription?: Subscription;
   viewedMovies?: MovieSeen[];
   reviewedMovies?: Review[];
+
+  public isMe = false;
+
+  public currentUser? : User;
+
+  public profilForm!: FormGroup;
 
   constructor(
     private router: Router,
@@ -40,18 +61,42 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     const id =
       this.route.snapshot.paramMap.get('id') || this.storageService.getUID();
     if (id) {
+      if (id === this.storageService.getUID()) {
+        this.isMe = true;
+      } else {
+        this.isMe = false;
+      }
       this.user$ = this.userService.getUserByUID(id);
       this.userSubscription = this.user$.subscribe((user) => {
         this.viewedMovies = user?.moviesSeen;
+        this.currentUser = user;
+        this.profilForm = this.fb.group({
+          username: [
+            user?.username,
+            [Validators.required, Validators.minLength(4)],
+          ],
+          email: [
+            user?.email,
+            [Validators.required, Validators.minLength(4)],
+          ],
+          password: [undefined, [Validators.required, Validators.minLength(4)]],
+        });
       });
       this.reviews$ = this.reviewService.getReviewByUserID(id);
       this.reviews$.subscribe((reviews) => {
         this.reviewedMovies = reviews;
       });
+      
     }
     if (!this.user$) {
       this.router.navigate(['/error?error_key=user_not_found']);
     }
+  }
+
+  public onSubmit() {
+    console.log(this.profilForm.get('email'));
+
+    return true;
   }
 
   ngOnDestroy(): void {

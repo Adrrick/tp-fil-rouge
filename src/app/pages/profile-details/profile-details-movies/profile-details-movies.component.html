@@ -1,3 +1,4 @@
-<div class="auto-grid-movies" *ngFor="let movieSeen of moviesSeen">
-    <tp-fil-rouge-light-movie-card [movieSeen]="movieSeen" />
+<div class="auto-grid-movies">
+    <tp-fil-rouge-movie-card [id]="movieSeen.movieId" [poster_path]="movieSeen.posterPath" [title]="movieSeen.title"
+        *ngFor="let movieSeen of moviesSeen" />
 </div>

@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import MovieSeen from 'src/app/models/MovieSeen';
 import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
-import { LightMovieCardComponent } from 'src/app/shared/components/light-movie-card/light-movie-card.component';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details-movies',
   standalone: true,
-  imports: [CommonModule, MovieCardComponent, RouterLink, LightMovieCardComponent],
+  imports: [CommonModule, MovieCardComponent, RouterLink, MovieCardComponent],
   templateUrl: './profile-details-movies.component.html',
   styleUrls: ['./profile-details-movies.component.scss'],
 })

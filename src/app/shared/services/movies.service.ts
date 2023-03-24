@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import * as QueryString from 'qs';
+import { stringify } from 'qs';
 import MovieDetails from 'src/app/models/Movie-details';
 import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
 import Genres from 'src/app/models/Genres';
@@ -61,7 +61,7 @@ export class MoviesService {
   }
 
   private createQueryParams(parameters?: object) {
-    return QueryString.stringify({ ...parameters, api_key: this.apiKey })
+    return stringify({ ...parameters, api_key: this.apiKey })
   }
 
 }

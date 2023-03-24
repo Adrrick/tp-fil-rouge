@@ -1,11 +1,8 @@
 <div *ngIf="movie$ | async as movie" class="MovieDetails">
   <div class="MovieDetails__Header">
-    <img
-      src="{{
+    <img src="{{
         'https://image.tmdb.org/t/p/original/' + movie.backdrop_path
-      }}"
-      alt="voila le header"
-    />
+      }}" alt="voila le header" />
     <div class="MovieDetails__Header__Main">
       <h1>{{ movie.title }}</h1>
     </div>
@@ -15,47 +12,42 @@
     <p>{{ movie.tagline }}</p>
     <h2>Description</h2>
     <p>{{ movie.overview }}</p>
-    <h2>Genre</h2>
-    <p>
-      <span *ngFor="let genre of movie.genres"
-        >{{ genre.name + ' ' }}
+    <h2 *ngIf="movie.genres">Genre</h2>
+    <p *ngIf="movie.genres">
+      <span *ngFor="let genre of movie.genres">{{ genre.name + ' ' }}
       </span>
     </p>
-    <h2>Pays de production</h2>
-    <p>
-      <span *ngFor="let prod of movie.production_countries"
-        >{{ prod.name + ' ' }}
+    <h2 *ngIf="movie.production_countries">Pays de production</h2>
+    <p *ngIf="movie.production_countries">
+      <span *ngFor="let prod of movie.production_countries">{{ prod.name + ' ' }}
       </span>
     </p>
-    <h2>Studio de production</h2>
-    <p>
-      <span *ngFor="let companies of movie.production_companies"
-        >{{ companies.name + ' ' }}
+    <h2 *ngIf="movie.production_companies.length">Studio de production</h2>
+    <p *ngIf="movie.production_companies.length">
+      <span *ngFor="let companies of movie.production_companies">{{ companies.name + ' ' }}
       </span>
     </p>
   </div>
   <div class="MovieDetails__Others">
     <h2>Informations Complémentaires</h2>
-    <p>
+    <p *ngIf="movie.budget">
       <span>Budget : {{ movie.budget }} $</span>
     </p>
-    <p>
+    <p *ngIf="movie.original_language">
       <span>Langue d'origine : {{ movie.original_language }}</span>
     </p>
-    <p>
-      <span
-        >Date de sortie :
-        {{ movie.release_date | date : 'fullDate' }}</span
-      >
+    <p *ngIf="movie.release_date">
+      <span>Date de sortie :
+        {{ movie.release_date | date : 'fullDate' }}</span>
     </p>
-    <p>
-        <span
-          >Note du public :
-          {{ movie.vote_average }} /10</span
-        >
-      </p>
+    <p *ngIf="movie.vote_average">
+      <span>Note du public :
+        {{ movie.vote_average }} /10</span>
+    </p>
     <a href="{{ movie.homepage }}" target="_blank">
       <p>En savoir plus</p>
     </a>
   </div>
+  <tp-fil-rouge-review-form
+    [movie]="{movieId: movie.id, posterPath: movie.poster_path, title: movie.title}"></tp-fil-rouge-review-form>
 </div>

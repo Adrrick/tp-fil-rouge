@@ -1,41 +1,11 @@
-.Profil {
-  margin-bottom: 50px;
-  &__Main {
-  width: 40%;
-  margin: 40px auto;
+.Comment {
+  width: 90%;
+  margin: 20px auto;
   background-color: #20212c;
   border-radius: 20px;
   z-index: 2;
   padding: 20px;
 
-  &__Avatar {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    border-radius: 999px;
-    margin-bottom: 40px;
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 999px;
-    }
-    mat-icon {
-      color: #fff;
-      font-size: 1em;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      background-color: #414052;
-      border: #20212c 3px solid;
-      border-radius: 999px;
-      right: 1px;
-      cursor: pointer;
-    }
-  }
   &__Form {
     border-radius: 20px;
     padding: 20px;
@@ -46,15 +16,14 @@
       background-color: #414052;
       color: #fff;
       padding: 10px 20px;
-      margin-top: 10px;
       margin-right: 10px;
       border: transparent;
       border-radius: 999px;
+      margin-bottom: 10px;
       cursor: pointer;
     }
     .inputArea {
-      width: 100%;
-      margin: 10px auto;
+      width: 50%;
       display: flex;
       flex-direction: column;
       label {
@@ -83,6 +52,5 @@
         }
       }
     }
-  }
   }
 }

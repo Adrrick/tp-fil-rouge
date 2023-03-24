@@ -12,5 +12,8 @@ import Movie from 'src/app/models/Movie';
   styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent {
-  @Input() movie!: Movie;
+  @Input() id!: Movie['id'];
+  @Input() poster_path!: Movie['poster_path'];
+  @Input() title!: Movie['title'];
+  @Input() vote_average!: Movie['vote_average'];
 }

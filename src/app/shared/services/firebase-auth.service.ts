@@ -31,7 +31,6 @@ export class FirebaseAuthService {
     });
   }
 
-
   async loginEmail(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       (response) => {
@@ -54,7 +53,7 @@ export class FirebaseAuthService {
     this.currentUser = undefined;
   }
 
-  signUpEmail(email: string, password: string, username: string) {
+  async signUpEmail(email: string, password: string, username: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {

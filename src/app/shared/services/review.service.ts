@@ -23,7 +23,7 @@ export class ReviewService {
     if (isRated) {
       return false;
     } else {
-      await this.afs.collection<Review>('/reviews').add({ movieId: movie.movieId, comment, rating, user, title });
+      await this.afs.collection<Review>('/reviews').add({ movieId: movie.movieId, movieTitle: movie.title, comment, rating, user, title });
       await this.userService.addMovieToMoviesList(user, movie);
       return true;
     }

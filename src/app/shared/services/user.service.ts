@@ -22,6 +22,23 @@ export class UserService {
     return this.getUserByUID(uid);
   }
 
+  updateUser(
+    uid: string,
+    updatedUserData: Partial<User>
+  ): Observable<User | undefined> {
+    const userRef = this.afs.collection<User>('/users').doc(uid);
+
+    userRef.update(updatedUserData)
+      .then(() => {
+        console.log('User updated successfully!');
+      })
+      .catch((error) => {
+        console.error('Error updating user: ', error);
+      });
+
+    return this.getUserByUID(uid);
+  }
+
   getUserByUID(uid: string): Observable<User | undefined> {
     return this.afs.collection<User>('/users').doc(uid).valueChanges();
   }

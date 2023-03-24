@@ -62,22 +62,12 @@
       padding: 20px;
       padding-bottom: 40px;
   
-      .btn {
-        background-color: #414052;
-        padding: 20px;
-        border: transparent;
-        box-shadow: none;
-  
-        span {
-          color: #fff;
-        }
-      }
-  
       span {
         background-color: #414052;
         padding: 5px 15px;
         margin-right: 10px;
         border-radius: 999px;
+        margin-bottom: 10px;
       }
       h2 {
         color: #ffffff;
@@ -85,6 +75,8 @@
       }
       p {
         color: #ffffff;
+        display: flex;
+        flex-wrap: wrap;
       }
     }
     &__Others {

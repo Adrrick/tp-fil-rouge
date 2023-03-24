@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {lastValueFrom, map, Observable} from "rxjs";
+import {firstValueFrom, map, Observable} from "rxjs";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {StorageService} from "./storage.service";
 import Review from "../../models/Review";
@@ -12,11 +12,12 @@ export class ReviewService {
 
   constructor(private afs: AngularFirestore, private storageService: StorageService, private userService: UserService) { }
 
-  async createReview(movie: { movieId: string, posterPath: string}, rating: number, comment: string, title: string): Promise<boolean> {
+  async createReview(movie: { movieId: string, posterPath: string, title: string}, rating: number, comment: string, title: string): Promise<boolean> {
+    console.log('CreateReview');
     const user = !this.storageService.getUID() ? ' ' : this.storageService.getUID();
 
-    const isRated = await lastValueFrom(this.afs
-      .collection<Review>('/reviews', (ref) => ref.where('user', '==', user).where('movieId', '==', movie.movieId))
+    const isRated = await firstValueFrom(this.afs
+      .collection<Review>('/reviews', (ref) => ref.where('movieId', '==', movie.movieId).where('user', '==', user))
       .valueChanges()
       .pipe(map(reviews => reviews.length > 0)));
     if(isRated) {

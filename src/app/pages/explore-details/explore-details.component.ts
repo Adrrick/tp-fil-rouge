@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesService } from 'src/app/shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { first, Observable } from 'rxjs';
-import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
+import TheMovieDbApiResult from 'src/app/models/TheMovieDbApiResultSchema';
 import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Pagination } from 'src/app/shared/services/pagination.service';
@@ -16,7 +16,7 @@ import { Pagination } from 'src/app/shared/services/pagination.service';
   styleUrls: ['./explore-details.component.scss'],
 })
 export class ExploreDetailsComponent extends Pagination implements OnInit {
-  movies$?: Observable<PopularMoviesResult>;
+  movies$?: Observable<TheMovieDbApiResult>;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {
     super(route);

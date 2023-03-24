@@ -3,8 +3,8 @@ import Country from "./Country";
 import Genres from "./Genres";
 import Movie from "./Movie";
 
-export default interface MovieDetails extends Movie {
-  // belongs_to_collection: Collection;
+export default interface MovieDetails extends Omit<Movie, "genre_ids"> {
+  belongs_to_collection: any;  // todo: Add a new type  BelongsToCollection
   budget: number;
   genres: Genres[];
   homepage: string;
@@ -13,7 +13,7 @@ export default interface MovieDetails extends Movie {
   production_countries: Country[];
   revenue: number;
   runtime: number;
-  // spoken_languages: Language[];
+  spoken_languages: any[]; // todo: Add a new type  SpokenLanguages
   status: string;
   tagline: string;
 }

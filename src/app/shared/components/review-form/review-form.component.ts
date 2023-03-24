@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ReviewService} from "../../services/review.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ReviewService } from "../../services/review.service";
 
 @Component({
   selector: 'tp-fil-rouge-review-form',

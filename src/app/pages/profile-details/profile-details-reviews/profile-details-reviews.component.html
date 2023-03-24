@@ -1,1 +1,3 @@
-<p>profile-details-reviews works!</p>
+<div *ngIf="reviews">
+    <tp-fil-rouge-movie-review-card [review]="review" *ngFor="let review of reviews" />
+</div>

@@ -8,5 +8,10 @@ describe('tp-fil-rouge Explore', () => {
       cy.get('.genre-item').contains(genre)
     )
   })
+
+  it('should redirect to the explore details page', () => {
+    cy.get('.genre-item').first().click();
+    cy.url().should('match', /^.*\/explore\/details\?with_genres=\d+$/);
+  })
 });
 

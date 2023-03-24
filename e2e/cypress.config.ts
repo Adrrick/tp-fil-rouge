@@ -7,9 +7,4 @@ export default defineConfig({
 
     baseUrl: 'http://localhost:4200',
   },
-
-  env: {
-    CYPRESS_TEST_UID: '3U7woVcbSRSuWyXa6HsOeoSUEtf2'
-  }
-
 });

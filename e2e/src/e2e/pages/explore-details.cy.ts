@@ -29,17 +29,14 @@ describe('tp-fil-rouge Explore Details', () => {
     cy.url().should('include', '/login');
   })
 
-  it('should redirect us to login when we click on a movie', () => {
+  it('should redirect us to the movie details when we click on a movie', () => {
     cy.login('test@test.com', 'test');
 
-    cy.intercept({
-      method: 'GET',
-      url: 'https://api.themoviedb.org/3//discover/movie?with_genres=28&page=1&api_key=41770330e49047aac35ce453ac66b586',
-    }).as('dataGetFirst');
+    cy.intercept('https://api.themoviedb.org/3//discover/movie?with_genres=28**').as('movies');
 
     cy.visit(`/explore/details?with_genres=28`);
 
-    cy.wait('@dataGetFirst');
+    cy.wait('@movies');
 
     cy.get('tp-fil-rouge-movie-card').first().click();
     cy.url().should('match', /^.*\/movie\/\d+$/);

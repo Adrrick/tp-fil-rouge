@@ -1,10 +1,13 @@
 <div>
-    <div [formGroup]="reviewForm" (ngSubmit)="submit()">
+    <form [formGroup]="reviewForm" (ngSubmit)="submit()">
         <div>
             <input type="text" formControlName="title">
         </div>
         <div>
+            <tp-fil-rouge-star-rating [rating]="4" (ratingChanged)="onRatingChanged($event)"></tp-fil-rouge-star-rating>
         </div>
-        <div></div>
-    </div>
+        <div>
+            <input type="text-area" formControlName="comment">
+        </div>
+    </form>
 </div>

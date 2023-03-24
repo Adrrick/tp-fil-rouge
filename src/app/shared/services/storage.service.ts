@@ -17,7 +17,9 @@ export class StorageService {
     return !!window.localStorage.getItem('uid');
   }
 
-  getUID(): string | null {
-    return window.localStorage.getItem('uid');
+  getUID(): string {
+    const uid = window.localStorage.getItem('uid');
+    if (!uid) return '';
+    return uid
   }
 }

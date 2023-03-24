@@ -8,4 +8,13 @@
       </mat-card-title-group>
     </mat-card-header>
   </mat-card>
+
+  <mat-tab-group>
+    <mat-tab label="Viewed Movies">
+      <tp-fil-rouge-profile-details-movies [moviesSeen]="viewedMovies" />
+    </mat-tab>
+    <mat-tab label="Reviewed Movies">
+      <tp-fil-rouge-profile-details-reviews [reviews]="reviewedMovies" />
+    </mat-tab>
+  </mat-tab-group>
 </div>

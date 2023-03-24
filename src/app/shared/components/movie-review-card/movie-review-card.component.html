@@ -1,0 +1,10 @@
+<div>
+    <p>{{review.title}}</p>
+    <div class="star-rating">
+        <span class="star" [class.filled]="review.rating >= 1">★</span>
+        <span class="star" [class.filled]="review.rating >= 2">★</span>
+        <span class="star" [class.filled]="review.rating >= 3">★</span>
+        <span class="star" [class.filled]="review.rating >= 4">★</span>
+        <span class="star" [class.filled]="review.rating >= 5">★</span>
+    </div>
+</div>

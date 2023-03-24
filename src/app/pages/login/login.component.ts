@@ -45,8 +45,8 @@ export class LoginComponent {
       .catch((err) => {
         this.toast.toastError(err.message);
       })
-    // if (!this.storageServices.isLogged()) {
-    //   this.toast.toastError('Email or password incorrect');
-    // }
+    if (!this.storageServices.isLogged()) {
+      this.toast.toastError('Email or password incorrect');
+    }
   }
 }

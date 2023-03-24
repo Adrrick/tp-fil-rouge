@@ -10,8 +10,8 @@
   </mat-card>
 
   <mat-tab-group>
-    <mat-tab label="Viewed Movies"><tp-fil-rouge-profile-details-movies [user]="user" /></mat-tab>
+    <mat-tab label="Viewed Movies"><tp-fil-rouge-profile-details-movies [movies]="viewedMovies" /></mat-tab>
     <mat-tab label="Reviewed Movies">
-      <tp-fil-rouge-profile-details-reviews [user]="user" /></mat-tab>
+      <tp-fil-rouge-profile-details-reviews [reviews]="reviewedMovies" /></mat-tab>
   </mat-tab-group>
 </div>

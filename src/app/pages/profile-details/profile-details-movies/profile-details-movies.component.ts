@@ -1,27 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MoviesService } from 'src/app/shared/services/movies.service';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user.service';
+import { RouterLink } from '@angular/router';
 import MovieSeen from 'src/app/models/MovieSeen';
+import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
+import { LightMovieCardComponent } from 'src/app/shared/components/light-movie-card/light-movie-card.component';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details-movies',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MovieCardComponent, RouterLink, LightMovieCardComponent],
   templateUrl: './profile-details-movies.component.html',
   styleUrls: ['./profile-details-movies.component.scss'],
 })
-export class ProfileDetailsMoviesComponent implements OnInit {
-  @Input() movies?: MovieSeen[] | undefined;
-
-  constructor(
-    private route: ActivatedRoute,
-    private movieService: MoviesService,
-    private usersService: UserService
-  ) {}
-
-  ngOnInit() {
-    console.log(this.movies);
-  }
+export class ProfileDetailsMoviesComponent {
+  @Input() moviesSeen?: MovieSeen[];
 }

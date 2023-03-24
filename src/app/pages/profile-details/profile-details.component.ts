@@ -9,22 +9,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ProfileDetailsMoviesComponent } from './profile-details-movies/profile-details-movies.component';
 import { ProfileDetailsReviewsComponent } from './profile-details-reviews/profile-details-reviews.component';
 import { StorageService } from 'src/app/shared/services/storage.service';
-import MovieDetails from 'src/app/models/Movie-details';
 import Review from 'src/app/models/Review';
-import { MoviesService } from 'src/app/shared/services/movies.service';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import MovieSeen from 'src/app/models/MovieSeen';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatTabsModule,
-    ProfileDetailsMoviesComponent,
-    ProfileDetailsReviewsComponent,
-  ],
+  imports: [CommonModule, MatCardModule, MatTabsModule, ProfileDetailsMoviesComponent, ProfileDetailsReviewsComponent,],
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss'],
 })

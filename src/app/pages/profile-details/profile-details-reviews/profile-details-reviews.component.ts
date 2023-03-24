@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -11,15 +11,11 @@ import Review from 'src/app/models/Review';
   templateUrl: './profile-details-reviews.component.html',
   styleUrls: ['./profile-details-reviews.component.scss'],
 })
-export class ProfileDetailsReviewsComponent implements OnInit {
+export class ProfileDetailsReviewsComponent{
   @Input() reviews?: Review[];
 
   constructor(
     private route: ActivatedRoute,
     private usersService: UserService
   ) {}
-
-  ngOnInit() {
-    console.log(this.reviews);
-  }
 }

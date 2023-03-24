@@ -1,1 +1,3 @@
-<p>profile-details-movies works!</p>
+<div *ngFor="let movieSeen of moviesSeen">
+    <tp-fil-rouge-light-movie-card [movieSeen]="movieSeen" />
+</div>

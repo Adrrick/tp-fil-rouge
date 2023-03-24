@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'tp-fil-rouge-start-rating',
@@ -6,9 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./start-rating.component.css']
 })
 export class StartRatingComponent {
-  rating = 0;
+  @Input() rating: number;
+  @Output() ratingChanged = new EventEmitter<number>();
 
-  rateStar(index: number) {
-    this.rating = index + 1;
+  onRatingChanged(rating: number) {
+    this.rating = rating;
+    this.ratingChanged.emit(rating);
   }
+
 }

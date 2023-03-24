@@ -4,11 +4,13 @@ import { MoviesService } from '../../shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import MovieDetails from 'src/app/models/Movie-details';
+import { ReviewFormComponent } from "../../shared/components/review-form/review-form.component";
+
 
 @Component({
   selector: 'tp-fil-rouge-movie-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReviewFormComponent],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
   providers: [MoviesService],
@@ -19,7 +21,7 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private moviesServices: MoviesService,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

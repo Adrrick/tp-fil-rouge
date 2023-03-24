@@ -1,42 +1,28 @@
 <div class="Auth">
-    <div class="Login">
-      <div class="Login__Description">
-        <h1>Connexion</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-          perferendis dolorum, dolores placeat corporis minus aliquid reiciendis
-          quaerat quae sint perspiciatis aperiam quidem atque optio nam alias,
-          maiores unde quis?
-        </p>
-      </div>
-      <form class="Login__Form" [formGroup]="loginForm" (ngSubmit)="submit()">
-        <div class="inputArea mb-3">
-          <input
-            formControlName="email"
-            type="email"
-            id="email"
-            placeholder="Adresse Mail"
-          />
-        </div>
-        <div class="inputArea mb-3">
-          <input
-            formControlName="password"
-            type="password"
-            id="password"
-            placeholder="Mot de passe"
-          />
-        </div>
-        <button
-          type="submit"
-          [disabled]="loginForm.invalid"
-          class="btn"
-        >
-          <span>Se connecter</span>
-        </button>
-        <p class="mb-3 mt-3 link" [routerLink]="['/register']">
-          Pas encore de compte ? S'inscrire
-        </p>
-      </form>
+  <div class="Login">
+    <div class="Login__Description">
+      <h1>Connexion</h1>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+        perferendis dolorum, dolores placeat corporis minus aliquid reiciendis
+        quaerat quae sint perspiciatis aperiam quidem atque optio nam alias,
+        maiores unde quis?
+      </p>
     </div>
+    <form class="Login__Form" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div class="inputArea mb-3">
+        <input formControlName="email" type="email" id="email" placeholder="Adresse Mail" data-test="login-email" />
+      </div>
+      <div class="inputArea mb-3">
+        <input formControlName="password" type="password" id="password" placeholder="Mot de passe"
+          data-test="login-password" />
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid" class="btn" data-test="login-submit">
+        <span>Se connecter</span>
+      </button>
+      <p class="mb-3 mt-3 link" [routerLink]="['/register']">
+        Pas encore de compte ? S'inscrire
+      </p>
+    </form>
   </div>
-  
+</div>

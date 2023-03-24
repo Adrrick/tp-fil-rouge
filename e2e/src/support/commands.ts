@@ -10,12 +10,16 @@ Cypress.Commands.add('login', (email: string, password: string) => {
     }
   });
 
-  cy.get('input#email').type(email);
-  cy.get('input#password').type(password);
+  cy.getBySel('login-email').type(email);
+  cy.getBySel('login-password').type(password);
 
-  cy.get('button.btn[type="submit"]').click();
+  cy.getBySel('login-submit').click();
 
   cy.wait("@loginUser");
   cy.wait("@lookupUser");
 
 })
+
+Cypress.Commands.add("getBySel", (selector, ...args) => {
+  return cy.get(`[data-test=${selector}]`, ...args);
+});

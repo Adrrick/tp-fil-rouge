@@ -1,4 +1,4 @@
-<div class="auto-grid-movies" *ngIf="movies$ | async as movies">
+<div data-test="grid-movies" class="auto-grid-movies" *ngIf="movies$ | async as movies">
     <tp-fil-rouge-movie-card [movie]="movie" *ngFor="let movie of movies.results" />
 </div>
 

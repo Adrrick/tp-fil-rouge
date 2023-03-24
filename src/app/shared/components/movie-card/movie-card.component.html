@@ -1,4 +1,4 @@
-<a class="movie-card" routerLink="/movie/{{movie.id}}">
+<a class="movie-card" routerLink="/movie/{{movie.id}}" data-test="movie-card">
     <div class="movie-card--poster-container">
         <img class="movie-card--poster-img" loading="lazy"
             src="{{'https://image.tmdb.org/t/p/original' + movie.poster_path}}" alt="poster for {{movie.title}}">

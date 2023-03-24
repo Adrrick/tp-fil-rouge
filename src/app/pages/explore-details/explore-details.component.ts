@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MoviesService } from 'src/app/shared/services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { first, Observable, take } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import PopularMoviesResult from 'src/app/models/PopularMoviesResult';
 import { MovieCardComponent } from 'src/app/shared/components/movie-card/movie-card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -19,7 +19,7 @@ export class ExploreDetailsComponent extends Pagination implements OnInit {
   movies$?: Observable<PopularMoviesResult>;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {
-    super();
+    super(route);
   }
 
   ngOnInit(): void {

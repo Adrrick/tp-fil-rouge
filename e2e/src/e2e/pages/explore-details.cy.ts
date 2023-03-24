@@ -1,3 +1,4 @@
+import { getPaginatorRangeLabel } from "e2e/src/support/paginator";
 
 describe('tp-fil-rouge Explore Details', () => {
   beforeEach(() => cy.visit('/explore/details?with_genres=28'))
@@ -5,31 +6,30 @@ describe('tp-fil-rouge Explore Details', () => {
   const moviesNb = 20;
 
   it(`should display a grid of ${moviesNb} movies`, () => {
-    cy.get('.auto-grid-movies').find('tp-fil-rouge-movie-card').should('have.length', moviesNb);
+    cy.getBySel('grid-movies').find('tp-fil-rouge-movie-card').should('have.length', moviesNb);
   })
 
   it(`should have the pagination set to 1 - ${moviesNb}`, () => {
-
-    cy.get('.mat-mdc-paginator-range-label').contains(`1 – ${moviesNb}`);
+    getPaginatorRangeLabel().contains(`1 – ${moviesNb}`);
   })
 
   it(`should have the pagination set to ${moviesNb} - ${moviesNb * 2} when we click on next`, () => {
     cy.get('.mat-mdc-paginator-navigation-next').click();
-    cy.get('.mat-mdc-paginator-range-label').contains(`${moviesNb + 1} – ${moviesNb * 2}`);
+    getPaginatorRangeLabel().contains(`${moviesNb + 1} – ${moviesNb * 2}`);
   })
 
   it(`should have the pagination set to 1 - ${moviesNb} when we click on previous`, () => {
-    cy.get('.mat-mdc-paginator-navigation-next').click();
+    cy.visit('/explore/details?with_genres=28&page=2')
     cy.get('.mat-mdc-paginator-navigation-previous').click();
-    cy.get('.mat-mdc-paginator-range-label').contains(`1 – ${moviesNb}`);
+    getPaginatorRangeLabel().contains(`1 – ${moviesNb}`);
   })
 
-  it('should redirect us to login when we click on a movie', () => {
-    cy.get('tp-fil-rouge-movie-card').first().click();
+  it('should redirect to login when we click on a movie', () => {
+    cy.getBySel('movie-card').first().click();
     cy.url().should('include', '/login');
   })
 
-  it('should redirect us to the movie details when we click on a movie', () => {
+  it('should redirect to the movie details when we click on a movie', () => {
     cy.login('test@test.com', 'test');
 
     cy.intercept('https://api.themoviedb.org/3//discover/movie?with_genres=28**').as('movies');
@@ -38,7 +38,7 @@ describe('tp-fil-rouge Explore Details', () => {
 
     cy.wait('@movies');
 
-    cy.get('tp-fil-rouge-movie-card').first().click();
+    cy.getBySel('movie-card').first().click();
     cy.url().should('match', /^.*\/movie\/\d+$/);
   })
 });

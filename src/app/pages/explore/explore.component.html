@@ -1,5 +1,5 @@
 <div class="genres-container" *ngIf="genres$ | async as genres">
-    <div class="genre-item" *ngFor="let genre of genres.genres">
+    <div data-test="genre-item" class="genre-item" *ngFor="let genre of genres.genres">
         <a [routerLink]="'/explore/details'" [queryParams]="{with_genres: genre.id}">
             {{genre.name}}
         </a>

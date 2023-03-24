@@ -1,16 +1,14 @@
 <div>
-    <p>{{review.movieTitle}}</p>
-    <div class="star-rating">
-
-    </div>
-    <mat-card>
-        <mat-card-content>
-            <span class="star" [class.filled]="review.rating >= 1">★</span>
-            <span class="star" [class.filled]="review.rating >= 2">★</span>
-            <span class="star" [class.filled]="review.rating >= 3">★</span>
-            <span class="star" [class.filled]="review.rating >= 4">★</span>
-            <span class="star" [class.filled]="review.rating >= 5">★</span>
-        </mat-card-content>
-    </mat-card>
-
+    <a routerLink="/movie/{{review.movieId}}">
+        <mat-card>
+            <mat-card-title class="card-title">{{review.movieTitle}}</mat-card-title>
+            <mat-card-content>
+                <span class="star" [class.filled]="review.rating >= 1">★</span>
+                <span class="star" [class.filled]="review.rating >= 2">★</span>
+                <span class="star" [class.filled]="review.rating >= 3">★</span>
+                <span class="star" [class.filled]="review.rating >= 4">★</span>
+                <span class="star" [class.filled]="review.rating >= 5">★</span>
+            </mat-card-content>
+        </mat-card>
+    </a>
 </div>

@@ -55,6 +55,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private storageService: StorageService,
     private reviewService: ReviewService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -80,6 +81,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
             [Validators.required, Validators.minLength(4)],
           ],
           password: [undefined, [Validators.required, Validators.minLength(4)]],
+          newPassword: [undefined, [Validators.required, Validators.minLength(4)]],
         });
       });
       this.reviews$ = this.reviewService.getReviewByUserID(id);

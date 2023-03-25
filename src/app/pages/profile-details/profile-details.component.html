@@ -6,8 +6,19 @@
       class="Profil__Main__Form"
     >
       <div class="Profil__Main__Avatar">
-        <mat-icon *ngIf="isMe">edit</mat-icon>
-        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" loading="lazy" alt="ceci est la tete du profil" />
+        <mat-icon *ngIf="isMe" [matMenuTriggerFor]="menu">edit</mat-icon>
+        <img
+          src="../../../assets/fake_avatar.png"
+          loading="lazy"
+          alt="ceci est la tete du profil"
+          *ngIf="!user.photoURL"
+        />
+        <img
+          src="{{ user.photoURL }}"
+          loading="lazy"
+          alt="ceci est la tete du profil"
+          *ngIf="user.photoURL"
+        />
       </div>
       <div class="inputArea mb-3">
         <label for="username"> Username </label>
@@ -27,20 +38,8 @@
             type="email"
             formControlName="email"
             [readOnly]="!isMe"
-            [disabled]="!isMe"
             autoComplete="off"
             id="email"
-          />
-        </div>
-      </div>
-      <div class="inputArea mb-3" *ngIf="isMe">
-        <label for="password">Mot de passe actuel</label>
-        <div class="Profil__Main__Form__Input">
-          <input
-            type="password"
-            formControlName="password"
-            autoComplete="off"
-            id="password"
           />
         </div>
       </div>
@@ -70,3 +69,24 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+
+<mat-menu #menu="matMenu" class="Profil__Main__Avatar__MenuArea">
+    <div class="Profil__Main__Avatar__Menu">
+      <button
+      class="Profil__Main__Avatar__Menu__Btn"
+      tpFilRougeDropFile
+      [multiple]="false"
+      (fileDropped)="updateAvatar($event)"
+      mat-menu-item
+    >
+      Charger une image
+    </button>
+    <button
+      class="Profil__Main__Avatar__Menu__Btn"
+      (click)="openCameraModal()"
+      mat-menu-item
+    >
+      Prendre une photo
+    </button>
+    </div>
+</mat-menu>

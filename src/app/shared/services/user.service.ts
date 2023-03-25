@@ -7,7 +7,7 @@ import { firstValueFrom, map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore) {}
 
   createUser(
     username: string,
@@ -15,7 +15,7 @@ export class UserService {
     uid: string
   ): Observable<User | undefined> {
     this.afs
-      .collection<User>('/users')
+      .collection<Partial<User>>('/users')
       .doc(uid)
       .set({ username, email, uid, moviesSeen: [] })
       .then();
@@ -28,13 +28,7 @@ export class UserService {
   ): Observable<User | undefined> {
     const userRef = this.afs.collection<User>('/users').doc(uid);
 
-    userRef.update(updatedUserData)
-      .then(() => {
-        console.log('User updated successfully!');
-      })
-      .catch((error) => {
-        console.error('Error updating user: ', error);
-      });
+    userRef.update(updatedUserData);
 
     return this.getUserByUID(uid);
   }
@@ -55,13 +49,27 @@ export class UserService {
     return this.afs.collection<User>('/users').valueChanges();
   }
 
-  async addMovieToMoviesList(userID: string | undefined, movie: { movieId: number, posterPath: string, title: string }) {
-    const movies = await firstValueFrom(this.afs.collection<User>('/users').doc(userID).valueChanges().pipe(map(response => response?.moviesSeen)));
+  async addMovieToMoviesList(
+    userID: string | undefined,
+    movie: { movieId: number; posterPath: string; title: string }
+  ) {
+    const movies = await firstValueFrom(
+      this.afs
+        .collection<User>('/users')
+        .doc(userID)
+        .valueChanges()
+        .pipe(map((response) => response?.moviesSeen))
+    );
     const moviesSeen = movies ? movies : [];
-    const isSeen = moviesSeen.find(movie_ => movie_.movieId === movie.movieId);
+    const isSeen = moviesSeen.find(
+      (movie_) => movie_.movieId === movie.movieId
+    );
     if (!isSeen) {
       moviesSeen.push(movie);
-      await this.afs.collection<User>('/users').doc(userID).update({ moviesSeen });
+      await this.afs
+        .collection<User>('/users')
+        .doc(userID)
+        .update({ moviesSeen });
       return true;
     }
     return false;

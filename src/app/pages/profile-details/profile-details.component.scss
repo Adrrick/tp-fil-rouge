@@ -1,88 +1,127 @@
 .Profil {
   margin-bottom: 50px;
   &__Main {
-  width: 40%;
-  margin: 40px auto;
-  background-color: #20212c;
-  border-radius: 20px;
-  z-index: 2;
-  padding: 20px;
+    width: 40%;
+    margin: 40px auto;
+    background-color: #20212c;
+    border-radius: 20px;
+    z-index: 2;
+    padding: 20px;
 
-  &__Avatar {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    border-radius: 999px;
-    margin-bottom: 40px;
-    img {
+    &__Avatar {
+      display: flex;
+      position: relative;
       width: 100px;
       height: 100px;
+      margin: 0 auto;
       border-radius: 999px;
-    }
-    mat-icon {
-      color: #fff;
-      font-size: 1em;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      background-color: #414052;
-      border: #20212c 3px solid;
-      border-radius: 999px;
-      right: 1px;
-      cursor: pointer;
-    }
-  }
-  &__Form {
-    border-radius: 20px;
-    padding: 20px;
-    .mb-3 {
-      margin-bottom: 20px;
-    }
-    .btn {
-      background-color: #414052;
-      color: #fff;
-      padding: 10px 20px;
-      margin-top: 10px;
-      margin-right: 10px;
-      border: transparent;
-      border-radius: 999px;
-      cursor: pointer;
-    }
-    .inputArea {
-      width: 100%;
-      margin: 10px auto;
-      display: flex;
-      flex-direction: column;
-      label {
+      margin-bottom: 40px;
+      img {
+        width: 100%;
+        border-radius: 999px;
+        aspect-ratio: 1;
+        object-fit: cover;
+      }
+      mat-icon {
         color: #fff;
-        font-weight: 700;
-        padding-bottom: 10px;
+        font-size: 1em;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        background-color: #414052;
+        border: #20212c 3px solid;
+        border-radius: 999px;
+        right: 1px;
+        cursor: pointer;
+      }
+      ::ng-deep &__MenuArea {
+        background-color: #414052;
+      }
+      &__Menu{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+        &__Btn {
+          ::ng-deep .mdc-list-item__primary-text  {
+            color: #fff;
+            font-size: .9em;
+          }
+          background-color: #20212c;
+          padding: 8px 15px;
+          border: transparent;
+          border-radius: 999px;
+          cursor: pointer;
+          &:first-child {
+            margin-bottom: 10px;
+          }
+          &:hover{
+            background-color: #20212c;
+          }
+        }
       }
     }
-    &__Input {
-      display: flex;
-      justify-content: space-between;
-      input,
-      textarea {
-        width: 100%;
-        border: transparent;
+    &__Form {
+      border-radius: 20px;
+      padding: 20px;
+      .mb-3 {
+        margin-bottom: 20px;
+      }
+      .btn {
         background-color: #414052;
-        box-shadow: none;
         color: #fff;
-        padding: 10px;
-        border-radius: 15px;
-        outline: none;
-
-        &:focus {
-          background: #414052;
+        padding: 10px 20px;
+        margin-top: 10px;
+        margin-right: 10px;
+        border: transparent;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .inputArea {
+        width: 100%;
+        margin: 10px auto;
+        display: flex;
+        flex-direction: column;
+        label {
+          color: #fff;
+          font-weight: 700;
+          padding-bottom: 10px;
+        }
+      }
+      &__Input {
+        display: flex;
+        justify-content: space-between;
+        input,
+        textarea {
+          width: 100%;
+          border: transparent;
+          background-color: #414052;
           box-shadow: none;
+          color: #fff;
+          padding: 10px;
+          border-radius: 15px;
+          outline: none;
+
+          &:focus {
+            background: #414052;
+            box-shadow: none;
+          }
         }
       }
     }
   }
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label, .mat-mdc-tab-link .mdc-tab__text-label {
+  color: #fff; // change la couleur de fond de la barre
+}
+
+@media only screen and (max-width: 767px) {
+  .Profil {
+      &__Main {
+        width: 80%;
+      }
   }
 }

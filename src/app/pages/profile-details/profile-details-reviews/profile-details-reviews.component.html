@@ -1,3 +1,3 @@
-<div *ngIf="reviews">
-    <tp-fil-rouge-movie-review-card [review]="review" *ngFor="let review of reviews" />
+<div *ngIf="reviews" class="Review">
+    <tp-fil-rouge-movie-review-card class="Review__Card" [review]="review" *ngFor="let review of reviews" />
 </div>

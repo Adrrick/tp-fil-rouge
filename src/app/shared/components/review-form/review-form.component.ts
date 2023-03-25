@@ -44,9 +44,7 @@ export class ReviewFormComponent {
   }
 
   async submit() {
-    // this.reviewService.getReviewByUser().subscribe(r => console.log(r));
     this.send = false;
-    // console.log(this.reviewForm);
     if (this.reviewForm.invalid) {
       return;
     }

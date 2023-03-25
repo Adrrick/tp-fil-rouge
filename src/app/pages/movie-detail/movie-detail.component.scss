@@ -13,6 +13,7 @@
       position: relative;
       img {
         width: 100%;
+        object-fit: cover;
         height: 50vh;
         position: absolute;
         z-index: 2;

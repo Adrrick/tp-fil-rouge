@@ -6,4 +6,6 @@ export default interface User {
   email: string;
   image?: string; // TODO transform to image/blob
   moviesSeen: MovieSeen[];
+  password: string;
+  photoURL: string;
 }

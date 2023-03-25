@@ -1,5 +1,6 @@
 <div class="avatar" [matMenuTriggerFor]="menu" data-test="avatar">
-    <img class="img-circle" src="../../../../assets/fake_avatar.png" />
+    <img class="img-circle" *ngIf="avatarImage" src="{{avatarImage}}" />
+    <img class="img-circle" *ngIf="!avatarImage" src="../../../../assets/fake_avatar.png" />
 </div>
 
 <mat-menu #menu="matMenu">

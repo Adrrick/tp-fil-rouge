@@ -122,7 +122,6 @@ export class FirebaseAuthService {
         
         return true;
       } catch (error) {
-        console.error(error);
         return false;
       }
     }
@@ -134,7 +133,6 @@ export class FirebaseAuthService {
     
     const imageRef = storageRef.child(`${Date.now()}-${file.name}`);
     const allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
-    console.log(file.name);
     
     if (!allowedExtensions.exec(file.name)) {
       throw new Error('Type de fichier non pris en charge');
@@ -166,7 +164,6 @@ export class FirebaseAuthService {
         await user.updateProfile(profileUpdate);
         return true;
       } catch (error) {
-        console.error(error);
         return false;
       }
     }
@@ -181,7 +178,6 @@ export class FirebaseAuthService {
         await user.updateEmail(newEmail);
         return true;
       } catch (error) {
-        console.error(error);
         return false;
       }
     }
@@ -195,7 +191,6 @@ export class FirebaseAuthService {
         await user.updatePassword(newPassword);
         return true;
       } catch (error) {
-        console.error(error);
         return false;
       }
     }

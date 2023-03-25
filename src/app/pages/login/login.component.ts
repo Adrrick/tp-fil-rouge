@@ -36,7 +36,6 @@ export class LoginComponent {
   }
 
   async submit(): Promise<void> {
-    console.log('hello')
     await this.authServices
       .loginEmail(
         this.loginForm.controls['email'].value,

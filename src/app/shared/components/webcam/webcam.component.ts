@@ -87,9 +87,7 @@ export class WebcamComponent {
 
     this.webcamImage = webcamImage;
     this.file = await getFileFromBase64(webcamImage.imageAsDataUrl, 'image/jpeg');
-    console.log('f', this.file);
     
-
     const reader = new FileReader();
 
     reader.onload = () => {

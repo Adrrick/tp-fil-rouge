@@ -114,6 +114,10 @@
   }
 }
 
+::ng-deep .mat-mdc-tab .mdc-tab__text-label, .mat-mdc-tab-link .mdc-tab__text-label {
+  color: #fff; // change la couleur de fond de la barre
+}
+
 @media only screen and (max-width: 767px) {
   .Profil {
       &__Main {

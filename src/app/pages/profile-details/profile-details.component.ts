@@ -13,6 +13,7 @@ import Review from 'src/app/models/Review';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import MovieSeen from 'src/app/models/MovieSeen';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {
   FormBuilder,
   FormControl,
@@ -23,6 +24,15 @@ import {
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { FirebaseAuthService } from 'src/app/shared/services/firebase-auth.service';
 import { DragDropDirective } from 'src/app/shared/directives/drag-drop.directive';
+import { MatMenuModule } from '@angular/material/menu';
+import { WebcamComponent } from 'src/app/shared/components/webcam/webcam.component';
+import { getFileFromBase64 } from 'src/app/shared/function/get-file-from-b64.function';
+import {
+  WebcamImage,
+  WebcamInitError,
+  WebcamModule,
+  WebcamUtil,
+} from 'ngx-webcam';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details',
@@ -36,6 +46,11 @@ import { DragDropDirective } from 'src/app/shared/directives/drag-drop.directive
     ProfileDetailsReviewsComponent,
     MatIconModule,
     DragDropDirective,
+    MatMenuModule,
+    WebcamComponent,
+    MatDialogModule,
+    WebcamModule
+
   ],
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss'],
@@ -57,6 +72,10 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
 
   public userUpdated: Partial<User> = {};
 
+  public openWebcam = false;
+
+  public imgtest = '';
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -65,7 +84,8 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     private afAuth: FirebaseAuthService,
     private reviewService: ReviewService,
     private fb: FormBuilder,
-    private toast: ToastService
+    private toast: ToastService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -144,16 +164,37 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
         this.userUpdated.password = this.profilForm.get('newPassword')?.value;
       }
 
-      return this.afAuth.updateProfil(this.userUpdated).then((user) => {
-        this.toast.toastSuccess('Votre profil à bien été enregistré.')
-      }).catch((err) => {
-        this.toast.toastError(err.message);
-      });
+      return this.afAuth
+        .updateProfil(this.userUpdated)
+        .then((user) => {
+          this.toast.toastSuccess('Votre profil à bien été enregistré.');
+        })
+        .catch((err) => {
+          this.toast.toastError(err.message);
+        });
     } else {
       return this.toast.toastError(
         "Vous ne pouvez pas modifier le profil d'un autre utilisateur"
       );
     }
+  }
+
+  openCameraModal(): void {
+    const dialogRef = this.dialog.open(WebcamComponent);
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result instanceof WebcamImage) {
+        const file = await getFileFromBase64(result.imageAsDataUrl, 'image/jpeg');
+        const files = Array.from([file]) as File[];
+        const dataTransfer = new DataTransfer();
+        for (const file of files) {
+          dataTransfer.items.add(file);
+        }
+        const fileList: FileList = dataTransfer.files;
+        
+        return this.updateAvatar(fileList);
+      }
+    });
   }
 
   ngOnDestroy(): void {

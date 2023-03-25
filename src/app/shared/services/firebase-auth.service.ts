@@ -95,7 +95,6 @@ export class FirebaseAuthService {
 
   async updatePhotoProfil(file: File) : Promise<boolean> {
     const user = await this.afAuth.currentUser;
-    console.log(user?.uid);
     
     if (user) {
       try {
@@ -135,6 +134,8 @@ export class FirebaseAuthService {
     
     const imageRef = storageRef.child(`${Date.now()}-${file.name}`);
     const allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+    console.log(file.name);
+    
     if (!allowedExtensions.exec(file.name)) {
       throw new Error('Type de fichier non pris en charge');
     }

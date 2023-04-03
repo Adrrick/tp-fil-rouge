@@ -1,4 +1,13 @@
 <div *ngIf="movie$ | async as movie" class="MovieDetails">
+  <div *ngIf="user$ && currentMovie && viewedMoviesId">
+    <button type="button" (click)="handleClick(true)"
+      *ngIf="(currentMovie && viewedMovies) && !viewedMoviesId.includes(currentMovie.movieId)">Mark
+      as
+      watched</button>
+    <button type="button" (click)="handleClick(false)"
+      *ngIf="(currentMovie && viewedMovies) && viewedMoviesId.includes(currentMovie.movieId)">Remove from watched
+      list</button>
+  </div>
   <div class="MovieDetails__Header">
     <img src="{{
         'https://image.tmdb.org/t/p/original/' + movie.backdrop_path

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, map, Observable, switchMap } from "rxjs";
+import { firstValueFrom, map, Observable } from "rxjs";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { StorageService } from "./storage.service";
 import Review from "../../models/Review";

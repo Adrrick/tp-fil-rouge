@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, map, Observable } from "rxjs";
+import { firstValueFrom, map, Observable, switchMap } from "rxjs";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { StorageService } from "./storage.service";
 import Review from "../../models/Review";
@@ -38,6 +38,23 @@ export class ReviewService {
   }
 
   getReviewByUserID(userID: string): Observable<Review[]> {
-    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', userID)).valueChanges()
+    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', userID)).valueChanges();
+  }
+
+  removeReview(movieId: number, user: string): void {
+    const matchingDocuments = this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', user).where('movieId', '==', movieId));
+    matchingDocuments.get().subscribe(querySnapshot => {
+      if (querySnapshot.size > 0) {
+        querySnapshot.forEach(doc => {
+          doc.ref.delete().then(() => {
+            console.log("Document successfully deleted");
+          }).catch(error => {
+            console.error("Error removing document: ", error);
+          });
+        });
+      } else {
+        console.log("Document not found.");
+      }
+    });
   }
 }

@@ -9,6 +9,8 @@ import { FirebaseAuthService } from 'src/app/shared/services/firebase-auth.servi
 import { UserService } from 'src/app/shared/services/user.service';
 import User from 'src/app/models/User';
 import MovieSeen from 'src/app/models/MovieSeen';
+import { ReviewService } from 'src/app/shared/services/review.service';
+import Review from 'src/app/models/Review';
 
 
 @Component({
@@ -22,11 +24,14 @@ import MovieSeen from 'src/app/models/MovieSeen';
 export class MovieDetailComponent implements OnInit, OnDestroy {
   movie$: Observable<MovieDetails> | undefined;
   user$?: Observable<User | undefined>;
+  review$?: Observable<Review[]>;
   userSubscription?: Subscription;
   movieSubscription?: Subscription;
+  reviewSubscription?: Subscription;
   viewedMovies?: MovieSeen[];
   viewedMoviesId?: number[];
   currentMovie?: MovieSeen;
+  currentReview?: Review;
   uid?: string = this.authService.currentUser?.uid;
 
   constructor(
@@ -34,6 +39,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private authService: FirebaseAuthService,
     private userService: UserService,
+    private reviewService: ReviewService,
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +47,8 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     if (id) {
       this.movie$ = this.moviesServices.getMovieDetails(id);
       if (this.uid && this.movie$) {
-        this.user$ = this.userService.getUserByUID(this.uid);
+        const userID = this.uid;
+        this.user$ = this.userService.getUserByUID(userID);
         this.userSubscription = this.user$.subscribe(user => {
           this.viewedMovies = user?.moviesSeen;
           this.viewedMoviesId = user?.moviesSeen.map(movie => movie.movieId);
@@ -52,6 +59,10 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
             posterPath: movie.poster_path,
             title: movie.title,
           };
+          this.review$ = this.reviewService.getReviewByUserID(userID);
+          this.reviewSubscription = this.review$.subscribe(reviews => {
+            this.currentReview = reviews.find(review => review.movieId === this.currentMovie?.movieId);
+          });
         });
       }
     }
@@ -64,6 +75,9 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     if (this.movieSubscription) {
       this.movieSubscription.unsubscribe();
     }
+    if (this.reviewSubscription) {
+      this.reviewSubscription.unsubscribe();
+    }
   }
 
   handleClick(addMovie: boolean): void {
@@ -75,6 +89,9 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
         const movieToRemove = this.currentMovie.movieId;
         const movieList = this.viewedMovies.filter(movie => movie.movieId !== movieToRemove);
         this.userService.updateUser(this.uid, { moviesSeen: movieList });
+        if (this.currentReview) {
+          this.reviewService.removeReview(this.currentReview.movieId, this.currentReview.user);
+        }
       }
     }
   }

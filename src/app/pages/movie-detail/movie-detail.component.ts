@@ -22,7 +22,7 @@ import Review from 'src/app/models/Review';
   providers: [MoviesService],
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
-  movie$: Observable<MovieDetails> | undefined;
+  movie$?: Observable<MovieDetails>;
   user$?: Observable<User | undefined>;
   review$?: Observable<Review[]>;
   userSubscription?: Subscription;

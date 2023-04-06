@@ -6,11 +6,13 @@ import { AppComponent } from "./app/app.component";
 import { appRoutes } from "./app/app.routes";
 import { environment } from "./environments/environment";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from "@angular/common/http";
-import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
+import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -25,5 +27,14 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(AngularFireAuthModule),
     importProvidersFrom(AngularFirestoreModule),
     importProvidersFrom(AngularFireStorageModule),
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+          deps: [HttpClient],
+        },
+      })
+    ),
   ],
 }).catch((err) => console.error(err));

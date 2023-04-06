@@ -32,6 +32,12 @@ export const appRoutes: Route[] = [
     canActivate: [AuthGuard],
   },
 
+  {
+    path: 'review_flow',
+    loadComponent: () => import('./pages/review-flow/review-flow.component').then((m) => m.ReviewFlowComponent),
+    canActivate: [AuthGuard],
+  },
+
   // {
   //   path: 'error',
   // }

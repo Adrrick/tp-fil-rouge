@@ -25,9 +25,11 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   movie$?: Observable<MovieDetails>;
   user$?: Observable<User | undefined>;
   review$?: Observable<Review[]>;
+  deleteDocument$?: Observable<void[]>;
   userSubscription?: Subscription;
   movieSubscription?: Subscription;
   reviewSubscription?: Subscription;
+  deleteDocumentSubscription?: Subscription;
   viewedMovies?: MovieSeen[];
   viewedMoviesId?: number[];
   currentMovie?: MovieSeen;
@@ -42,7 +44,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     private reviewService: ReviewService,
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.movie$ = this.moviesServices.getMovieDetails(id);
@@ -68,7 +70,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
@@ -78,9 +80,12 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     if (this.reviewSubscription) {
       this.reviewSubscription.unsubscribe();
     }
+    if (this.deleteDocumentSubscription) {
+      this.deleteDocumentSubscription.unsubscribe();
+    }
   }
 
-  handleClick(addMovie: boolean): void {
+  public handleClick(addMovie: boolean): void {
     if (this.uid && this.currentMovie && this.viewedMovies) {
       if (addMovie) {
         const movieList = [...this.viewedMovies, this.currentMovie];
@@ -90,7 +95,8 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
         const movieList = this.viewedMovies.filter(movie => movie.movieId !== movieToRemove);
         this.userService.updateUser(this.uid, { moviesSeen: movieList });
         if (this.currentReview) {
-          this.reviewService.removeReview(this.currentReview.movieId, this.currentReview.user);
+          this.deleteDocument$ = this.reviewService.removeReview(this.currentReview.movieId, this.currentReview.user);
+          this.deleteDocumentSubscription = this.deleteDocument$.subscribe();
         }
       }
     }

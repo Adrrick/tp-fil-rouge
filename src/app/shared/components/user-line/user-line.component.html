@@ -4,8 +4,8 @@
         <img *ngIf="user.photoURL" class="img-circle user-line--image" src="{{user.photoURL}}">
         <img *ngIf="!user.photoURL" class="img-circle user-line--image" src="../../../../assets/fake_avatar.png">
         <div class="align-start">
-            <p class="user-line--title">{{user.username}}</p>
-            <p class="user-line--subtitle">{{user | getGradeName }}</p>
+            <p class="user-line--title capitalize">{{user.username}}</p>
+            <p class="user-line--subtitle capitalize">{{user | getGradeName }}</p>
         </div>
     </div>
     <button mat-raised-button color="primary" routerLink="/user/{{ user.uid }}">

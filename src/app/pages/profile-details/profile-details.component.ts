@@ -29,10 +29,9 @@ import { WebcamComponent } from 'src/app/shared/components/webcam/webcam.compone
 import { getFileFromBase64 } from 'src/app/shared/function/get-file-from-b64.function';
 import {
   WebcamImage,
-  WebcamInitError,
   WebcamModule,
-  WebcamUtil,
 } from 'ngx-webcam';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details',
@@ -49,8 +48,8 @@ import {
     MatMenuModule,
     WebcamComponent,
     MatDialogModule,
-    WebcamModule
-
+    WebcamModule,
+    TranslateModule,
   ],
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss'],
@@ -86,7 +85,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private toast: ToastService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id =
@@ -191,7 +190,7 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
           dataTransfer.items.add(file);
         }
         const fileList: FileList = dataTransfer.files;
-        
+
         return this.updateAvatar(fileList);
       }
     });

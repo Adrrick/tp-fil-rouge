@@ -52,6 +52,10 @@ export class ReviewService {
       })
     );
   }
+
+  getFlowReviews(): Observable<Review[]> {
+    return this.afs.collection<Review>('/reviews', (ref) => ref.where('rating', '>=', 4)).valueChanges();
+  }
 }
 
 // switchMap(querySnapshot => {

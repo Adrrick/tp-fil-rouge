@@ -11,11 +11,12 @@ import { MatchPasswordDirective } from '../../shared/validators/match-password.d
 import { UserService } from '../../shared/services/user.service';
 import { RouterModule } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'tp-fil-rouge-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslateModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   providers: [MatchPasswordDirective, ToastService],

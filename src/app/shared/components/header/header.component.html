@@ -6,7 +6,7 @@
     </div>
 
     <ng-template #loggedOut>
-        <button class="header--login" mat-raised-button color="primary" [routerLink]="'/login'"
-            data-test="login-button">Login</button>
+        <button mat-raised-button class="header--login capitalize" color="primary" [routerLink]="'/login'"
+            data-test="login-button">{{"login" | translate}}</button>
     </ng-template>
 </header>

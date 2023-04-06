@@ -84,8 +84,19 @@ a:focus {
   text-align: start;
 }
 
-.capitalize:first-letter {
-  text-transform: capitalize;
+.capitalize,
+.capitalize {
+
+  span,
+  label {
+    display: block;
+  }
+
+  &::first-letter,
+  span::first-letter,
+  label::first-letter {
+    text-transform: capitalize;
+  }
 }
 
 .list {

@@ -11,11 +11,12 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { StorageService } from '../../shared/services/storage.service';
 import { RouterModule } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'tp-fil-rouge-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslateModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers: [FirebaseAuthService, AngularFireDatabase, ToastService],

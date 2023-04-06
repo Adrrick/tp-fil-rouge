@@ -1,0 +1,6 @@
+<div *ngIf="reviewFlow$ | async as reviews">
+    <div *ngFor="let review of reviewObjects">
+        <p>{{review.user}}</p>
+        <tp-fil-rouge-movie-review-card [review]="review.review" />
+    </div>
+</div>

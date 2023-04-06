@@ -16,5 +16,6 @@ export class BottomNavbarComponent {
     { icon: "home", label: "home", path: '/home' },
     { icon: "explore", label: "explore", path: '/explore' },
     { icon: "search", label: "search", path: '/search' },
+    { icon: "chat", label: "chat", path: '/review_flow' },
   ]
 }

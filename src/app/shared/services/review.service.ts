@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, map, Observable } from "rxjs";
+import { firstValueFrom, map, Observable, switchMap } from "rxjs";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { StorageService } from "./storage.service";
 import Review from "../../models/Review";
@@ -37,6 +37,29 @@ export class ReviewService {
   }
 
   getReviewByUserID(userID: string): Observable<Review[]> {
-    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', userID)).valueChanges()
+    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', userID)).valueChanges();
+  }
+
+  removeReview(movieId: number, user: string): Observable<void[]> {
+    return this.afs.collection<Review>('/reviews', ref => ref.where('user', '==', user).where('movieId', '==', movieId)).get().pipe(
+      switchMap(querySnapshot => {
+        if (querySnapshot.size > 0) {
+          const deletePromises = querySnapshot.docs.map(doc => doc.ref.delete());
+          return Promise.all(deletePromises);
+        } else {
+          return Promise.reject("Document not found.");
+        }
+      })
+    );
   }
 }
+
+// switchMap(querySnapshot => {
+//   if (querySnapshot.size > 0) {
+//     const deletePromises = querySnapshot.docs.map(doc => doc.ref.delete());
+//     return Promise.all(deletePromises);
+//   } else {
+//     return Promise.reject("Document not found.");
+//   }
+// })
+// );

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, map, Observable } from "rxjs";
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { StorageService } from "./storage.service";
+import {firstValueFrom, map, Observable} from "rxjs";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {StorageService} from "./storage.service";
 import Review from "../../models/Review";
-import { UserService } from "./user.service";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class ReviewService {
     if(isRated) {
       return false;
     } else {
-      await this.afs.collection<Review>('/reviews').add({ movieId: movie.movieId, movieTitle: movie.title, comment, rating, user, title });
+      await this.afs.collection<Review>('/reviews').add({ movieTitle: movie.title, movieId: movie.movieId, comment, rating, user, title});
       await this.userService.addMovieToMoviesList(user, movie);
       return true;
     }

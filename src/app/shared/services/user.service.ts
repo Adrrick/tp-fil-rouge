@@ -59,9 +59,9 @@ export class UserService {
     const movies = await firstValueFrom(this.afs.collection<User>('/users').doc(userID).valueChanges().pipe(map(response => response?.moviesSeen)));
     const moviesSeen = movies ? movies : [];
     const isSeen = moviesSeen.find(movie_ => movie_.movieId === movie.movieId);
-    if (!isSeen) {
+    if(!isSeen) {
       moviesSeen.push(movie);
-      await this.afs.collection<User>('/users').doc(userID).update({ moviesSeen });
+      await this.afs.collection<User>('/users').doc(userID).update({moviesSeen});
       return true;
     }
     return false;

@@ -4,15 +4,25 @@ import { MoviesService } from './movies.service';
 import movies from 'src/app/fixtures/movies.fixture';
 import moviesDetails from 'src/app/fixtures/movies-details.fixture';
 import genres from 'src/app/fixtures/genres.fixture';
+import { TranslateService } from '@ngx-translate/core';
 
 
 describe('MoviesService', () => {
   let service: MoviesService;
   let httpMock: HttpTestingController;
+  let translateServiceMock: Partial<TranslateService>;
+
 
   beforeEach(() => {
+    translateServiceMock = {
+      currentLang: 'en',
+    }
+
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [
+        { provide: TranslateService, useValue: translateServiceMock },
+      ]
     });
     service = TestBed.inject(MoviesService);
 
@@ -132,7 +142,7 @@ describe('MoviesService', () => {
 
   it('should transform params to query params with the api key', () => {
     const params = { query: "Spider" }
-    const expectedData = `query=Spider&api_key=${service.apiKey}`;
+    const expectedData = `query=Spider&api_key=${service.apiKey}&language=${translateServiceMock.currentLang}`;
 
     expect(service.createQueryParams(params)).toEqual(expectedData);
   })
@@ -141,7 +151,7 @@ describe('MoviesService', () => {
     const url = 'search/movie'
     const params = { query: "Spider" }
 
-    const expectedUrl = `${service.baseUrl}search/movie?query=Spider&api_key=${service.apiKey}`;
+    const expectedUrl = `${service.baseUrl}search/movie?query=Spider&api_key=${service.apiKey}&language=${translateServiceMock.currentLang}`;
 
     expect(service.getUrlFormatted(url, params)).toEqual(expectedUrl);
   })

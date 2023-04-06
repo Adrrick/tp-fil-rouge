@@ -15,7 +15,13 @@ describe('MovieCardComponent', () => {
 
     fixture = TestBed.createComponent(MovieCardComponent);
     component = fixture.componentInstance;
-    component.movie = movies[0];
+
+    const movie = movies[0];
+
+    component.id = movie.id;
+    component.poster_path = movie.poster_path;
+    component.title = movie.title;
+    component.vote_average = movie.vote_average;
     fixture.detectChanges();
   });
 

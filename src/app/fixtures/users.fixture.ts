@@ -5,7 +5,9 @@ const users: User[] = [{
   moviesSeen: [],
   uid: 'a5dz4a65d4za',
   username: 'user_test',
-  image: ''
+  image: '',
+  password: '',
+  photoURL: '',
 }]
 
 export default users

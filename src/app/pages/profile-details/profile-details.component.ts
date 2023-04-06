@@ -32,6 +32,7 @@ import {
   WebcamModule,
 } from 'ngx-webcam';
 import { TranslateModule } from '@ngx-translate/core';
+import { SwitchLanguageComponent } from 'src/app/shared/components/switch-language/switch-language.component';
 
 @Component({
   selector: 'tp-fil-rouge-profile-details',
@@ -50,6 +51,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule,
     WebcamModule,
     TranslateModule,
+    SwitchLanguageComponent,
   ],
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss'],

@@ -30,6 +30,8 @@
 
   --movie-card-width: 6.5rem;
   --movie-card-height: 10rem;
+
+  --main-content-padding-inline: 0.5rem;
 }
 
 body {
@@ -121,6 +123,10 @@ a:focus {
 
 .mdc-tab__text-label {
   text-transform: capitalize;
+}
+
+.mat-mdc-tab-body-content {
+  padding-top: 1rem;
 }
 
 // replace material color for tabs

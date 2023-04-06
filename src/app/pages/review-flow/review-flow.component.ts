@@ -1,26 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, first } from 'rxjs';
 import Review from 'src/app/models/Review';
 import { ReviewService } from 'src/app/shared/services/review.service';
+import { MovieReviewCardComponent } from 'src/app/shared/components/movie-review-card/movie-review-card.component';
+import { UserService } from 'src/app/shared/services/user.service';
 
+interface customReview {
+  review: Review;
+  user: string;
+}
 @Component({
   selector: 'tp-fil-rouge-review-flow',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MovieReviewCardComponent],
   templateUrl: './review-flow.component.html',
   styleUrls: ['./review-flow.component.scss'],
 })
-export class ReviewFlowComponent implements OnInit {
+
+export class ReviewFlowComponent implements OnInit, OnDestroy {
 
   constructor(
     private reviewService: ReviewService,
+    private userService: UserService,
   ) { }
 
-  flow$?: Observable<Review[]>;
+  reviewFlow$?: Observable<Review[]>;
+  reviewFlowSubscription?: Subscription;
+  reviewObjects: customReview[] = [];
 
   public ngOnInit(): void {
-    this.flow$ = this.reviewService.getFlowReviews();
+    this.reviewFlow$ = this.reviewService.getFlowReviews();
+    if (this.reviewFlow$) {
+      this.reviewFlowSubscription = this.reviewFlow$.subscribe(reviews => {
+        reviews.forEach(review => {
+          this.userService.getUserByUID(review.user)
+            .pipe(first())
+            .subscribe(user => {
+              if (user) {
+                this.reviewObjects.push({ review: review, user: user.username })
+              }
+            });
+        });
+      });
+    }
+  }
+
+  public ngOnDestroy(): void {
+    if (this.reviewFlowSubscription) {
+      this.reviewFlowSubscription.unsubscribe();
+    }
   }
 
 }

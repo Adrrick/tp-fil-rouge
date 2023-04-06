@@ -48,30 +48,30 @@ export class FirebaseAuthService {
       });
   }
 
-  async updateProfil(userStore : Partial<User>) : Promise<Partial<User>> {
-    const checkIsUpdated : Array<boolean> = [];
+  async updateProfil(userStore: Partial<User>): Promise<Partial<User>> {
+    const checkIsUpdated: Array<boolean> = [];
 
-    if(userStore.email) {
+    if (userStore.email) {
       await this.updateEmail(userStore.email).then((isUpdated) => {
-        if(isUpdated) {
+        if (isUpdated) {
           checkIsUpdated.push(true)
         } else {
           checkIsUpdated.push(false)
         }
       });
     }
-    if(userStore.username) {
+    if (userStore.username) {
       await this.updateUserName(userStore.username).then((isUpdated) => {
-        if(isUpdated) {
+        if (isUpdated) {
           checkIsUpdated.push(true)
         } else {
           checkIsUpdated.push(false)
         }
       });
     }
-    if(userStore.password) {
+    if (userStore.password) {
       await this.updatePassword(userStore.password).then((isUpdated) => {
-        if(isUpdated) {
+        if (isUpdated) {
           checkIsUpdated.push(true)
         } else {
           checkIsUpdated.push(false)
@@ -79,11 +79,11 @@ export class FirebaseAuthService {
       });
     }
 
-    if(!checkIsUpdated.includes(false)) {
+    if (!checkIsUpdated.includes(false)) {
       delete userStore.password;
       this.userServices.updateUser(userStore.uid as string, userStore);
     } else {
-      if(userStore.email || userStore.password) {
+      if (userStore.email || userStore.password) {
         throw new Error('Cette action necessite d\'avoir une connexion plus récente, veuillez vous déconnectez et reconnectez');
       } else {
         throw new Error('Une erreur est survenue lors de la sauvegarde');
@@ -93,9 +93,9 @@ export class FirebaseAuthService {
     return userStore;
   }
 
-  async updatePhotoProfil(file: File) : Promise<boolean> {
+  async updatePhotoProfil(file: File): Promise<boolean> {
     const user = await this.afAuth.currentUser;
-    
+
     if (user) {
       try {
         let newPhotoUrl = null;
@@ -103,23 +103,23 @@ export class FirebaseAuthService {
           newPhotoUrl = await this.uploadImage(file, `user_profile/${user.uid}.png`).catch((err) => {
             throw new Error(err);
           });
-          
-          
+
+
         } else {
           throw new Error('Vous devez uploadé un document!');
         }
-  
+
         const photoURL = {
           photoURL: newPhotoUrl
         };
 
-        const userStore : Partial<User> = {};
+        const userStore: Partial<User> = {};
         userStore.photoURL = newPhotoUrl;
-        
+
         await user.updateProfile(photoURL).then(res => {
           this.userServices.updateUser(user.uid, userStore);
         });
-        
+
         return true;
       } catch (error) {
         return false;
@@ -127,13 +127,13 @@ export class FirebaseAuthService {
     }
     return false;
   }
-  
+
   async uploadImage(file: File, path: string): Promise<string> {
     const storageRef = this.afstorage.ref(path);
-    
+
     const imageRef = storageRef.child(`${Date.now()}-${file.name}`);
     const allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
-    
+
     if (!allowedExtensions.exec(file.name)) {
       throw new Error('Type de fichier non pris en charge');
     }
@@ -160,14 +160,14 @@ export class FirebaseAuthService {
         const profileUpdate = {
           displayName: newDisplayName
         };
-        
+
         await user.updateProfile(profileUpdate);
         return true;
       } catch (error) {
         return false;
       }
     }
-    return false; 
+    return false;
   }
 
 

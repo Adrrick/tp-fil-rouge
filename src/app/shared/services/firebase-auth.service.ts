@@ -41,7 +41,10 @@ export class FirebaseAuthService {
             .subscribe((user) => {
               if (user?.uid) {
                 this.storageService.setLoginData(user?.uid);
-                this.router.navigate(['/']).then();
+                this.router.navigate(['/'])
+                  .then(
+                    () => { window.location.reload(); }
+                  );
               }
             });
         }

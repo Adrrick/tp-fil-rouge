@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import MovieDetails from 'src/app/models/Movie-details';
 import TheMovieDbApiResult from 'src/app/models/TheMovieDbApiResultSchema';
 import Genres from 'src/app/models/Genres';
+import { TranslateService } from '@ngx-translate/core';
 
 type Params = Record<string, string | string[] | number | number[] | undefined>
 
@@ -24,6 +25,8 @@ interface GetMovieDiscoverParams extends Pagination, Params {
   providedIn: 'root'
 })
 export class MoviesService {
+  private readonly translateService = inject(TranslateService);
+
 
   baseUrl = 'https://api.themoviedb.org/3/';
   apiKey = '41770330e49047aac35ce453ac66b586';
@@ -62,7 +65,7 @@ export class MoviesService {
   }
 
   public createQueryParams(parameters?: Params) {
-    return new URLSearchParams({ ...parameters, api_key: this.apiKey }).toString()
+    return new URLSearchParams({ ...parameters, api_key: this.apiKey, language: this.translateService.currentLang }).toString()
   }
 
   public getUrlFormatted(url: string, parameters?: Params): string {

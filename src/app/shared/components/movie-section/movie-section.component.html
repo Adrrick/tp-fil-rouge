@@ -1,5 +1,5 @@
 <section class="movie-section">
-    <h2 class="movie-section--title" data-test="section-title">{{title}}</h2>
+    <h2 class="movie-section--title capitalize" data-test="section-title">{{title}}</h2>
     <div class="movie-section--container scrollbar-hidden">
         <tp-fil-rouge-movie-card [id]="movie.id" [poster_path]="movie.poster_path" [title]="movie.title"
             [vote_average]="movie.vote_average" *ngFor="let movie of movies" />

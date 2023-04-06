@@ -11,4 +11,10 @@ import { BottomNavbarItemComponent } from '../bottom-navbar-item/bottom-navbar-i
   styleUrls: ['./bottom-navbar.component.scss'],
 })
 export class BottomNavbarComponent {
+
+  navbarItems = [
+    { icon: "home", label: "home", path: '/home' },
+    { icon: "explore", label: "explore", path: '/explore' },
+    { icon: "search", label: "search", path: '/search' },
+  ]
 }

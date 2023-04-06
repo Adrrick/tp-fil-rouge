@@ -1,11 +1,11 @@
 <div *ngIf="popularMovies$ | async as popularMovies">
-    <tp-fil-rouge-movie-section title="Popular" [movies]="popularMovies.results" />
+    <tp-fil-rouge-movie-section title="{{'popular' | translate}}" [movies]="popularMovies.results" />
 </div>
 
 <div *ngIf="topRatedMovies$ | async as topRatedMovies">
-    <tp-fil-rouge-movie-section title="Top rated" [movies]="topRatedMovies.results" />
+    <tp-fil-rouge-movie-section title="{{'top_rated' | translate}}" [movies]="topRatedMovies.results" />
 </div>
 
 <div *ngIf="upcomingMovies$ | async as upcomingMovies">
-    <tp-fil-rouge-movie-section title="Upcoming" [movies]="upcomingMovies.results" />
+    <tp-fil-rouge-movie-section title="{{'upcoming' | translate}}" [movies]="upcomingMovies.results" />
 </div>

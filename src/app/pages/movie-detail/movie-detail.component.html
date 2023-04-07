@@ -53,7 +53,7 @@
       <span>Note du public :
         {{ movie.vote_average }} /10</span>
     </p>
-    <a href="{{ movie.homepage }}" target="_blank">
+    <a *ngIf="movie.homepage" href="{{ movie.homepage }}" target="_blank">
       <p>En savoir plus</p>
     </a>
   </div>

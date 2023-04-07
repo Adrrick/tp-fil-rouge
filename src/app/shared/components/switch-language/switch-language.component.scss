@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    gap: 1rem;
+
+    .item {
+        cursor: pointer;
+
+        &.active {
+            color: var(--clr-primary-400)
+        }
+    }
+}

@@ -1,0 +1,50 @@
+<div class="Auth">
+  <div class="Register">
+    <div class="Register__Description">
+      <h2 class="capitalize">{{'register' | translate}}</h2>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="submit()" class="Register__Form">
+      <div>
+        <label for="username">
+          <p class="capitalize">{{'username' | translate}}</p>
+        </label>
+        <div class="inputArea mb-3">
+          <input formControlName="username" type="text" id="username"
+            placeholder="{{'username_placeholder' | translate}}" />
+        </div>
+      </div>
+      <div>
+        <label for="email">
+          <p class="capitalize">{{'email' | translate}}</p>
+        </label>
+        <div class="inputArea mb-3">
+          <input formControlName="email" type="email" id="email" placeholder="{{'email_placeholder' | translate}}" />
+        </div>
+      </div>
+      <div>
+        <label for="password">
+          <p class="capitalize">{{'password' | translate}}</p>
+        </label>
+        <div class="inputArea mb-3">
+          <input formControlName="password" type="password" id="password"
+            placeholder="{{'password_placeholder' | translate}}" />
+        </div>
+      </div>
+      <div>
+        <label for="confirmedPassword">
+          <p class="capitalize">{{'confirm_password' | translate}}</p>
+        </label>
+        <div class="inputArea mb-3">
+          <input formControlName="confirmedPassword" type="password" id="confirmedPassword"
+            placeholder="{{'confirm_password_placeholder' | translate}}" />
+        </div>
+      </div>
+      <button type="submit" [disabled]="registerForm.invalid" class="btn">
+        <span class="capitalize">{{'register_now' | translate}}</span>
+      </button>
+      <p class="mb-3 mt-3 link capitalize" [routerLink]="['/login']">
+        {{'already_have_an_account_login' | translate}}
+      </p>
+    </form>
+  </div>
+</div>

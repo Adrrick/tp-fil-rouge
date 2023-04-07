@@ -1,0 +1,56 @@
+<div class="Profil" *ngIf="user$ | async as user">
+  <div class="Profil__Main">
+    <form [formGroup]="profilForm" (ngSubmit)="onSubmit()" class="Profil__Main__Form">
+      <div class="Profil__Main__Avatar">
+        <mat-icon *ngIf="isMe" [matMenuTriggerFor]="menu">edit</mat-icon>
+        <img src="../../../assets/fake_avatar.png" loading="lazy" alt="ceci est la tete du profil"
+          *ngIf="!user.photoURL" />
+        <img src="{{ user.photoURL }}" loading="lazy" alt="ceci est la tete du profil" *ngIf="user.photoURL" />
+      </div>
+      <div class="inputArea mb-3">
+        <label class="capitalize" for="username">{{"username" | translate}}</label>
+        <div class="Profil__Main__Form__Input">
+          <input type="text" formControlName="username" [readOnly]="!isMe" id="username" />
+        </div>
+      </div>
+      <div class="inputArea mb-3">
+        <label class="capitalize" for="email">{{"email" | translate}}</label>
+        <div class="Profil__Main__Form__Input">
+          <input type="email" formControlName="email" [readOnly]="!isMe" autoComplete="off" id="email" />
+        </div>
+      </div>
+      <div class="inputArea mb-3" *ngIf="isMe">
+        <label class="capitalize" for="newPassword">{{"new" | translate}} {{"password" | translate}}</label>
+        <div class="Profil__Main__Form__Input">
+          <input type="password" formControlName="newPassword" autoComplete="off" id="newPassword" />
+        </div>
+      </div>
+      <div class="mb-3" *ngIf="isMe">
+        <button class="btn capitalize">{{"save" | translate}}</button>
+      </div>
+    </form>
+
+    <tp-fil-rouge-switch-language />
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="{{'viewed_movies' | translate}}">
+      <tp-fil-rouge-profile-details-movies [moviesSeen]="viewedMovies" />
+    </mat-tab>
+    <mat-tab label="{{'reviewed_movies' | translate}}">
+      <tp-fil-rouge-profile-details-reviews [reviews]="reviewedMovies" />
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<mat-menu #menu="matMenu" class="Profil__Main__Avatar__MenuArea">
+  <div class="Profil__Main__Avatar__Menu">
+    <button class="Profil__Main__Avatar__Menu__Btn" tpFilRougeDropFile [multiple]="false"
+      (fileDropped)="updateAvatar($event)" mat-menu-item>
+      Charger une image
+    </button>
+    <button class="Profil__Main__Avatar__Menu__Btn" (click)="openCameraModal()" mat-menu-item>
+      Prendre une photo
+    </button>
+  </div>
+</mat-menu>

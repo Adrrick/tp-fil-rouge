@@ -1,0 +1,8 @@
+<div class="auto-grid-movies" data-test="grid-movies" *ngIf="movies$ | async as movies">
+    <tp-fil-rouge-movie-card [id]="movie.id" [poster_path]="movie.poster_path" [title]="movie.title"
+        [vote_average]="movie.vote_average" *ngFor="let movie of movies.results" />
+</div>
+
+<mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="totalItems"
+    [hidePageSize]="true" [pageSize]="pageSize" [pageIndex]="pageIndex" aria-label="Select page">
+</mat-paginator>

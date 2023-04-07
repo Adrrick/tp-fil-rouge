@@ -1,0 +1,33 @@
+<div class="Auth">
+  <div class="Login">
+    <div class="Login__Description">
+      <h2 class="capitalize">{{"login" | translate}}</h2>
+    </div>
+    <form class="Login__Form" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div>
+        <label for="email">
+          <p class="capitalize">{{'email' | translate}}</p>
+        </label>
+        <div class="inputArea mb-3">
+          <input formControlName="email" type="email" id="email" placeholder="{{('email_placeholder' | translate)}}"
+            data-test="login-email" />
+        </div>
+      </div>
+      <div>
+        <label for="password">
+          <p class="capitalize">{{'password' | translate}}</p>
+        </label>
+        <div class="inputArea mb-3">
+          <input formControlName="password" type="password" id="password"
+            placeholder="{{('password_placeholder' | translate)}}" data-test="login-password" />
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid" class="btn " data-test="login-submit">
+        <span class="capitalize">{{('login' | translate)}}</span>
+      </button>
+      <p class="mb-3 mt-3 link capitalize" [routerLink]="['/register']">
+        {{"no_account_register" | translate}}
+      </p>
+    </form>
+  </div>
+</div>

@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<div class="root">
+    <tp-fil-rouge-header />
+
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+
+    <tp-fil-rouge-bottom-navbar />
+
+    <tp-fil-rouge-full-screen-loader *ngIf="loadingRoute" />
+</div>

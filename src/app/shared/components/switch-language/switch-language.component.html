@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="item capitalize" [class.active]="translateService.currentLang === language.key"
+        (click)="switchLanguage(language.key)" *ngFor="let language of languages">
+        {{language.label | translate}}
+    </div>
+</div>

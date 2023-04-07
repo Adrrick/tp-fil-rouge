@@ -1,0 +1,28 @@
+<div class="Comment">
+  <h2 class="capitalize">{{"review" | translate}}</h2>
+  <form [formGroup]="reviewForm" (ngSubmit)="submit()" class="Comment__Form">
+    <div class="inputArea mb-3">
+      <label for="title">
+        <p class="capitalize">{{'title' | translate}}</p>
+      </label>
+      <div class="Comment__Form__Input">
+        <input type="text" formControlName="title" autoComplete="off" id="title"
+          placeholder="{{'title_placeholder' | translate}}" />
+      </div>
+    </div>
+    <div class="inputArea mb-3">
+      <label for="comment">
+        <p class="capitalize">{{'comment' | translate}}</p>
+      </label>
+      <div class="Comment__Form__Input">
+        <textarea id="comment" placeholder="{{'comment_placeholder' | translate}}" formControlName="comment"></textarea>
+      </div>
+    </div>
+    <div class="inputArea mb-3">
+      <tp-fil-rouge-star-rating [rating]="0" (ratingChanged)="onRatingChanged($event)"></tp-fil-rouge-star-rating>
+    </div>
+    <div class="mb-3">
+      <button class="btn capitalize">{{'publish' | translate}}</button>
+    </div>
+  </form>
+</div>

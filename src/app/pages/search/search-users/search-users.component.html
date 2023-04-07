@@ -1,0 +1,6 @@
+<div class="align-center content" data-test="users-tab">
+  <tp-fil-rouge-search-bar [control]="queryControl" />
+  <div class="list" *ngIf="users$ | async as users">
+    <tp-fil-rouge-user-line [user]="user" *ngFor="let user of users | filteredUsers : queryControl.value" />
+  </div>
+</div>

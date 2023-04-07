@@ -1,0 +1,38 @@
+<mat-dialog-content class="Webcam">
+  <div class="Webcam__Close">
+    <mat-icon class="Webcam__Close__Btn" mat-dialog-close>close</mat-icon>
+  </div>
+  <div class="Webcam__Explain">
+    <p>
+      N'oubliez pas d'activer votre caméra dans les paramètres de votre
+      navigateur
+    </p>
+  </div>
+  <div class="Webcam__ImageResult" *ngIf="photoURL && !showWebcam">
+    <img src="{{ photoURL }}" alt="result image" />
+  </div>
+  <div class="Webcam__PictureArea">
+    <webcam
+      [trigger]="triggerObservable"
+      [width]="500"
+      [height]="500"
+      (imageCapture)="handleImage($event)"
+      *ngIf="showWebcam"
+      [allowCameraSwitch]="allowCameraSwitch"
+      [switchCamera]="nextWebcamObservable"
+      [videoOptions]="videoOptions"
+      [imageQuality]="1"
+      (cameraSwitched)="cameraWasSwitched($event)"
+      (initError)="handleInitError($event)"
+    ></webcam>
+  </div>
+  <mat-icon class="Webcam__TakePicture" *ngIf="!photoURL && showWebcam" (click)="triggerSnapshot()">photo_camera</mat-icon>
+  <div class="Webcam__BottomArea">
+    <mat-icon class="Webcam__BottomArea__Btn" *ngIf="photoURL && !showWebcam" (click)="toggleWebcam()">close</mat-icon>
+    <mat-icon class="Webcam__BottomArea__Btn" [mat-dialog-close]="webcamImage" *ngIf="photoURL && !showWebcam">done</mat-icon>
+  </div>
+  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <ul *ngFor="let error of errors">
+    <li>{{ error | json }}</li>
+  </ul>
+</mat-dialog-content>

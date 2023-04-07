@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Webcam {
+  width: 100%;
+  background-color: #414052;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__Close {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 20px;
+    &__Btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 1.5em;
+      padding: 20px;
+      background-color: #20212c;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+  }
+  &__Explain {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  &__ImageResult {
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__PictureArea {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__TakePicture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 20px;
+    background-color: #20212c;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  &__BottomArea {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__Btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 1.5em;
+      padding: 20px;
+      background-color: #20212c;
+      border-radius: 999px;
+      cursor: pointer;
+      &:first-child {
+        margin-right: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+    .Webcam {
+        &__ImageResult {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            img {
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+    }
+  }

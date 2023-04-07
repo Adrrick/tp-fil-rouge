@@ -1,0 +1,133 @@
+/** MOVIE DETAILS AREA **/
+
+.MovieDetails{
+    width: 83%;
+    margin: 0 auto;
+    padding-bottom:60px ;
+    position: relative;
+  
+    &__Header {
+      width: 90%;
+      height: 50vh;
+      margin: 50px auto 40px auto;
+      position: relative;
+      img {
+        width: 100%;
+        object-fit: cover;
+        height: 50vh;
+        position: absolute;
+        z-index: 2;
+        opacity: 0.5;
+        filter: blur(1px);
+        border-radius: 15px;
+      }
+      &__btnArea {
+        position: absolute;
+        top: 4%;
+        right: 2%;
+        z-index: 3;
+      }
+      &__Main {
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+  
+        a {
+          text-decoration: none;
+        }
+        h1 {
+          color: #fff;
+          font-size: 3em;
+          margin-bottom: 40px;
+        }
+        .btn {
+          width: 100%;
+          background-color: #20212c;
+          padding: 20px 20px;
+          border: transparent;
+          border-radius: 10px;
+          box-shadow: none;
+          &:hover {
+            background-color: #6a6b74;
+          }
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+    &__Description {
+      width: 90%;
+      margin: 20px auto;
+      background-color: #20212c;
+      border-radius: 20px;
+      z-index: 2;
+      padding: 20px;
+      padding-bottom: 40px;
+  
+      span {
+        background-color: #414052;
+        padding: 5px 15px;
+        margin-right: 10px;
+        border-radius: 999px;
+        margin-bottom: 10px;
+      }
+      h2 {
+        color: #ffffff;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #ffffff;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+    &__Others {
+      width: 90%;
+      margin: 20px auto;
+      background-color: #20212c;
+      border-radius: 20px;
+      z-index: 2;
+      padding: 20px;
+  
+      h2 {
+        color: #ffffff;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #ffffff;
+        padding-bottom: 10px;
+      }
+      a {
+        text-decoration: underline;
+        color: #6a6b74;
+        &:hover {
+          color: #fff;
+        }
+        p {
+          color: #6a6b74;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .btnMarked {
+    background-color: #20212c;
+    padding: 10px 20px;
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    cursor: pointer;
+    &:hover {
+      background-color: #414052;
+    }
+    span {
+      color: #fff;
+    }
+  }

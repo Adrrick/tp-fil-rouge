@@ -1,0 +1,25 @@
+.movie-card {
+    height: var(--movie-card-height);
+    width: var(--movie-card-width);
+    display: inline-block;
+}
+
+.movie-card--poster-img {
+    width: 100%;
+
+    border-radius: 0.5rem;
+}
+
+.movie-card--poster-container {
+    position: relative;
+}
+
+.movie-card--vote-average {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    padding: 0.2rem 0.5rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0.5rem;
+}

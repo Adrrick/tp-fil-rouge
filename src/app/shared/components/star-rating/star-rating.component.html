@@ -1,0 +1,7 @@
+<div class="star-rating">
+    <span class="star" [class.filled]="rating >= 1" (click)="onRatingChanged(1)">★</span>
+    <span class="star" [class.filled]="rating >= 2" (click)="onRatingChanged(2)">★</span>
+    <span class="star" [class.filled]="rating >= 3" (click)="onRatingChanged(3)">★</span>
+    <span class="star" [class.filled]="rating >= 4" (click)="onRatingChanged(4)">★</span>
+    <span class="star" [class.filled]="rating >= 5" (click)="onRatingChanged(5)">★</span>
+</div>

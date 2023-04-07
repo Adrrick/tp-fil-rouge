@@ -1,0 +1,32 @@
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+
+    background-color: var(--clr-secondary-700);
+
+    width: 100%;
+    height: var(--bottom-navbar-height);
+
+    z-index: 999;
+
+    animation: fadeIn 0.15s ease-in;
+
+    .bottom-navbar-items-container {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0 5rem;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}

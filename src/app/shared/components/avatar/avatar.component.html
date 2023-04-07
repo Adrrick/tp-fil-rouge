@@ -1,0 +1,11 @@
+<div class="avatar" [matMenuTriggerFor]="menu" data-test="avatar">
+    <img class="img-circle" *ngIf="avatarImage" src="{{avatarImage}}" />
+    <img class="img-circle" *ngIf="!avatarImage" src="../../../../assets/fake_avatar.png" />
+</div>
+
+<mat-menu #menu="matMenu">
+    <button data-test="avatar-menu-item" mat-menu-item *ngFor="let item of menuItems" [routerLink]="item.link">
+        <mat-icon>{{item.icon}}</mat-icon>
+        <span style="text-transform: capitalize;">{{item.label | translate}}</span>
+    </button>
+</mat-menu>

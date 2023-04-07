@@ -1,0 +1,13 @@
+<div class="reviewFlow" *ngIf="reviewFlow$ | async as reviews">
+  <div class="reviewFlow__Main" *ngFor="let review of reviewObjects">
+    <p>{{review.user.username}}</p>
+    <div class="reviewFlow__Main__Avatar">
+      <img src="../../../assets/fake_avatar.png" loading="lazy" alt="ceci est la tete du profil"
+        *ngIf="!review.user.photoURL" />
+      <img src="{{ review.user.photoURL }}" loading="lazy" alt="ceci est la tete du profil"
+        *ngIf="review.user.photoURL" />
+    </div>
+    <tp-fil-rouge-movie-review-card [review]="review.review" />
+    <p>{{review.review.created_at | date}}</p>
+  </div>
+</div>

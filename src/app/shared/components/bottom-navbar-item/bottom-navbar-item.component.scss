@@ -1,0 +1,27 @@
+.bottom-navbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .bottom-navbar-item--title,
+    .bottom-navbar-item--icon {
+        filter: var(--clr-secondary-filter-300);
+    }
+
+    .bottom-navbar-item--title {
+        margin-top: -8px;
+        font-size: small;
+        display: none;
+    }
+
+    &.is-active {
+        .bottom-navbar-item--title {
+            display: block;
+        }
+
+        .bottom-navbar-item--icon,
+        .bottom-navbar-item--title {
+            filter: var(--clr-primary-filter-400);
+        }
+    }
+}

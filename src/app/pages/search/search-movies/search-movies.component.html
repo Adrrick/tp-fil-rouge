@@ -1,0 +1,7 @@
+<div class="align-center content" data-test="movies-tab">
+    <tp-fil-rouge-search-bar [control]="searchMoviesFormControl" />
+    <div data-test="movies-grid" class="auto-grid-movies" *ngIf="movies$ | async as movies ">
+        <tp-fil-rouge-movie-card [id]="movie.id" [poster_path]="movie.poster_path" [title]="movie.title"
+            [vote_average]="movie.vote_average" *ngFor="let movie of movies.results" />
+    </div>
+</div>

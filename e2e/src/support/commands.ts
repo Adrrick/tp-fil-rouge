@@ -1,33 +1,56 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
+Cypress.Commands.add('login', (email: string, password: string) => {
+  const loginPath = `/login`
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace Cypress {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface Chainable<Subject> {
-    login(email: string, password: string): void;
-  }
-}
-//
-// -- This is a parent command --
-Cypress.Commands.add('login', (email, password) => {
-  console.log('Custom command example: Login', email, password);
+  const log = Cypress.log({
+    name: "login",
+    displayName: "LOGIN",
+    message: [`🔐 Authenticating | ${email}`],
+    autoEnd: false,
+  });
+
+  cy.intercept(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword**`).as('loginUser');
+
+  cy.location("pathname", { log: false }).then((currentPath) => {
+    if (currentPath !== loginPath) {
+      cy.visit(loginPath);
+    }
+  });
+
+  log.snapshot("before");
+
+  cy.getBySel('login-email').type(email);
+  cy.getBySel('login-password').type(password);
+
+  cy.getBySel('login-submit').click();
+
+  cy.wait("@loginUser").then((loginUser) => {
+    log.set({
+      consoleProps() {
+        return {
+          email,
+          password,
+          loginUser
+        }
+      }
+    });
+    log.snapshot("after");
+    log.end();
+  }).its('response.statusCode').should('eq', 200);
+})
+
+Cypress.Commands.add("logout", () => {
+  const log = Cypress.log({
+    name: "logout",
+    displayName: "LOGOUT",
+    message: [`🔐 Logout`],
+    autoEnd: false,
+  });
+
+  log.snapshot("before");
+
+  cy.visit('/logout');
 });
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("getBySel", (selector, ...args) => {
+  return cy.get(`[data-test=${selector}]`, ...args);
+});

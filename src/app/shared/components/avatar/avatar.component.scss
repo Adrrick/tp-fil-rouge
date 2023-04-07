@@ -1,0 +1,8 @@
+.avatar {
+    width: 3rem;
+
+    &:is(:hover, :focus) {
+        filter: brightness(80%);
+        cursor: pointer;
+    }
+}

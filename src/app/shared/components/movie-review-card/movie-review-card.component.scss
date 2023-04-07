@@ -1,0 +1,21 @@
+.Review__Card__Main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #20212c;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 20px;
+    h2 {
+        font-size: 1em;
+    }
+    .star {
+        font-size: 2rem;
+        cursor: pointer;
+        color: #ccc;
+    }
+    .filled {
+        color: #ffbf00;
+    }
+}

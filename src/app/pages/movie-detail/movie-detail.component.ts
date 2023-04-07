@@ -11,12 +11,14 @@ import User from 'src/app/models/User';
 import MovieSeen from 'src/app/models/MovieSeen';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import Review from 'src/app/models/Review';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MovieDetailsReviewsComponent} from "./movie-details-reviews/movie-details-reviews.component";
 
 
 @Component({
   selector: 'tp-fil-rouge-movie-detail',
   standalone: true,
-  imports: [CommonModule, ReviewFormComponent],
+  imports: [CommonModule, ReviewFormComponent, MatTabsModule, MovieDetailsReviewsComponent],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
   providers: [MoviesService],
@@ -35,6 +37,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   currentMovie?: MovieSeen;
   currentReview?: Review;
   uid?: string = this.authService.currentUser?.uid;
+  allReviews?: Review[];
 
   constructor(
     private moviesServices: MoviesService,
@@ -61,9 +64,10 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
             posterPath: movie.poster_path,
             title: movie.title,
           };
-          this.review$ = this.reviewService.getReviewByUserID(userID);
+          this.review$ = this.reviewService.getReviewByMovie(this.currentMovie.movieId);
           this.reviewSubscription = this.review$.subscribe(reviews => {
-            this.currentReview = reviews.find(review => review.movieId === this.currentMovie?.movieId);
+            this.currentReview = reviews.find(review => review.user === userID);
+            this.allReviews = reviews;
           });
         });
       }

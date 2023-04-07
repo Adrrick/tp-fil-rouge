@@ -61,9 +61,13 @@
       <p class="capitalize">{{"learn_more" | translate}}</p>
     </a>
   </div>
-  <tp-fil-rouge-review-form [movie]="{
-      movieId: movie.id,
-      posterPath: movie.poster_path,
-      title: movie.title
-    }"></tp-fil-rouge-review-form>
+  <mat-tab-group>
+    <mat-tab label="Write Review">
+      <tp-fil-rouge-review-form
+              [movie]="{movieId: movie.id, posterPath: movie.poster_path, title: movie.title}"></tp-fil-rouge-review-form>
+    </mat-tab>
+    <mat-tab label="All Review">
+      <tp-fil-rouge-movie-details-reviews [reviews]="allReviews"></tp-fil-rouge-movie-details-reviews>
+    </mat-tab>
+  </mat-tab-group>
 </div>

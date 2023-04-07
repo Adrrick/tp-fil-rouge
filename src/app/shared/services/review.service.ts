@@ -34,7 +34,7 @@ export class ReviewService {
     return this.afs.collection<Review>('/reviews', (ref) => ref.where('user', '==', this.storageService.getUID())).valueChanges();
   }
 
-  getReviewByMovie(movieID: string): Observable<Review[]> {
+  getReviewByMovie(movieID: number): Observable<Review[]> {
     return this.afs.collection<Review>('/reviews', (ref) => ref.where('movieId', '==', movieID)).valueChanges();
   }
 

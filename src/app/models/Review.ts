@@ -5,4 +5,5 @@ export default interface Review {
   rating: number;
   user: string;
   title: string;
+  created_at: number;
 }

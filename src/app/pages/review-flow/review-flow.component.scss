@@ -1,34 +1,37 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .reviewFlow {
   width: 100%;
+
   &__Main {
     width: 80%;
     margin: 0px auto 20px;
     background-color: #20212c;
     border-radius: 15px;
+    padding-block: 1rem;
+
     p {
-    padding-top: 20px;
-    text-align: center;
+      text-align: center;
     }
+
     &__Avatar {
-        display: flex;
-        position: relative;
-        width: 60px;
-        height: 60px;
-        margin: 0 auto;
+      display: flex;
+      position: relative;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto;
+      border-radius: 999px;
+      margin-top: 20px;
+
+      img {
+        width: 100%;
         border-radius: 999px;
-        margin-top: 20px;
-  
-        img {
-          width: 100%;
-          border-radius: 999px;
-          aspect-ratio: 1;
-          object-fit: cover;
-        }
+        aspect-ratio: 1;
+        object-fit: cover;
       }
+    }
   }
 }
 

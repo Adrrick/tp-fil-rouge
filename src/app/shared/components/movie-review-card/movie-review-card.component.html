@@ -1,12 +1,12 @@
 <a routerLink="/movie/{{ review.movieId }}">
-<div class="Review__Card__Main">
+  <div class="Review__Card__Main">
     <h2>{{ review.movieTitle }}</h2>
     <div class="Review__Rating">
-        <span class="star" [class.filled]="review.rating >= 1">★</span>
-        <span class="star" [class.filled]="review.rating >= 2">★</span>
-        <span class="star" [class.filled]="review.rating >= 3">★</span>
-        <span class="star" [class.filled]="review.rating >= 4">★</span>
-        <span class="star" [class.filled]="review.rating >= 5">★</span>
+      <span class="star" [class.filled]="review.rating >= 1">★</span>
+      <span class="star" [class.filled]="review.rating >= 2">★</span>
+      <span class="star" [class.filled]="review.rating >= 3">★</span>
+      <span class="star" [class.filled]="review.rating >= 4">★</span>
+      <span class="star" [class.filled]="review.rating >= 5">★</span>
     </div>
   </div>
 </a>

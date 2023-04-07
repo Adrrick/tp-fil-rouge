@@ -42,5 +42,7 @@
     "your_analyze": "your analyze",
     "publish": "publish",
     "comment": "comment",
-    "title": "title"
+    "title": "title",
+    "english": "english",
+    "french": "french"
 }

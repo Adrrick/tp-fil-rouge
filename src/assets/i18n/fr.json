@@ -58,5 +58,7 @@
     "tagline": "slogan",
     "mark_as_watched": "marquer comme vu",
     "remove_from_watched_list": "supprimer des films vus",
-    "review": "avis"
+    "review": "avis",
+    "write_review": "Écrire un avis",
+    "all_reviews": "Tous les avis"
 }

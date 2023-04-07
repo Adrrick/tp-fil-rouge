@@ -62,11 +62,11 @@
     </a>
   </div>
   <mat-tab-group>
-    <mat-tab label="Write Review">
+    <mat-tab label="{{'write_review' | translate}}">
       <tp-fil-rouge-review-form
               [movie]="{movieId: movie.id, posterPath: movie.poster_path, title: movie.title}"></tp-fil-rouge-review-form>
     </mat-tab>
-    <mat-tab label="All Review">
+    <mat-tab label="{{'all_reviews' | translate}}">
       <tp-fil-rouge-movie-details-reviews [reviews]="allReviews"></tp-fil-rouge-movie-details-reviews>
     </mat-tab>
   </mat-tab-group>

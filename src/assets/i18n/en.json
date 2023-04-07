@@ -58,5 +58,7 @@
     "tagline": "tagline",
     "mark_as_watched": "mark as watched",
     "remove_from_watched_list": "remove from watched list",
-    "review": "review"
+    "review": "review",
+    "write_review": "Write a Review",
+    "all_reviews": "All Reviews"
 }

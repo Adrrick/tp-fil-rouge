@@ -39,5 +39,8 @@
     "save": "enregistrer",
     "viewed_movies": "films vus",
     "reviewed_movies": "films notés",
-    "your_analyze": "votre commentaire"
+    "your_analyze": "votre commentaire",
+    "publish": "publier",
+    "comment": "commentaire",
+    "title": "titre"
 }

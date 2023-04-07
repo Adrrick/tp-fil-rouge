@@ -39,5 +39,8 @@
     "save": "save",
     "viewed_movies": "Viewed Movies",
     "reviewed_movies": "Reviewed Movies",
-    "your_analyze": "your analyze"
+    "your_analyze": "your analyze",
+    "publish": "publish",
+    "comment": "comment",
+    "title": "title"
 }

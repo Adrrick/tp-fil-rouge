@@ -21,7 +21,12 @@
         filter: blur(1px);
         border-radius: 15px;
       }
-  
+      &__btnArea {
+        position: absolute;
+        top: 4%;
+        right: 2%;
+        z-index: 3;
+      }
       &__Main {
         position: absolute;
         text-align: center;
@@ -109,5 +114,20 @@
           }
         }
       }
+    }
+  }
+
+  .btnMarked {
+    background-color: #20212c;
+    padding: 10px 20px;
+    border: transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    cursor: pointer;
+    &:hover {
+      background-color: #414052;
+    }
+    span {
+      color: #fff;
     }
   }

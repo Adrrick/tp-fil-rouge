@@ -11,8 +11,8 @@ import User from 'src/app/models/User';
 import MovieSeen from 'src/app/models/MovieSeen';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import Review from 'src/app/models/Review';
-import {MatTabsModule} from "@angular/material/tabs";
-import {MovieDetailsReviewsComponent} from "./movie-details-reviews/movie-details-reviews.component";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MovieDetailsReviewsComponent } from "./movie-details-reviews/movie-details-reviews.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastService } from 'src/app/shared/services/toast.service';
 

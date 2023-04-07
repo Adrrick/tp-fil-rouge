@@ -39,7 +39,7 @@
     "save": "enregistrer",
     "viewed_movies": "films vus",
     "reviewed_movies": "films notés",
-    "your_analyze": "votre commentaire",
+    "comment_placeholder": "j'adore ce film",
     "publish": "publier",
     "comment": "commentaire",
     "title": "titre",
@@ -58,5 +58,8 @@
     "tagline": "slogan",
     "mark_as_watched": "marquer comme vu",
     "remove_from_watched_list": "supprimer des films vus",
-    "review": "avis"
+    "review": "avis",
+    "new_review": "nouvel avis",
+    "all_reviews": "tous les avis",
+    "title_placeholder": "incroyable!"
 }

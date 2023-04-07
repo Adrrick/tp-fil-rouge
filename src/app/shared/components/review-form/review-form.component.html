@@ -6,7 +6,8 @@
         <p class="capitalize">{{'title' | translate}}</p>
       </label>
       <div class="Comment__Form__Input">
-        <input type="text" formControlName="title" autoComplete="off" id="title" />
+        <input type="text" formControlName="title" autoComplete="off" id="title"
+          placeholder="{{'title_placeholder' | translate}}" />
       </div>
     </div>
     <div class="inputArea mb-3">
@@ -14,7 +15,7 @@
         <p class="capitalize">{{'comment' | translate}}</p>
       </label>
       <div class="Comment__Form__Input">
-        <textarea id="comment" placeholder="{{'your_analyze' | translate}}" formControlName="comment"></textarea>
+        <textarea id="comment" placeholder="{{'comment_placeholder' | translate}}" formControlName="comment"></textarea>
       </div>
     </div>
     <div class="inputArea mb-3">

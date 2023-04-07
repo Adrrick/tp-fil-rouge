@@ -3,6 +3,7 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ReviewService } from '../../services/review.service';
@@ -22,7 +23,6 @@ export class ReviewFormComponent {
   @Input() movie!: { movieId: number; posterPath: string; title: string };
   @Output()
   reviewForm: FormGroup;
-  send = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -40,10 +40,11 @@ export class ReviewFormComponent {
   }
 
   async submit() {
-    this.send = false;
     if (this.reviewForm.invalid) {
+      this.toast.toastError('Invalid form');
       return;
     }
+
     await this.reviewService
       .createReview(
         this.movie,
@@ -52,7 +53,6 @@ export class ReviewFormComponent {
         this.reviewForm.controls['title'].value
       )
       .then((r) => {
-        // this.send;
         if (r) {
           this.toast.toastSuccess('Votre commentaire à bien été publié');
         } else {

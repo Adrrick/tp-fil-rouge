@@ -39,7 +39,7 @@
     "save": "save",
     "viewed_movies": "Viewed Movies",
     "reviewed_movies": "Reviewed Movies",
-    "your_analyze": "your analyze",
+    "comment_placeholder": "I love this movie",
     "publish": "publish",
     "comment": "comment",
     "title": "title",
@@ -58,5 +58,8 @@
     "tagline": "tagline",
     "mark_as_watched": "mark as watched",
     "remove_from_watched_list": "remove from watched list",
-    "review": "review"
+    "review": "review",
+    "new_review": "new review",
+    "all_reviews": "all reviews",
+    "title_placeholder": "amazing!"
 }

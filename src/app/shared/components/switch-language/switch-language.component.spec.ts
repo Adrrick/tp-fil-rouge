@@ -1,25 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SwitchLanguageComponent } from './switch-language.component';
-import { TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
 
 describe('SwitchLanguageComponent', () => {
   let component: SwitchLanguageComponent;
   let fixture: ComponentFixture<SwitchLanguageComponent>;
-  let translateServiceMock: Partial<TranslateService>;
-
 
   beforeEach(async () => {
-    translateServiceMock = {
-      get: jest.fn().mockReturnValue(of('hello')),
-    };
-
     await TestBed.configureTestingModule({
-      imports: [SwitchLanguageComponent],
-      providers: [
-        { provide: TranslateService, useValue: translateServiceMock },
-      ]
+      imports: [SwitchLanguageComponent, TranslateModule.forRoot(), BrowserAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SwitchLanguageComponent);

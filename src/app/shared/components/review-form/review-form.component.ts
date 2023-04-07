@@ -7,18 +7,14 @@ import {
 } from '@angular/forms';
 import { ReviewService } from '../../services/review.service';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { ToastService } from '../../services/toast.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
   selector: 'tp-fil-rouge-review-form',
   templateUrl: './review-form.component.html',
-  imports: [StarRatingComponent, ReactiveFormsModule],
+  imports: [StarRatingComponent, ReactiveFormsModule, TranslateModule],
   styleUrls: ['./review-form.component.scss'],
   providers: [ToastService],
 })

@@ -1,26 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvatarComponent } from './avatar.component';
-import { TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
 
 describe('AvatarComponent', () => {
   let component: AvatarComponent;
   let fixture: ComponentFixture<AvatarComponent>;
-  let translateServiceMock: Partial<TranslateService>;
-
 
   beforeEach(async () => {
-    translateServiceMock = {
-      get: jest.fn().mockReturnValue(of('hello'))
-    }
-
-
     await TestBed.configureTestingModule({
-      imports: [AvatarComponent, RouterTestingModule],
+      imports: [AvatarComponent, RouterTestingModule, TranslateModule.forRoot(), BrowserAnimationsModule],
       providers: [
-        { provide: TranslateService, useValue: translateServiceMock },
       ]
     }).compileComponents();
 

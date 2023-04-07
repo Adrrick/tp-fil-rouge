@@ -42,5 +42,21 @@
     "your_analyze": "your analyze",
     "publish": "publish",
     "comment": "comment",
-    "title": "title"
+    "title": "title",
+    "english": "english",
+    "french": "french",
+    "learn_more": "learn more",
+    "viewers_rating": "viewers rating",
+    "release_date": "release date",
+    "native_language": "native language",
+    "budget": "budget",
+    "additional_info": "additional informations",
+    "production_studio": "production studio",
+    "production_country": "production country",
+    "genres": "genres",
+    "description": "description",
+    "tagline": "tagline",
+    "mark_as_watched": "mark as watched",
+    "remove_from_watched_list": "remove from watched list",
+    "review": "review"
 }

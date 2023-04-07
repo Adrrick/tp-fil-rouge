@@ -30,7 +30,7 @@ describe('tp-fil-rouge Explore Details', () => {
   })
 
   it('should redirect to the movie details when we click on a movie', () => {
-    cy.login('test@test.com', 'test');
+    cy.login('test@test.com', '123456');
 
     cy.intercept('https://api.themoviedb.org/3//discover/movie?with_genres=28**').as('movies');
 

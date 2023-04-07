@@ -19,13 +19,15 @@ export class ReviewService {
       .collection<Review>('/reviews', (ref) => ref.where('movieId', '==', movie.movieId).where('user', '==', user))
       .valueChanges()
       .pipe(map(reviews => reviews.length > 0)));
+
     if (isRated) {
       return false;
-    } else {
-      await this.afs.collection<Review>('/reviews').add({ movieId: movie.movieId, movieTitle: movie.title, comment, rating, user, title });
-      await this.userService.addMovieToMoviesList(user, movie);
-      return true;
     }
+
+    const created_at = new Date().getTime();
+    await this.afs.collection<Review>('/reviews').add({ movieId: movie.movieId, movieTitle: movie.title, comment, rating, user, title, created_at });
+    await this.userService.addMovieToMoviesList(user, movie);
+    return true;
   }
 
   getReviewByUser(): Observable<Review[]> {
@@ -54,16 +56,6 @@ export class ReviewService {
   }
 
   getFlowReviews(): Observable<Review[]> {
-    return this.afs.collection<Review>('/reviews', (ref) => ref.where('rating', '>=', 4)).valueChanges();
+    return this.afs.collection<Review>('/reviews', (ref) => ref.orderBy('created_at', 'desc')).valueChanges();
   }
 }
-
-// switchMap(querySnapshot => {
-//   if (querySnapshot.size > 0) {
-//     const deletePromises = querySnapshot.docs.map(doc => doc.ref.delete());
-//     return Promise.all(deletePromises);
-//   } else {
-//     return Promise.reject("Document not found.");
-//   }
-// })
-// );

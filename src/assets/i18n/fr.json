@@ -42,5 +42,21 @@
     "your_analyze": "votre commentaire",
     "publish": "publier",
     "comment": "commentaire",
-    "title": "titre"
+    "title": "titre",
+    "english": "anglais",
+    "french": "français",
+    "learn_more": "en savoir plus",
+    "viewers_rating": "note du public",
+    "release_date": "date de sortie",
+    "native_language": "langue d'origine",
+    "budget": "budget",
+    "additional_info": "information complémentaires",
+    "production_studio": "studio de production",
+    "production_country": "pays de production",
+    "genres": "genres",
+    "description": "description",
+    "tagline": "slogan",
+    "mark_as_watched": "marquer comme vu",
+    "remove_from_watched_list": "supprimer des films vus",
+    "review": "avis"
 }

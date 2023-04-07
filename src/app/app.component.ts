@@ -21,9 +21,8 @@ export class AppComponent implements OnInit {
   loadingRoute = false;
 
   public ngOnInit() {
-    this.translateService.use('fr');
+    this.translateService.use('en');
     this.translateService.setDefaultLang('en');
-
 
     this.router.events.subscribe(event => {
       if (event instanceof RouteConfigLoadStart) {

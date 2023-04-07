@@ -13,15 +13,17 @@ import { ReviewService } from 'src/app/shared/services/review.service';
 import Review from 'src/app/models/Review';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MovieDetailsReviewsComponent} from "./movie-details-reviews/movie-details-reviews.component";
+import { TranslateModule } from '@ngx-translate/core';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 
 @Component({
   selector: 'tp-fil-rouge-movie-detail',
   standalone: true,
-  imports: [CommonModule, ReviewFormComponent, MatTabsModule, MovieDetailsReviewsComponent],
+  imports: [CommonModule, ReviewFormComponent, MatTabsModule, MovieDetailsReviewsComponent, TranslateModule],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
-  providers: [MoviesService],
+  providers: [MoviesService, ToastService],
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
   movie$?: Observable<MovieDetails>;
@@ -45,6 +47,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     private authService: FirebaseAuthService,
     private userService: UserService,
     private reviewService: ReviewService,
+    private toast: ToastService
   ) { }
 
   public ngOnInit(): void {
@@ -93,11 +96,25 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     if (this.uid && this.currentMovie && this.viewedMovies) {
       if (addMovie) {
         const movieList = [...this.viewedMovies, this.currentMovie];
-        this.userService.updateUser(this.uid, { moviesSeen: movieList });
+        this.userService.updateUser(this.uid, { moviesSeen: movieList }).subscribe({
+          next: () => {
+            this.toast.toastSuccess('Votre film à bien été enregistré comme vu');
+          },
+          error: () => {
+            this.toast.toastError('Une erreur est survenue lors de l\'enregistrement');
+          }
+        });
       } else {
         const movieToRemove = this.currentMovie.movieId;
         const movieList = this.viewedMovies.filter(movie => movie.movieId !== movieToRemove);
-        this.userService.updateUser(this.uid, { moviesSeen: movieList });
+        this.userService.updateUser(this.uid, { moviesSeen: movieList }).subscribe({
+          next: () => {
+            this.toast.toastSuccess('Vous avez bien retirez ce film dans votre liste de vue');
+          },
+          error: () => {
+            this.toast.toastError('Une erreur est survenue lors de l\'enregistrement');
+          }
+        });
         if (this.currentReview) {
           this.deleteDocument$ = this.reviewService.removeReview(this.currentReview.movieId, this.currentReview.user);
           this.deleteDocumentSubscription = this.deleteDocument$.subscribe();

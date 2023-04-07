@@ -56,7 +56,7 @@ export class ReviewFormComponent {
         if (r) {
           this.toast.toastSuccess('Votre commentaire à bien été publié');
         } else {
-          this.toast.toastSuccess('Votre commentaire n\'a pas pu être publié');
+          this.toast.toastError('Votre commentaire n\'a pas pu être publié');
         }
       })
       .catch((err) => {

@@ -5,10 +5,11 @@ import Review from 'src/app/models/Review';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import { MovieReviewCardComponent } from 'src/app/shared/components/movie-review-card/movie-review-card.component';
 import { UserService } from 'src/app/shared/services/user.service';
+import User from 'src/app/models/User';
 
 interface customReview {
   review: Review;
-  user: string;
+  user: User;
 }
 @Component({
   selector: 'tp-fil-rouge-review-flow',
@@ -38,7 +39,7 @@ export class ReviewFlowComponent implements OnInit, OnDestroy {
             .pipe(first())
             .subscribe(user => {
               if (user) {
-                this.reviewObjects.push({ review: review, user: user.username })
+                this.reviewObjects.push({ review: review, user: user})
               }
             });
         });

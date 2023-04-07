@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+.reviewFlow {
+  width: 100%;
+  &__Main {
+    width: 80%;
+    margin: 0px auto 20px;
+    background-color: #20212c;
+    border-radius: 15px;
+    p {
+    padding-top: 20px;
+    text-align: center;
+    }
+    &__Avatar {
+        display: flex;
+        position: relative;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 999px;
+        margin-top: 20px;
+  
+        img {
+          width: 100%;
+          border-radius: 999px;
+          aspect-ratio: 1;
+          object-fit: cover;
+        }
+      }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .reviewFlow {
+    &__Main {
+      width: 80%;
+    }
+  }
+}

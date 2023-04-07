@@ -1,33 +1,20 @@
 <div *ngIf="movie$ | async as movie" class="MovieDetails">
   <div class="MovieDetails__Header">
-    <img
-      src="{{ 'https://image.tmdb.org/t/p/original/' + movie.backdrop_path }}"
-      alt="voila le header"
-    />
+    <img src="{{ 'https://image.tmdb.org/t/p/original/' + movie.backdrop_path }}" alt="voila le header" />
     <div class="MovieDetails__Header__btnArea" *ngIf="user$ && currentMovie && viewedMoviesId">
-      <button
-        type="button"
-        class="btnMarked"
-        (click)="handleClick(true)"
-        *ngIf="
+      <button type="button" class="btnMarked capitalize" (click)="handleClick(true)" *ngIf="
           currentMovie &&
           viewedMovies &&
           !viewedMoviesId.includes(currentMovie.movieId)
-        "
-      >
-        <span>Mark as watched</span>
+        ">
+        <span>{{"mark_as_watched" | translate}}</span>
       </button>
-      <button
-        type="button"
-        class="btnMarked"
-        (click)="handleClick(false)"
-        *ngIf="
+      <button type="button" class="btnMarked capitalize" (click)="handleClick(false)" *ngIf="
           currentMovie &&
           viewedMovies &&
           viewedMoviesId.includes(currentMovie.movieId)
-        "
-      >
-        <span>Remove from watched list</span>
+        ">
+        <span>{{"remove_from_watched_list"| translate}}</span>
       </button>
     </div>
     <div class="MovieDetails__Header__Main">
@@ -35,50 +22,48 @@
     </div>
   </div>
   <div class="MovieDetails__Description">
-    <h2 *ngIf="movie.tagline">Slogan</h2>
+    <h2 *ngIf="movie.tagline" class="capitalize">{{"tagline" | translate}}</h2>
     <p *ngIf="movie.tagline">{{ movie.tagline }}</p>
-    <h2 *ngIf="movie.overview">Description</h2>
+    <h2 *ngIf="movie.overview" class="capitalize">{{"description" | translate}}</h2>
     <p *ngIf="movie.overview">{{ movie.overview }}</p>
-    <h2 *ngIf="movie.genres">Genre</h2>
+    <h2 *ngIf="movie.genres" class="capitalize">{{"genres" | translate}}</h2>
     <p *ngIf="movie.genres">
       <span *ngFor="let genre of movie.genres">{{ genre.name + ' ' }} </span>
     </p>
-    <h2 *ngIf="movie.production_countries">Pays de production</h2>
+    <h2 *ngIf="movie.production_countries" class="capitalize">{{"production_country" | translate}}</h2>
     <p *ngIf="movie.production_countries">
-      <span *ngFor="let prod of movie.production_countries"
-        >{{ prod.name + ' ' }}
+      <span *ngFor="let prod of movie.production_countries">{{ prod.name + ' ' }}
       </span>
     </p>
-    <h2 *ngIf="movie.production_companies.length">Studio de production</h2>
+    <h2 *ngIf="movie.production_companies.length" class="capitalize">{{"production_studio" | translate}}</h2>
     <p *ngIf="movie.production_companies.length">
-      <span *ngFor="let companies of movie.production_companies"
-        >{{ companies.name + ' ' }}
+      <span *ngFor="let companies of movie.production_companies">{{ companies.name + ' ' }}
       </span>
     </p>
   </div>
   <div class="MovieDetails__Others">
-    <h2>Informations Complémentaires</h2>
-    <p *ngIf="movie.budget">
-      <span>Budget : {{ movie.budget }} $</span>
+    <h2 class="capitalize">{{"additional_info" | translate}}</h2>
+    <p *ngIf="movie.budget" class="capitalize">
+      <span>{{"budget" | translate}} : {{ movie.budget }} $</span>
     </p>
-    <p *ngIf="movie.original_language">
-      <span>Langue d'origine : {{ movie.original_language }}</span>
+    <p *ngIf="movie.original_language" class="capitalize">
+      <span>{{"native_language" | translate}} : {{ movie.original_language }}</span>
     </p>
-    <p *ngIf="movie.release_date">
-      <span>Date de sortie : {{ movie.release_date | date : 'fullDate' }}</span>
+    <p *ngIf="movie.release_date" class="capitalize">
+      <span>{{"release_date" | translate}} :
+        {{ movie.release_date | date : 'fullDate' }}</span>
     </p>
-    <p *ngIf="movie.vote_average">
-      <span>Note du public : {{ movie.vote_average }} /10</span>
+    <p *ngIf="movie.vote_average" class="capitalize">
+      <span>{{"viewers_rating" | translate}} :
+        {{ movie.vote_average }} /10</span>
     </p>
     <a *ngIf="movie.homepage" href="{{ movie.homepage }}" target="_blank">
-      <p>En savoir plus</p>
+      <p class="capitalize">{{"learn_more" | translate}}</p>
     </a>
   </div>
-  <tp-fil-rouge-review-form
-    [movie]="{
+  <tp-fil-rouge-review-form [movie]="{
       movieId: movie.id,
       posterPath: movie.poster_path,
       title: movie.title
-    }"
-  ></tp-fil-rouge-review-form>
+    }"></tp-fil-rouge-review-form>
 </div>

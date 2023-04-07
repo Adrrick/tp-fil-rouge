@@ -11,13 +11,14 @@ import User from 'src/app/models/User';
 import MovieSeen from 'src/app/models/MovieSeen';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import Review from 'src/app/models/Review';
+import { TranslateModule } from '@ngx-translate/core';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 
 @Component({
   selector: 'tp-fil-rouge-movie-detail',
   standalone: true,
-  imports: [CommonModule, ReviewFormComponent],
+  imports: [CommonModule, ReviewFormComponent, TranslateModule],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
   providers: [MoviesService, ToastService],
